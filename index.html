@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSHP - اكتشف جمال المغرب الساحر</title>
+    <meta name="description" content="اكتشف المغرب بجميع جماله - من المدن العتيقة إلى الشواطئ الخلابة والصحراء الساحرة">
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- زر العودة للأعلى -->
+    <button class="scroll-top" aria-label="العودة إلى الأعلى">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- شريط التحميل -->
+    <div class="loading-bar" id="loadingBar"></div>
+
+    <!-- الهيدر -->
+    <header id="header">
+        <div class="container">
+            <div class="nav-container">
+                <div class="logo">
+                    <h1>DSHP<span></span></h1>
+                </div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="#home" class="nav-link active">الرئيسية</a></li>
+                        <li><a href="#destinations" class="nav-link">الوجهات</a></li>
+                        <li><a href="#culture" class="nav-link">الثقافة</a></li>
+                        <li><a href="#cuisine" class="nav-link">المطبخ</a></li>
+                        <li><a href="#hotels" class="nav-link">الفنادق</a></li>
+                        <li><a href="#gallery" class="nav-link">المعرض</a></li>
+                        <li><a href="#contact" class="nav-link">اتصل بنا</a></li>
+                    </ul>
+                </nav>
+                <div class="nav-actions">
+                    <div class="lang-switcher">
+                        <button class="lang-btn active" data-lang="ar">العربية</button>
+                        <button class="lang-btn" data-lang="fr">Français</button>
+                        <button class="lang-btn" data-lang="en">English</button>
+                    </div>
+                    <button class="hamburger" aria-label="قائمة التنقل">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- القائمة المتنقلة للهواتف -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <div class="logo">
+                <h1>DSHP<span>.</span></h1>
+            </div>
+            <button class="close-menu" aria-label="إغلاق القائمة">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <nav class="mobile-nav">
+            <ul>
+                <li><a href="#home" class="mobile-nav-link">الرئيسية</a></li>
+                <li><a href="#destinations" class="mobile-nav-link">الوجهات</a></li>
+                <li><a href="#culture" class="mobile-nav-link">الثقافة</a></li>
+                <li><a href="#cuisine" class="mobile-nav-link">المطبخ</a></li>
+                <li><a href="#hotels" class="mobile-nav-link">الفنادق</a></li>
+                <li><a href="#gallery" class="mobile-nav-link">المعرض</a></li>
+                <li><a href="#contact" class="mobile-nav-link">اتصل بنا</a></li>
+            </ul>
+        </nav>
+        <div class="mobile-lang-switcher">
+            <button class="lang-btn active" data-lang="ar">العربية</button>
+            <button class="lang-btn" data-lang="fr">Français</button>
+            <button class="lang-btn" data-lang="en">English</button>
+        </div>
+    </div>
+
+    <!-- قسم الهيرو -->
+    <section class="hero" id="home">
+        <div class="hero-slider">
+            <div class="slide active">
+                <img   src="https://ledesk.ma/wp-content/uploads/2022/02/DSC4072-copie.jpg"  alt="مراكش المدينة الحمراء" loading="lazy">
+            </div>
+            <div class="slide">
+                <img src="https://ledesk.ma/wp-content/uploads/2022/02/DSC4179-copie.jpg" alt="شفشاون المدينة الزرقاء" loading="lazy">
+            </div>
+            <div class="slide">
+                <img src="https://ibnkhaldoun.net/wp-content/uploads/2024/05/%D8%A7%D9%84%D9%85%D8%B7%D8%A8%D8%AE-%D8%A7%D9%84%D9%85%D8%BA%D8%B1%D8%A8%D9%8A-%D9%88%D8%A3%D8%B4%D9%87%D8%B1-%D8%A7%D9%84%D8%A3%D9%83%D9%84%D8%A7%D8%AA-%D8%A7%D9%84%D8%AA%D8%B1%D8%A7%D8%AB%D9%8A%D8%A9-1024x585.jpg" alt="الصحراء المغربية" loading="lazy">
+            </div>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="container">
+                <h1 class="hero-title">اكتشف جمال <span>المغرب</span> الساحر</h1>
+                <p class="hero-description">استمتع برحلة لا تُنسى بين مدن التاريخ العريق، شواطئ البحر المتوسط، وصحراء الصحراء الكبرى. اكتشف ثقافة غنية ومتنوعة وتذوق أطباقنا الشهية.</p>
+                <div class="hero-buttons">
+                    <a href="#destinations" class="btn btn-primary">استكشف الوجهات</a>
+                    <a href="#contact" class="btn btn-secondary">احجز رحلتك</a>
+                </div>
+            </div>
+        </div>
+        <div class="hero-slider-controls">
+            <button class="slider-prev" aria-label="الصورة السابقة">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <button class="slider-next" aria-label="الصورة التالية">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+        </div>
+        <div class="hero-slider-dots">
+            <span class="dot active" data-slide="0"></span>
+            <span class="dot" data-slide="1"></span>
+            <span class="dot" data-slide="2"></span>
+        </div>
+    </section>
+
+    <!-- قسم الوجهات -->
+    <section class="section destinations" id="destinations">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">الوجهات السياحية</h2>
+                <p class="section-description">اكتشف أجمل الوجهات في المغرب من مدن تاريخية إلى شواطئ خلابة وصحراء ساحرة</p>
+            </div>
+            <div class="destinations-grid">
+                <article class="destination-card">
+                    <div class="card-image">
+                        <img src="https://media.istockphoto.com/id/508212800/fr/photo/mosqu%C3%A9e-de-la-koutoubia-marrakech-maroc.jpg?s=612x612&w=0&k=20&c=lpaZv95Z5_iDNNPaH25mRfIsxgfOIv-xq6QvCpRPvkY=" alt="مراكش المدينة الحمراء" loading="lazy">
+                        <div class="card-overlay">
+                            <button class="card-like" aria-label="إضافة إلى المفضلة">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3>مراكش</h3>
+                        <div class="card-meta">
+                            <span class="location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                منطقة مراكش - آسفي
+                            </span>
+                            <span class="rating">
+                                <i class="fas fa-star"></i>
+                                4.8
+                            </span>
+                        </div>
+                        <p>مدينة مراكش، المدينة الحمراء، تجمع بين التاريخ العريق والحديث. اكتشف ساحة جامع الفناء، القصور القديمة، والأسواق التقليدية.</p>
+                        <div class="card-footer">
+                            <span class="price">رحلة لمدة 7 أيام من $850</span>
+                            <a href="#" class="btn btn-outline">اكتشف المزيد</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="destination-card">
+                    <div class="card-image">
+                        <img src="https://t3.ftcdn.net/jpg/04/77/01/52/360_F_477015255_HKIma9zXahAYULNZCc2U2M9sO81lsEYB.jpg" alt="شفشاون المدينة الزرقاء" loading="lazy">
+                        <div class="card-overlay">
+                            <button class="card-like" aria-label="إضافة إلى المفضلة">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3>شفشاون</h3>
+                        <div class="card-meta">
+                            <span class="location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                منطقة طنجة - تطوان - الحسيمة
+                            </span>
+                            <span class="rating">
+                                <i class="fas fa-star"></i>
+                                4.7
+                            </span>
+                        </div>
+                        <p>مدينة شفشاون الزرقاء، جوهرة جبال الريف. تجول في أزقتها الزرقاء واستمتع بالهدوء والمناظر الخلابة.</p>
+                        <div class="card-footer">
+                            <span class="price">رحلة لمدة 5 أيام من $650</span>
+                            <a href="#" class="btn btn-outline">اكتشف المزيد</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="destination-card">
+                    <div class="card-image">
+                        <img src="https://hiragate.com/wp-content/uploads/2024/10/3-Days-Shared-Desert-Tour-from-Marrakech-to-Merzouga-9-750x360.webp" alt="الصحراء المغربية" loading="lazy">
+                        <div class="card-overlay">
+                            <button class="card-like" aria-label="إضافة إلى المفضلة">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3>الصحراء المغربية</h3>
+                        <div class="card-meta">
+                            <span class="location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                منطقة درعة - تافيلالت
+                            </span>
+                            <span class="rating">
+                                <i class="fas fa-star"></i>
+                                4.9
+                            </span>
+                        </div>
+                        <p>استمتع برحلة سفاري في الصحراء الكبرى، واختبر حياة البدو، وقم بركوب الجمال وشاهد غروب الشمس الرائع.</p>
+                        <div class="card-footer">
+                            <span class="price">رحلة لمدة 4 أيام من $550</span>
+                            <a href="#" class="btn btn-outline">اكتشف المزيد</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الثقافة -->
+    <section class="section culture" id="culture">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">الثقافة والتقاليد</h2>
+                <p class="section-description">تعرف على الثقافة المغربية الغنية والمتنوعة التي تمزج بين التأثيرات العربية، الأمازيغية، والأفريقية</p>
+            </div>
+            <div class="culture-content">
+                <div class="culture-text">
+                    <h3>تراث غني وتقاليد عريقة</h3>
+                    <p>يتميز المغرب بثقافة غنية تجمع بين التأثيرات العربية، الأمازيغية، والأفريقية. من الفنون التقليدية إلى الموسيقى والرقص، يقدم المغرب تجربة ثقافية فريدة.</p>
+                    <p>استكشف الفن المعماري المغربي المتميز بالقصور والمساجد والمدن العتيقة، وتذوق المأكولات التقليدية التي تعكس تنوع التأثيرات الثقافية.</p>
+                    <div class="culture-features">
+                        <div class="feature">
+                            <i class="fas fa-mosque"></i>
+                            <span>العمارة الإسلامية</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-music"></i>
+                            <span>الموسيقى التقليدية</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-tshirt"></i>
+                            <span>الأزياء التقليدية</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-gem"></i>
+                            <span>الحرف اليدوية</span>
+                        </div>
+                    </div>
+                    <a href="#" class="btn btn-primary">اكتشف المزيد عن الثقافة</a>
+                </div>
+                <div class="culture-media">
+                    <div class="culture-image">
+                        <img src="https://images.unsplash.com/photo-1580502304784-8985b7eb7260?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="الثقافة المغربية" loading="lazy">
+                    </div>
+                    <div class="culture-video">
+                        <div class="video-placeholder">
+                            <i class="fas fa-play"></i>
+                            <span>شاهد الفيديو</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم المطبخ -->
+    <section class="section cuisine" id="cuisine">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">المطبخ المغربي</h2>
+                <p class="section-description">استمتع بمذاق الأطباق المغربية الشهية التي تشتهر بها المطابخ العالمية</p>
+            </div>
+            <div class="cuisine-grid">
+                <div class="cuisine-card">
+                    <div class="cuisine-image">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Tajine-marocain-un-plat-varie-et-sain.jpg/960px-Tajine-marocain-un-plat-varie-et-sain.jpg" alt="الطاجين المغربي" loading="lazy">
+                    </div>
+                    <div class="cuisine-content">
+                        <h3>الطاجين</h3>
+                        <p>طبق تقليدي مغربي يطهى ببطء في إناء فخاري خاص، ويقدم بمختلف النكهات من لحم، دجاج، أو سمك مع الخضار.</p>
+                        <div class="cuisine-meta">
+                            <span class="time"><i class="fas fa-clock"></i> 2-3 ساعات</span>
+                            <span class="difficulty"><i class="fas fa-chef-hat"></i> متوسط</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cuisine-card">
+                    <div class="cuisine-image">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbAZFFW9ytXNOzxatMK1TsiZyfGKNC8ezqSw&s" alt="الكسكس المغربي" loading="lazy">
+                    </div>
+                    <div class="cuisine-content">
+                        <h3>الكسكس</h3>
+                        <p>الطبق الوطني المغربي، يتكون من سميد القمح المطهو على البخار ويقدم مع اللحم والخضروات والصلصة.</p>
+                        <div class="cuisine-meta">
+                            <span class="time"><i class="fas fa-clock"></i> 1-2 ساعات</span>
+                            <span class="difficulty"><i class="fas fa-chef-hat"></i> سهل</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cuisine-card">
+                    <div class="cuisine-image">
+                        <img src="https://steemitimages.com/DQmQavz4j1wpEJyhosFtW2C4fbdakoHobkygYktorY31iC8/maxresdefault.jpg" alt="الشاي المغربي" loading="lazy">
+                    </div>
+                    <div class="cuisine-content">
+                        <h3>الشاي المغربي</h3>
+                        <p>الشاي المغربي بالنعناع هو رمز للكرم والضيافة، يقدم في كل مناسبة مع الكثير من السكر والنعناع الطازج.</p>
+                        <div class="cuisine-meta">
+                            <span class="time"><i class="fas fa-clock"></i> 15 دقيقة</span>
+                            <span class="difficulty"><i class="fas fa-chef-hat"></i> سهل</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cuisine-card">
+                    <div class="cuisine-image">
+                        <img src="https://patisseriegato.ma/wp-content/uploads/2023/06/14-%D8%A7%D9%84%D8%AD%D9%84%D9%88%D9%8A%D8%A7%D8%AA-%D8%A7%D9%84%D9%85%D8%BA%D8%B1%D8%A8%D9%8A%D8%A9.jpg" alt="الحلويات المغربية" loading="lazy">
+                    </div>
+                    <div class="cuisine-content">
+                        <h3>الحلويات المغربية</h3>
+                        <p>تشكيلة واسعة من الحلويات التقليدية مثل الكعك، الغريبة، والفقاص التي تقدم مع الشاي في المناسبات.</p>
+                        <div class="cuisine-meta">
+                            <span class="time"><i class="fas fa-clock"></i> 1-3 ساعات</span>
+                            <span class="difficulty"><i class="fas fa-chef-hat"></i> صعب</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الفنادق -->
+    <section class="section hotels" id="hotels">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">الفنادق والإقامة</h2>
+                <p class="section-description">اختر من بين أفضل خيارات الإقامة في المغرب، من الفنادق الفاخرة إلى الريادات التقليدية</p>
+            </div>
+            <div class="hotels-grid">
+                <article class="hotel-card">
+                    <div class="hotel-image">
+                        <img src="https://media-cdn.tripadvisor.com/media/photo-s/2b/fe/c4/81/hotel-entrance.jpg" alt="فندق لا مامونيا" loading="lazy">
+                        <div class="hotel-badge">فاخر</div>
+                    </div>
+                    <div class="hotel-content">
+                        <h3>فندق لا مامونيا</h3>
+                        <div class="hotel-meta">
+                            <span class="location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                مراكش، المغرب
+                            </span>
+                            <span class="rating">
+                                <i class="fas fa-star"></i>
+                                5.0
+                            </span>
+                        </div>
+                        <p class="hotel-description">فندق فاخر يقع في قلب مراكش، يتميز بتصميم مغربي تقليدي وخدمات عالمية المستوى.</p>
+                        <div class="hotel-features">
+                            <span><i class="fas fa-wifi"></i> واي فاي مجاني</span>
+                            <span><i class="fas fa-swimming-pool"></i> مسبح</span>
+                            <span><i class="fas fa-spa"></i> سبا</span>
+                        </div>
+                        <div class="hotel-footer">
+                            <div class="price">
+                                <span class="amount">$300</span>
+                                <span class="period">/ليلة</span>
+                            </div>
+                            <a href="#" class="btn btn-primary">احجز الآن</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="hotel-card">
+                    <div class="hotel-image">
+                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/502136445.jpg?k=7daf5e98c3e47258c972e43427f4d7c6bd21441f0330d59bc8cf22114ab4a524&o=" alt="رياض دار سعد" loading="lazy">
+                        <div class="hotel-badge">تقييم ممتاز</div>
+                    </div>
+                    <div class="hotel-content">
+                        <h3>رياض دار سعد</h3>
+                        <div class="hotel-meta">
+                            <span class="location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                فاس، المغرب
+                            </span>
+                            <span class="rating">
+                                <i class="fas fa-star"></i>
+                                4.8
+                            </span>
+                        </div>
+                        <p class="hotel-description">رياض تقليدي في فاس يتميز بالفناء الداخلي الجميل والتصميم المعماري المغربي الأصيل.</p>
+                        <div class="hotel-features">
+                            <span><i class="fas fa-utensils"></i> مطعم</span>
+                            <span><i class="fas fa-tree"></i> حديقة</span>
+                            <span><i class="fas fa-concierge-bell"></i> خدمة الغرف</span>
+                        </div>
+                        <div class="hotel-footer">
+                            <div class="price">
+                                <span class="amount">$120</span>
+                                <span class="period">/ليلة</span>
+                            </div>
+                            <a href="#" class="btn btn-primary">احجز الآن</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="hotel-card">
+                    <div class="hotel-image">
+                        <img src="https://q-xx.bstatic.com/xdata/images/hotel/max500/611796245.jpg?k=855000e6c2d7729c1c2e9bc4058486dcc2c19fb875ab818a4996b193ce9f3dc9&o=" alt="منتجع مازاغان" loading="lazy">
+                        <div class="hotel-badge">شاطئ خاص</div>
+                    </div>
+                    <div class="hotel-content">
+                        <h3>منتجع مازاغان</h3>
+                        <div class="hotel-meta">
+                            <span class="location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                الجديدة، المغرب
+                            </span>
+                            <span class="rating">
+                                <i class="fas fa-star"></i>
+                                4.9
+                            </span>
+                        </div>
+                        <p class="hotel-description">منتجع فاخر على شاطئ المحيط الأطلسي، يوفر إطلالات رائعة ومرافق ترفيهية متكاملة.</p>
+                        <div class="hotel-features">
+                            <span><i class="fas fa-umbrella-beach"></i> شاطئ خاص</span>
+                            <span><i class="fas fa-golf-ball"></i> ملعب جولف</span>
+                            <span><i class="fas fa-dumbbell"></i> نادي صحي</span>
+                        </div>
+                        <div class="hotel-footer">
+                            <div class="price">
+                                <span class="amount">$250</span>
+                                <span class="period">/ليلة</span>
+                            </div>
+                            <a href="#" class="btn btn-primary">احجز الآن</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم معرض الصور -->
+    <section class="section gallery" id="gallery">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">معرض الصور</h2>
+                <p class="section-description">استمتع بمشاهدة أجمل اللحظات والمناظر من مختلف أنحاء المغرب</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://shemstravel.com/assets/site/images/posts/5mjvhdf89c.jpg" alt="الصحراء المغربية" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-content">
+                            <h3>الصحراء المغربية</h3>
+                            <p>مناظر خلابة من الصحراء الكبرى</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://patisseriegato.ma/wp-content/uploads/2022/07/%D8%A3%D8%B3%D9%88%D8%A7%D9%82-%D9%85%D8%AF%D9%8A%D9%86%D8%A9-%D8%A7%D9%84%D9%85%D8%BA%D8%B1%D8%A9-%D9%85%D8%B1%D8%A7%D9%83%D8%B4-%D8%A7%D9%84%D9%85%D8%BA%D8%B1%D8%A8-3.jpg" alt="أسواق مراكش" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-content">
+                            <h3>أسواق مراكش</h3>
+                            <p>الأجواء الساحرة في الأسواق التقليدية</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://aljalya.ma/wp-content/uploads/2025/08/%D9%85%D8%B3%D8%AC%D8%AF-1.webp" alt="مسجد الحسن الثاني" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-content">
+                            <h3>مسجد الحسن الثاني</h3>
+                            <p>تحفة معمارية في الدار البيضاء</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://attasiaa.com/wp-content/uploads/2024/12/maroc_atlas.jpg" alt="جبال الأطلس" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-content">
+                            <h3>جبال الأطلس</h3>
+                            <p>الطبيعة الخلابة في جبال الأطلس</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="المدينة القديمة في فاس" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-content">
+                            <h3>فاس المدينة القديمة</h3>
+                            <p>التاريخ العريق في عاصمة الثقافة</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://www.sfari.com/wp-content/uploads/2023/01/%D8%A7%D9%8A%D9%86-%D8%AA%D9%82%D8%B9-%D8%B4%D9%81%D8%B4%D8%A7%D9%88%D9%86-%D9%88%D8%A7%D9%84%D9%85%D8%B3%D8%A7%D9%81%D8%A9-%D8%A8%D9%8A%D9%86%D9%87%D8%A7-%D9%88%D8%A8%D9%8A%D9%86-%D8%A7%D9%87%D9%85-%D9%85%D8%AF%D9%86-%D8%A7%D9%84%D9%85%D8%BA%D8%B1%D8%A8.jpg" alt="شفشاون" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-content">
+                            <h3>شفشاون</h3>
+                            <p>الجوهرة الزرقاء في جبال الريف</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الاتصال -->
+    <section class="section contact" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">اتصل بنا</h2>
+                <p class="section-description">لا تتردد في التواصل معنا للحصول على استشارة مجانية أو لحجز رحلتك إلى المغرب</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>تواصل مع مستشارينا</h3>
+                    <p>فريقنا من الخبراء السياحيين مستعد لمساعدتك في تخطيط رحلتك المثالية إلى المغرب. اتصل بنا أو املأ النموذج وسنرد عليك في أقرب وقت ممكن.</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>العنوان</h4>
+                                <p>شارع محمد الخامس، الرباط، المغرب</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>الهاتف</h4>
+                                <p>+212 5 37 123 456</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>البريد الإلكتروني</h4>
+                                <p>info@dshp-morocco.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>ساعات العمل</h4>
+                                <p>الإثنين - الجمعة: 9:00 - 18:00</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="#" aria-label="فيسبوك"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="تويتر"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="إنستغرام"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="يوتيوب"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">الاسم الكامل *</label>
+                            <input type="text" id="name" name="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">البريد الإلكتروني *</label>
+                            <input type="email" id="email" name="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">رقم الهاتف</label>
+                            <input type="tel" id="phone" name="phone" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">الموضوع *</label>
+                            <input type="text" id="subject" name="subject" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">الرسالة *</label>
+                            <textarea id="message" name="message" class="form-control" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">إرسال الرسالة</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- الفوتر -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <h2>DSHP<span>.</span></h2>
+                        <p>نحن وكالة سياحية متخصصة في تقديم أفضل تجارب السفر إلى المغرب. نقدم مجموعة واسعة من الخدمات السياحية المصممة خصيصًا لتلبية توقعاتك.</p>
+                    </div>
+                    <div class="footer-social">
+                        <a href="#" aria-label="فيسبوك"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="تويتر"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="إنستغرام"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="يوتيوب"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#destinations">الوجهات</a></li>
+                        <li><a href="#culture">الثقافة</a></li>
+                        <li><a href="#cuisine">المطبخ</a></li>
+                        <li><a href="#hotels">الفنادق</a></li>
+                        <li><a href="#gallery">المعرض</a></li>
+                        <li><a href="#contact">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>الوجهات الشعبية</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">مراكش</a></li>
+                        <li><a href="#">فاس</a></li>
+                        <li><a href="#">الدار البيضاء</a></li>
+                        <li><a href="#">شفشاون</a></li>
+                        <li><a href="#">الصحراء المغربية</a></li>
+                        <li><a href="#">طنجة</a></li>
+                        <li><a href="#">أغادير</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>اتصل بنا</h3>
+                    <div class="footer-contact">
+                        <p><i class="fas fa-map-marker-alt"></i> شارع محمد الخامس، الرباط، المغرب</p>
+                        <p><i class="fas fa-phone"></i> +212 5 22 111 000</p>
+                        <p><i class="fas fa-envelope"></i> info@dshp-morocco.com</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2025 DSHP. جميع الحقوق محفوظة</p>
+                    <div class="footer-legal">
+                        <a href="#">سياسة الخصوصية</a>
+                        <a href="#">شروط الاستخدام</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
