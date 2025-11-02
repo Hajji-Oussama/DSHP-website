@@ -1,665 +1,2220 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DSHP - اكتشف جمال المغرب الساحر</title>
-    <meta name="description" content="اكتشف المغرب بجميع جماله - من المدن العتيقة إلى الشواطئ الخلابة والصحراء الساحرة">
-    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DSHT — كراء السيارات الفاخرة والكرفانات | الفخامة المغربية على الطريق</title>
+  <meta name="description" content="DSHT — كراء سيارات فاخرة وكرفانات مجهزة. احجز رحلتك براحة وفخامة عبر خدماتنا المدعومة في جميع أنحاء المغرب.">
+  <meta name="theme-color" content="#0b1220">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=El+Messiri:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --surface:#0f1724;
+      --accent:#d4af37;
+      --accent-light:#e7d08f;
+      --muted:#9aa4b2;
+      --glass: rgba(255,255,255,0.04);
+      --card-radius:16px;
+      --container:1200px;
+      --transition:200ms cubic-bezier(.2,.9,.3,1);
+      color-scheme: dark;
+    }
+
+    *,*::before,*::after{box-sizing:border-box}
+
+    html{scroll-behavior:smooth;scroll-padding-top:80px}
+
+    body{
+      height:100%;
+      font-family:'Cairo',system-ui,sans-serif;
+      background:linear-gradient(180deg,var(--bg),#07101a);
+      margin:0;
+      color:#e6eef6;
+      -webkit-font-smoothing:antialiased;
+      overflow-x: hidden;
+    }
+
+    .container{max-width:var(--container);margin:0 auto;padding:0 20px;width:100%}
+    img{display:block;max-width:100%;height:auto}
+    a{text-decoration:none;color:inherit}
+    button{font-family:inherit;cursor:pointer;border:none}
+    :focus-visible{outline:3px solid rgba(212,175,55,0.5);outline-offset:3px}
+
+    /* Header */
+    header.site-header{
+      position:sticky;
+      top:0;
+      z-index:80;
+      background:linear-gradient(180deg,rgba(11,18,32,0.92),rgba(11,18,32,0.75));
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid rgba(255,255,255,0.03);
+      transition: all var(--transition);
+    }
+
+    .header-scrolled {
+      background: rgba(11,18,32,0.97);
+      backdrop-filter: blur(15px);
+      box-shadow:0 4px 20px rgba(0,0,0,0.3);
+    }
+
+    .nav-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:14px 0;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand .logo-wrap{
+      width:52px;
+      height:52px;
+      border-radius:12px;
+      object-fit: contain; /* يحافظ على نسبة أبعاد الصورة */
+  background: transparent !important; /* يضمن عدم وجود خلفية */
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#081018;
+      font-weight:700;
+      transition: transform var(--transition);
+      flex-shrink:0;
+      font-size:20px;
+    }
+
+    .brand:hover .logo-wrap {
+      transform: rotate(5deg) scale(1.05);
+    }
+
+    .brand h1{font-size:18px;margin:0;line-height:1.2;color:#fff}
+    .brand p{margin:0;font-size:12px;color:var(--muted);display:none}
+
+    nav.main-nav{display:none}
+    
+    .nav-actions{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .cta-btn{
+      background:var(--accent);
+      color:#07101a;
+      padding:10px 14px;
+      border-radius:12px;
+      cursor:pointer;
+      box-shadow:0 6px 18px rgba(212,175,55,0.08);
+      transition:transform var(--transition),box-shadow var(--transition);
+      font-weight: 600;
+      font-size:14px;
+      display:flex;
+      align-items:center;
+      gap:6px;
+    }
+
+    .cta-btn:hover{
+      transform:translateY(-3px);
+      box-shadow:0 10px 25px rgba(212,175,55,0.15);
+    }
+
+    .hamburger{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      width:46px;
+      height:46px;
+      border-radius:10px;
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.04);
+      cursor:pointer;
+      transition: all var(--transition);
+      flex-shrink:0;
+      gap:5px;
+    }
+
+    .hamburger:hover {
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(255,255,255,0.08);
+    }
+
+    .hamburger span{
+      display:block;
+      width:22px;
+      height:2px;
+      background:#e6eef6;
+      border-radius:2px;
+      transition:all var(--transition);
+    }
+
+    .hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+    .hamburger.active span:nth-child(2){opacity:0}
+    .hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+    
+    .lang-switcher{display:flex;gap:6px;align-items:center}
+    .lang-switcher button{
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.04);
+      color:var(--muted);
+      padding:6px 10px;
+      border-radius:8px;
+      transition: all var(--transition);
+      font-size:13px;
+    }
+    .lang-switcher button:hover {
+      background: rgba(255,255,255,0.05);
+    }
+    .lang-switcher button.active{
+      border-color:var(--accent);
+      color:var(--accent);
+      background:linear-gradient(180deg,rgba(212,175,55,0.06),transparent)
+    }
+
+    /* Hero Section */
+    .hero{padding:20px 0}
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:18px;
+      align-items:start;
+    }
+
+    .hero-card{
+      background:linear-gradient(180deg,var(--glass),transparent);
+      border-radius:var(--card-radius);
+      overflow:hidden;
+      padding:18px;
+      transition: transform var(--transition);
+    }
+
+    .hero-visual{
+      position:relative;
+      border-radius:14px;
+      overflow:hidden;
+      height:400px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    }
+
+    .hero-visual .slide{
+      position:absolute;
+      inset:0;
+      background-size:cover;
+      background-position:center;
+      transition:opacity 800ms ease-in-out;
+      opacity:0;
+    }
+    .hero-visual .slide.active{opacity:1}
+    .hero-visual::after{
+      content:'';
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg,transparent 50%,rgba(2,6,23,0.8));
+      z-index:1;
+    }
+
+    .hero-overlay-content{
+      position:absolute;
+      left:18px;
+      bottom:18px;
+      right:18px;
+      color:#fff;
+      z-index:2;
+    }
+
+    .hero-text h2{
+      font-size:24px;
+      line-height:1.2;
+      margin:0 0 10px;
+      color:#fff;
+    }
+
+    .hero-text p.lead{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.6;
+    }
+
+    .stats-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:10px;
+      margin-top:14px;
+    }
+
+    .stat{
+      background:var(--surface);
+      padding:12px;
+      border-radius:10px;
+      text-align:center;
+      transition: transform var(--transition);
+    }
+
+    .stat:hover {
+      transform:translateY(-5px);
+    }
+
+    .stat .num{font-weight:700;font-size:20px;color:var(--accent)}
+    .stat .label{font-size:12px;color:var(--muted)}
+
+    /* Booking card */
+    .booking-card{
+      background:linear-gradient(180deg,rgba(0,0,0,0.7),rgba(0,0,0,0.5));
+      border-radius:12px;
+      padding:16px;
+      margin-top:20px;
+      box-shadow:0 8px 30px rgba(2,6,23,0.6);
+    }
+
+    .booking-card h3{
+      margin:0 0 14px;
+      font-size:18px;
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+
+    .form-row{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:10px;
+    }
+
+    .form-group{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      margin-bottom:10px;
+    }
+
+    label{font-size:13px;color:var(--muted)}
+    
+    input[type='text'],
+    input[type='email'],
+    input[type='tel'],
+    input[type='date'],
+    select,
+    textarea{
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.1);
+      padding:10px;
+      border-radius:10px;
+      color:#e6eef6;
+      transition: all var(--transition);
+      width:100%;
+      font-size:14px;
+    }
+
+    select{
+      cursor:pointer;
+      appearance:none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23e6eef6' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: left 12px center;
+      padding-right:35px;
+    }
+
+    select option{
+      background:#0f1724;
+      color:#e6eef6;
+      padding:10px;
+    }
+
+    input:focus,select:focus,textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px rgba(212,175,55,0.2);
+      background:rgba(255,255,255,0.08);
+      outline:none;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      border-radius:10px;
+      padding:12px 16px;
+      border:none;
+      cursor:pointer;
+      transition: all var(--transition);
+      font-weight: 600;
+      font-size:14px;
+      width:100%;
+    }
+
+    .btn-outline{
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.1);
+      color:var(--muted);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(255,255,255,0.2);
+      color: #fff;
+    }
+
+    .btn-primary{
+      background:var(--accent);
+      color:#081018;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(212,175,55,0.2);
+    }
+
+    .btn-primary:disabled{
+      opacity:0.6;
+      cursor:not-allowed;
+      transform:none;
+    }
+
+    /* Hero controls */
+    .hero-controls{
+      position:absolute;
+      left:18px;
+      top:18px;
+      display:flex;
+      gap:8px;
+      z-index:3;
+    }
+
+    .hero-controls .btn{
+      width:auto;
+      padding:8px 12px;
+    }
+
+    /* Cards grid */
+    .grid{display:grid;gap:18px}
+    .cars-grid{grid-template-columns:repeat(1,1fr)}
+
+    .car-card{
+      background:var(--surface);
+      border-radius:14px;
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .car-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+    }
+
+    .car-image{
+      position:relative;
+      height:200px;
+      overflow:hidden;
+    }
+
+    .car-image img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transition: transform 400ms;
+    }
+
+    .car-card:hover .car-image img {
+      transform: scale(1.05);
+    }
+
+    .car-content{padding:14px}
+    .car-title{margin:0 0 10px;font-size:16px}
+    .car-specs{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin:8px 0;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .car-price{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-top:12px;
+      flex-wrap:wrap;
+    }
+
+    /* Features */
+    .section{padding:40px 0}
+
+    .section-header{margin-bottom:24px}
+
+    .section-header h3{
+      font-size:24px;
+      margin:10px 0;
+    }
+
+    .features-grid{
+      display:grid;
+      grid-template-columns:repeat(1,1fr);
+      gap:14px;
+    }
+
+    .feature-card{
+      background:linear-gradient(180deg,rgba(255,255,255,0.03),transparent);
+      padding:16px;
+      border-radius:12px;
+      transition: transform var(--transition);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      background: linear-gradient(180deg,rgba(255,255,255,0.05),transparent);
+    }
+
+    .feature-card h4{
+      margin:8px 0 10px;
+      font-size:16px;
+    }
+
+    .feature-card ul{
+      margin:10px 0 0;
+      padding-right:20px;
+      font-size:13px;
+    }
+
+    .feature-card ul li{margin:6px 0}
+
+    /* Services & Experiences */
+    .services-grid,
+    .experiences-grid{
+      display:grid;
+      grid-template-columns:repeat(1,1fr);
+      gap:14px;
+    }
+
+    .service-card,
+    .experience-card{
+      background:var(--surface);
+      padding:16px;
+      border-radius:12px;
+      transition: transform var(--transition);
+    }
+
+    .service-card:hover,
+    .experience-card:hover{
+      transform:translateY(-5px);
+    }
+
+    .service-card h4,
+    .experience-card h4{
+      margin:8px 0 10px;
+      font-size:16px;
+    }
+
+    .experience-card img{
+      width:100%;
+      height:180px;
+      object-fit:cover;
+      border-radius:8px;
+      margin-bottom:12px;
+    }
+
+    /* Testimonials */
+    .testimonials-slider{
+      padding:16px;
+      background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));
+      border-radius:12px;
+    }
+
+    .testimonial-card{
+      padding:16px;
+      border-radius:12px;
+      background:rgba(255,255,255,0.02);
+      margin-bottom:14px;
+      transition: transform var(--transition);
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .testimonial-card:last-child{margin-bottom:0}
+
+    .testimonial-text{
+      font-size:14px;
+      color:var(--muted);
+      margin:0 0 12px;
+      line-height:1.6;
+    }
+
+    /* FAQ */
+    .faq-grid{display:grid;gap:12px}
+    .faq-item{
+      background:var(--glass);
+      padding:14px;
+      border-radius:10px;
+      transition: all var(--transition);
+    }
+
+    .faq-item:hover {
+      background: rgba(255,255,255,0.04);
+    }
+
+    .faq-question{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      cursor:pointer;
+      gap:10px;
+    }
+
+    .faq-question h4{
+      margin:0;
+      font-size:15px;
+    }
+
+    .faq-question i{
+      transition:transform var(--transition);
+      color:var(--accent);
+    }
+
+    .faq-answer{
+      max-height:0;
+      overflow:hidden;
+      transition:max-height 320ms ease;
+    }
+
+    .faq-item.active .faq-answer{
+      max-height:240px;
+      padding-top:12px;
+    }
+
+    .faq-item.active .faq-question i{
+      transform:rotate(180deg);
+    }
+
+    /* Footer */
+    footer.site-footer{
+      margin-top:40px;
+      padding:28px 0;
+      border-top:1px solid rgba(255,255,255,0.03);
+    }
+
+    .footer-grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:24px;
+    }
+
+    .footer-grid h4{
+      margin:0 0 12px;
+      font-size:16px;
+    }
+
+    .footer-grid nav{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+
+    .footer-grid a{
+      color:var(--muted);
+      transition:color var(--transition);
+      font-size:14px;
+    }
+
+    .footer-grid a:hover{
+      color:var(--accent);
+    }
+
+    /* Mobile panel */
+    .mobile-panel{
+      position:fixed;
+      inset:0;
+      z-index:120;
+      display:flex;
+      flex-direction:column;
+      background:linear-gradient(180deg,rgba(2,6,23,0.98),rgba(2,6,23,0.99));
+      transform:translateX(100%);
+      transition:transform 360ms cubic-bezier(.2,.9,.3,1);
+      overflow-y:auto;
+    }
+
+    .mobile-panel.open{transform:none}
+    .mobile-panel .panel-content{padding:22px}
+
+    .mobile-nav{margin-top:24px}
+
+    .mobile-nav a{
+      display:block;
+      padding:14px;
+      border-radius:10px;
+      transition: all var(--transition);
+      margin-bottom:6px;
+      font-size:15px;
+    }
+
+    .mobile-nav a:hover {
+      background: rgba(255,255,255,0.05);
+    }
+
+    /* Scroll to top */
+    .scroll-top{
+      position:fixed;
+      left:18px;
+      bottom:18px;
+      background:var(--accent);
+      border-radius:50%;
+      width:48px;
+      height:48px;
+      display:grid;
+      place-items:center;
+      box-shadow:0 10px 30px rgba(2,6,23,0.6);
+      cursor:pointer;
+      transition: all var(--transition);
+      opacity: 0;
+      visibility: hidden;
+      z-index: 100;
+      color:#081018;
+    }
+
+    .scroll-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .scroll-top:hover {
+      background: var(--accent-light);
+      transform: translateY(-3px);
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      background: var(--surface);
+      color: #fff;
+      padding: 14px 18px;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+      z-index: 1000;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s ease;
+      font-size:14px;
+    }
+    
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    
+    .toast.success {
+      border-right: 4px solid #4CAF50;
+    }
+    
+    .toast.error {
+      border-right: 4px solid #f44336;
+    }
+
+    /* Loading */
+    .loading-spinner {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      border: 3px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      border-top-color: var(--accent);
+      animation: spin 1s ease-in-out infinite;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Badge */
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:6px 12px;
+      border-radius:999px;
+      background:rgba(212,175,55,0.12);
+      color:var(--accent);
+      font-weight:600;
+      font-size:13px;
+    }
+
+    /* Utilities */
+    .mt-8{margin-top:24px}
+    .text-muted{color:var(--muted)}
+    .text-center{text-align:center}
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* Filters */
+    .cars-filter{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-top:20px;
+    }
+
+    .filter-btn{
+      width:auto;
+      padding:10px 16px;
+      font-size:13px;
+    }
+
+    .filter-btn.active{
+      background:var(--accent);
+      color:#081018;
+      border-color:var(--accent);
+    }
+
+    .sort-select{
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.1);
+      padding:10px 14px;
+      border-radius:10px;
+      color:#e6eef6;
+      font-size:13px;
+      cursor:pointer;
+    }
+
+    /* Contact */
+    .contact-grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:18px;
+      margin-top:20px;
+    }
+
+    .contact-info,
+    .contact-form-wrapper{
+      background:var(--surface);
+      padding:20px;
+      border-radius:12px;
+    }
+
+    .contact-info h4,
+    .contact-form-wrapper h4{
+      margin:0 0 12px;
+      font-size:16px;
+    }
+
+    .contact-info p{
+      margin:8px 0;
+      font-size:14px;
+    }
+
+    /* Caravans */
+    .caravan-grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:14px;
+    }
+
+    .caravan-main{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:14px;
+    }
+
+    .caravan-image{
+      width:100%;
+      height:300px;
+      object-fit:cover;
+      border-radius:12px;
+    }
+
+    .caravan-details{
+      background:var(--surface);
+      padding:16px;
+      border-radius:12px;
+    }
+
+    .caravan-details h4{
+      margin:0 0 10px;
+      font-size:18px;
+    }
+
+    .caravan-features{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin:12px 0;
+    }
+
+    .caravan-feature{
+      background:rgba(255,255,255,0.03);
+      padding:8px 12px;
+      border-radius:8px;
+      font-size:13px;
+    }
+
+    .caravan-price-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      margin-top:14px;
+    }
+
+    .caravan-card{
+      background:var(--surface);
+      padding:14px;
+      border-radius:12px;
+      transition:transform var(--transition);
+    }
+
+    .caravan-card:hover{
+      transform:translateY(-5px);
+    }
+
+    .caravan-card img{
+      width:100%;
+      height:160px;
+      object-fit:cover;
+      border-radius:8px;
+      margin-bottom:10px;
+    }
+
+    .caravan-card h4{
+      margin:0 0 8px;
+      font-size:15px;
+    }
+
+    /* Top loader */
+    #topLoader{
+      position:fixed;
+      inset:0;
+      z-index:200;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(180deg,rgba(2,6,23,0.98),rgba(2,6,23,0.95));
+    }
+
+    .loader-content{
+      text-align:center;
+      color:#fff;
+      max-width:360px;
+      padding:24px;
+      border-radius:12px;
+      background:linear-gradient(180deg,rgba(255,255,255,0.03),transparent);
+    }
+
+    .loader-title{
+      font-size:28px;
+      font-weight:700;
+      color:var(--accent);
+      margin-bottom:12px;
+    }
+
+    .loader-text{
+      color:var(--muted);
+      margin-bottom:18px;
+      font-size:14px;
+    }
+
+    .loader-bar{
+      height:10px;
+      background:rgba(255,255,255,0.05);
+      border-radius:999px;
+      overflow:hidden;
+    }
+
+    .loader-fill{
+      width:0%;
+      height:10px;
+      background:linear-gradient(90deg,var(--accent),#e7d08f);
+      transition:width 400ms ease;
+    }
+
+    /* Responsive */
+    @media(min-width:640px){
+      .brand p{display:block}
+      
+      .hero-visual{height:500px}
+
+      .hero-text h2{font-size:32px}
+
+      .stats-grid{grid-template-columns:repeat(4,1fr)}
+
+      .form-row{grid-template-columns:1fr 1fr}
+
+      .cars-grid{grid-template-columns:repeat(2,1fr)}
+
+      .features-grid{grid-template-columns:repeat(2,1fr)}
+
+      .services-grid,
+      .experiences-grid{grid-template-columns:repeat(2,1fr)}
+
+      .footer-grid{grid-template-columns:1fr 1fr}
+
+      .contact-grid{grid-template-columns:1fr 1fr}
+
+      .caravan-grid{grid-template-columns:repeat(2,1fr)}
+    }
+
+    @media(min-width:980px){
+      nav.main-nav{display:block}
+
+      nav.main-nav ul{
+        display:flex;
+        gap:4px;
+        align-items:center;
+        list-style:none;
+        margin:0;
+        padding:0;
+      }
+
+      nav.main-nav a{
+        display:inline-flex;
+        align-items:center;
+        gap:6px;
+        padding:10px 14px;
+        border-radius:10px;
+        color:var(--muted);
+        transition: all var(--transition);
+        font-size:14px;
+      }
+
+      nav.main-nav a:hover {
+        background: rgba(255,255,255,0.03);
+        color: #fff;
+      }
+
+      nav.main-nav a.active{
+        background:linear-gradient(90deg,rgba(212,175,55,0.08),transparent);
+        color:var(--accent);
+      }
+
+      .hamburger{display:none}
+
+      .hero-grid{
+        grid-template-columns:1.5fr 1fr;
+        gap:24px;
+      }
+
+      .hero-visual{height:600px}
+
+      .hero-text h2{font-size:38px}
+
+      .booking-card{margin-top:0}
+
+      .cars-grid{grid-template-columns:repeat(3,1fr)}
+
+      .features-grid{grid-template-columns:repeat(4,1fr)}
+
+      .services-grid,
+      .experiences-grid{grid-template-columns:repeat(3,1fr)}
+    }
+
+    /* Smooth animations */
+    @keyframes fadeIn{
+      from{opacity:0;transform:translateY(20px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+
+    .fade-in{animation:fadeIn 0.6s ease-out}
+  </style>
 </head>
 <body>
-    <!-- زر العودة للأعلى -->
-    <button class="scroll-top" aria-label="العودة إلى الأعلى">
-        <i class="fas fa-chevron-up"></i>
-    </button>
+  <a class="sr-only" href="#main">تخطي إلى المحتوى</a>
 
-    <!-- شريط التحميل -->
-    <div class="loading-bar" id="loadingBar"></div>
+  <div id="toast" class="toast" role="alert" aria-live="polite"></div>
 
-    <!-- الهيدر -->
-    <header id="header">
-        <div class="container">
-            <div class="nav-container">
-                <div class="logo">
-                    <h1>DSHP<span></span></h1>
-                </div>
-                <nav class="main-nav">
-                    <ul>
-                        <li><a href="#home" class="nav-link active">الرئيسية</a></li>
-                        <li><a href="#destinations" class="nav-link">الوجهات</a></li>
-                        <li><a href="#culture" class="nav-link">الثقافة</a></li>
-                        <li><a href="#cuisine" class="nav-link">المطبخ</a></li>
-                        <li><a href="#hotels" class="nav-link">الفنادق</a></li>
-                        <li><a href="#gallery" class="nav-link">المعرض</a></li>
-                        <li><a href="#contact" class="nav-link">اتصل بنا</a></li>
-                    </ul>
-                </nav>
-                <div class="nav-actions">
-                    <div class="lang-switcher">
-                        <button class="lang-btn active" data-lang="ar">العربية</button>
-                        <button class="lang-btn" data-lang="fr">Français</button>
-                        <button class="lang-btn" data-lang="en">English</button>
-                    </div>
-                    <button class="hamburger" aria-label="قائمة التنقل">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- القائمة المتنقلة للهواتف -->
-    <div class="mobile-menu" id="mobileMenu">
-        <div class="mobile-menu-header">
-            <div class="logo">
-                <h1>DSHP<span>.</span></h1>
-            </div>
-            <button class="close-menu" aria-label="إغلاق القائمة">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        <nav class="mobile-nav">
-            <ul>
-                <li><a href="#home" class="mobile-nav-link">الرئيسية</a></li>
-                <li><a href="#destinations" class="mobile-nav-link">الوجهات</a></li>
-                <li><a href="#culture" class="mobile-nav-link">الثقافة</a></li>
-                <li><a href="#cuisine" class="mobile-nav-link">المطبخ</a></li>
-                <li><a href="#hotels" class="mobile-nav-link">الفنادق</a></li>
-                <li><a href="#gallery" class="mobile-nav-link">المعرض</a></li>
-                <li><a href="#contact" class="mobile-nav-link">اتصل بنا</a></li>
-            </ul>
-        </nav>
-        <div class="mobile-lang-switcher">
-            <button class="lang-btn active" data-lang="ar">العربية</button>
-            <button class="lang-btn" data-lang="fr">Français</button>
-            <button class="lang-btn" data-lang="en">English</button>
-        </div>
+  <div id="topLoader">
+    <div class="loader-content">
+      <div class="loader-title">DSHT</div>
+      <div class="loader-text">جاري تهيئة الموقع — يرجى الانتظار</div>
+      <div class="loader-bar">
+        <div id="topLoaderFill" class="loader-fill"></div>
+      </div>
     </div>
+  </div>
 
-    <!-- قسم الهيرو -->
-    <section class="hero" id="home">
-        <div class="hero-slider">
-            <div class="slide active">
-                <img   src="https://ledesk.ma/wp-content/uploads/2022/02/DSC4072-copie.jpg"  alt="مراكش المدينة الحمراء" loading="lazy">
-            </div>
-            <div class="slide">
-                <img src="https://ledesk.ma/wp-content/uploads/2022/02/DSC4179-copie.jpg" alt="شفشاون المدينة الزرقاء" loading="lazy">
-            </div>
-            <div class="slide">
-                <img src="https://ibnkhaldoun.net/wp-content/uploads/2024/05/%D8%A7%D9%84%D9%85%D8%B7%D8%A8%D8%AE-%D8%A7%D9%84%D9%85%D8%BA%D8%B1%D8%A8%D9%8A-%D9%88%D8%A3%D8%B4%D9%87%D8%B1-%D8%A7%D9%84%D8%A3%D9%83%D9%84%D8%A7%D8%AA-%D8%A7%D9%84%D8%AA%D8%B1%D8%A7%D8%AB%D9%8A%D8%A9-1024x585.jpg" alt="الصحراء المغربية" loading="lazy">
-            </div>
+  <header class="site-header" role="banner">
+    <div class="container nav-row">
+      <div class="brand">
+      <img class="logo-wrap" src="https://f.top4top.io/p_3592mygm91.png" alt="DSHT Logo">
+        <div>
+          <h1>DSHT</h1>
+          <p class="text-muted">الفخامة المغربية على الطريق</p>
         </div>
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <div class="container">
-                <h1 class="hero-title">اكتشف جمال <span>المغرب</span> الساحر</h1>
-                <p class="hero-description">استمتع برحلة لا تُنسى بين مدن التاريخ العريق، شواطئ البحر المتوسط، وصحراء الصحراء الكبرى. اكتشف ثقافة غنية ومتنوعة وتذوق أطباقنا الشهية.</p>
-                <div class="hero-buttons">
-                    <a href="#destinations" class="btn btn-primary">استكشف الوجهات</a>
-                    <a href="#contact" class="btn btn-secondary">احجز رحلتك</a>
-                </div>
-            </div>
+      </div>
+
+      <nav class="main-nav" role="navigation">
+        <ul>
+          <li><a class="nav-link active" href="#home">الرئيسية</a></li>
+          <li><a class="nav-link" href="#cars">السيارات</a></li>
+          <li><a class="nav-link" href="#caravans">الكرفانات</a></li>
+          <li><a class="nav-link" href="#services">خدماتنا</a></li>
+          <li><a class="nav-link" href="#experience">رحلاتنا</a></li>
+          <li><a class="nav-link" href="#testimonials">آراء العملاء</a></li>
+          <li><a class="nav-link" href="#contact">اتصل بنا</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="lang-switcher">
+          <button class="lang-btn active" data-lang="ar">العربية</button>
+          <button class="lang-btn" data-lang="fr">Fr</button>
+          <button class="lang-btn" data-lang="en">EN</button>
         </div>
-        <div class="hero-slider-controls">
-            <button class="slider-prev" aria-label="الصورة السابقة">
+
+        <button class="cta-btn" id="openBookingBtn">
+          <i class="fas fa-calendar-check"></i>
+          احجز الآن
+        </button>
+
+        <button class="hamburger" id="openMobile">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div id="mobilePanel" class="mobile-panel">
+    <div class="panel-content">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+        <div style="display:flex;gap:12px;align-items:center">
+          <div class="logo-wrap" style="width:44px;height:44px">DS</div>
+          <div>
+            <strong>DSHT</strong>
+            <div class="text-muted" style="font-size:12px">الفخامة المغربية</div>
+          </div>
+        </div>
+        <button id="closeMobile" class="btn btn-outline" style="width:auto">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <nav class="mobile-nav">
+        <a href="#home" class="mobile-link">الرئيسية</a>
+        <a href="#cars" class="mobile-link">السيارات</a>
+        <a href="#caravans" class="mobile-link">الكرفانات</a>
+        <a href="#services" class="mobile-link">خدماتنا</a>
+        <a href="#experience" class="mobile-link">رحلاتنا</a>
+        <a href="#testimonials" class="mobile-link">آراء العملاء</a>
+        <a href="#contact" class="mobile-link">اتصل بنا</a>
+      </nav>
+
+      <div style="margin-top:24px;">
+        <button class="btn btn-primary mobile-book-btn">
+          <i class="fas fa-calendar-check"></i>
+          احجز رحلتك
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <main id="main" tabindex="-1">
+    <section id="home" class="hero container">
+      <div class="hero-grid">
+        <div class="hero-card fade-in" style="padding:0;position:relative">
+          <div class="hero-visual">
+            <div class="slide active" style="background-image:url('https://4kwallpapers.com/images/walls/thumbs_3t/4109.jpeg')"></div>
+            <div class="slide" style="background-image:url('https://cdn.mos.cms.futurecdn.net/MnfUHuePh2WS3693KoiCqM-1024-80.jpg.webp')"></div>
+            <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&w=1600&q=80')"></div>
+
+            <div class="hero-controls">
+              <button class="btn btn-outline" id="prevSlide" aria-label="الشريحة السابقة">
                 <i class="fas fa-chevron-right"></i>
-            </button>
-            <button class="slider-next" aria-label="الصورة التالية">
+              </button>
+              <button class="btn btn-outline" id="nextSlide" aria-label="الشريحة التالية">
                 <i class="fas fa-chevron-left"></i>
-            </button>
+              </button>
+            </div>
+
+            <div class="hero-overlay-content">
+              <div style="font-size:13px;color:var(--muted);margin-bottom:8px">اكتشف المغرب برفاهية</div>
+              <h2 style="margin:0 0 10px;font-size:28px;line-height:1.2">استأجر سيارة فاخرة أو كرفان مجهز</h2>
+              <p class="text-muted" style="margin:0;font-size:14px">خدمة موثوقة، أساطيل متنوعة، وسائقين محترفين</p>
+            </div>
+          </div>
         </div>
-        <div class="hero-slider-dots">
-            <span class="dot active" data-slide="0"></span>
-            <span class="dot" data-slide="1"></span>
-            <span class="dot" data-slide="2"></span>
+
+        <div class="hero-card fade-in">
+          <div class="hero-text">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+              <span class="badge"><i class="fas fa-star"></i> جديد</span>
+              <div class="text-muted" style="font-size:13px">عروض الصيف</div>
+            </div>
+            <h2>فخامة مغربية على كل طريق</h2>
+            <p class="lead text-muted">احجز سيارتك أو كرفانك الآن واستفد من خصومات مميزة للعطلات الطويلة.</p>
+
+            <div class="stats-grid mt-8">
+              <div class="stat">
+                <div class="num">500+</div>
+                <div class="label text-muted">سيارة فاخرة</div>
+              </div>
+              <div class="stat">
+                <div class="num">50+</div>
+                <div class="label text-muted">كرفان مجهز</div>
+              </div>
+              <div class="stat">
+                <div class="num">24/7</div>
+                <div class="label text-muted">دعم 24 ساعة</div>
+              </div>
+              <div class="stat">
+                <div class="num">1000+</div>
+                <div class="label text-muted">عميل سعيد</div>
+              </div>
+            </div>
+
+            <div class="booking-card">
+              <h3><i class="fas fa-calendar-alt"></i> ابدأ رحلتك الآن</h3>
+              <form id="heroBookingForm">
+                <div class="form-group">
+                  <label for="vehicleType">نوع المركبة</label>
+                  <select id="vehicleType" name="vehicleType" required>
+                    <option value="">اختر النوع</option>
+                    <option value="mercedes">مرسيدس</option>
+                    <option value="bmw">BMW</option>
+                    <option value="range">Range Rover</option>
+                    <option value="toyota">تويوتا</option>
+                    <option value="caravan">كرفان فاخر</option>
+                  </select>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="pickupDate">تاريخ الانطلاق</label>
+                    <input id="pickupDate" type="date" name="pickupDate" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="returnDate">تاريخ العودة</label>
+                    <input id="returnDate" type="date" name="returnDate" required>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="pickupLocation">مطار الانطلاق</label>
+                  <select id="pickupLocation" name="pickupLocation" required>
+                    <option value="">اختر المطار</option>
+                    <option value="marrakech">مطار مراكش المنارة</option>
+                    <option value="agadir">مطار أكادير المسيرة</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="email">البريد الإلكتروني</label>
+                  <input id="email" name="email" type="email" placeholder="example@email.com" required>
+                </div>
+
+                <div class="form-group">
+                  <button type="submit" class="btn btn-primary">
+                    <span class="btn-text">ابحث عن المركبات المتاحة</span>
+                    <span class="loading-spinner" style="display:none"></span>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
-    <!-- قسم الوجهات -->
-    <section class="section destinations" id="destinations">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">الوجهات السياحية</h2>
-                <p class="section-description">اكتشف أجمل الوجهات في المغرب من مدن تاريخية إلى شواطئ خلابة وصحراء ساحرة</p>
-            </div>
-            <div class="destinations-grid">
-                <article class="destination-card">
-                    <div class="card-image">
-                        <img src="https://media.istockphoto.com/id/508212800/fr/photo/mosqu%C3%A9e-de-la-koutoubia-marrakech-maroc.jpg?s=612x612&w=0&k=20&c=lpaZv95Z5_iDNNPaH25mRfIsxgfOIv-xq6QvCpRPvkY=" alt="مراكش المدينة الحمراء" loading="lazy">
-                        <div class="card-overlay">
-                            <button class="card-like" aria-label="إضافة إلى المفضلة">
-                                <i class="far fa-heart"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <h3>مراكش</h3>
-                        <div class="card-meta">
-                            <span class="location">
-                                <i class="fas fa-map-marker-alt"></i>
-                                منطقة مراكش - آسفي
-                            </span>
-                            <span class="rating">
-                                <i class="fas fa-star"></i>
-                                4.8
-                            </span>
-                        </div>
-                        <p>مدينة مراكش، المدينة الحمراء، تجمع بين التاريخ العريق والحديث. اكتشف ساحة جامع الفناء، القصور القديمة، والأسواق التقليدية.</p>
-                        <div class="card-footer">
-                            <span class="price">رحلة لمدة 7 أيام من $850</span>
-                            <a href="#" class="btn btn-outline">اكتشف المزيد</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="destination-card">
-                    <div class="card-image">
-                        <img src="https://t3.ftcdn.net/jpg/04/77/01/52/360_F_477015255_HKIma9zXahAYULNZCc2U2M9sO81lsEYB.jpg" alt="شفشاون المدينة الزرقاء" loading="lazy">
-                        <div class="card-overlay">
-                            <button class="card-like" aria-label="إضافة إلى المفضلة">
-                                <i class="far fa-heart"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <h3>شفشاون</h3>
-                        <div class="card-meta">
-                            <span class="location">
-                                <i class="fas fa-map-marker-alt"></i>
-                                منطقة طنجة - تطوان - الحسيمة
-                            </span>
-                            <span class="rating">
-                                <i class="fas fa-star"></i>
-                                4.7
-                            </span>
-                        </div>
-                        <p>مدينة شفشاون الزرقاء، جوهرة جبال الريف. تجول في أزقتها الزرقاء واستمتع بالهدوء والمناظر الخلابة.</p>
-                        <div class="card-footer">
-                            <span class="price">رحلة لمدة 5 أيام من $650</span>
-                            <a href="#" class="btn btn-outline">اكتشف المزيد</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="destination-card">
-                    <div class="card-image">
-                        <img src="https://hiragate.com/wp-content/uploads/2024/10/3-Days-Shared-Desert-Tour-from-Marrakech-to-Merzouga-9-750x360.webp" alt="الصحراء المغربية" loading="lazy">
-                        <div class="card-overlay">
-                            <button class="card-like" aria-label="إضافة إلى المفضلة">
-                                <i class="far fa-heart"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <h3>الصحراء المغربية</h3>
-                        <div class="card-meta">
-                            <span class="location">
-                                <i class="fas fa-map-marker-alt"></i>
-                                منطقة درعة - تافيلالت
-                            </span>
-                            <span class="rating">
-                                <i class="fas fa-star"></i>
-                                4.9
-                            </span>
-                        </div>
-                        <p>استمتع برحلة سفاري في الصحراء الكبرى، واختبر حياة البدو، وقم بركوب الجمال وشاهد غروب الشمس الرائع.</p>
-                        <div class="card-footer">
-                            <span class="price">رحلة لمدة 4 أيام من $550</span>
-                            <a href="#" class="btn btn-outline">اكتشف المزيد</a>
-                        </div>
-                    </div>
-                </article>
-            </div>
+    <section id="why-choose" class="section container">
+      <div class="section-header">
+        <div style="display:flex;align-items:center;gap:12px">
+          <div class="badge"><i class="fas fa-crown"></i></div>
+          <h3>لماذا تختار DSHTP؟</h3>
         </div>
+        <p class="text-muted">تجربة فريدة تجمع بين الأصالة والرفاهية — خدمات مخصصة، أسطول حديث، وأمان كامل.</p>
+      </div>
+
+      <div class="features-grid mt-8">
+        <article class="feature-card fade-in">
+          <div style="display:flex;align-items:center;gap:10px">
+            <i class="fas fa-hands-helping" style="font-size:22px;color:var(--accent)"></i>
+            <h4>خدمة شخصية</h4>
+          </div>
+          <p class="text-muted">مرشد سياحي شخصي يتحدث لغتك ويصمم مسار الرحلة حسب رغباتك.</p>
+          <ul class="text-muted">
+            <li>تخطيط الرحلة حسب رغباتك</li>
+            <li>دعم متعدد اللغات</li>
+            <li>مرونة في المواعيد</li>
+          </ul>
+        </article>
+
+        <article class="feature-card fade-in">
+          <div style="display:flex;align-items:center;gap:10px">
+            <i class="fas fa-car" style="font-size:22px;color:var(--accent)"></i>
+            <h4>أسطول فاخر</h4>
+          </div>
+          <p class="text-muted">أحدث الموديلات — صيانة دورية وتأمين شامل لكل الرحلات.</p>
+          <ul class="text-muted">
+            <li>سيارات موديلات 2023-2025</li>
+            <li>ضمان الجودة</li>
+            <li>سائقون محترفون</li>
+          </ul>
+        </article>
+
+        <article class="feature-card fade-in">
+          <div style="display:flex;align-items:center;gap:10px">
+            <i class="fas fa-concierge-bell" style="font-size:22px;color:var(--accent)"></i>
+            <h4>خدمات رفاهية</h4>
+          </div>
+          <p class="text-muted">خدمات إضافية تجعل رحلتك أكثر راحة وفخامة.</p>
+          <ul class="text-muted">
+            <li>حجز مطاعم فاخرة</li>
+            <li>خدمات سبا وفعاليات خاصة</li>
+            <li>توصيل من وإلى المطار</li>
+          </ul>
+        </article>
+
+        <article class="feature-card fade-in">
+          <div style="display:flex;align-items:center;gap:10px">
+            <i class="fas fa-shield-alt" style="font-size:22px;color:var(--accent)"></i>
+            <h4>أمان كامل</h4>
+          </div>
+          <p class="text-muted">نظام تتبع، تأمين شامل، ودعم طوارئ 24/7.</p>
+          <ul class="text-muted">
+            <li>تتبع المركبات GPS</li>
+            <li>دعم على الطريق</li>
+            <li>تأمين شامل</li>
+          </ul>
+        </article>
+      </div>
     </section>
 
-    <!-- قسم الثقافة -->
-    <section class="section culture" id="culture">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">الثقافة والتقاليد</h2>
-                <p class="section-description">تعرف على الثقافة المغربية الغنية والمتنوعة التي تمزج بين التأثيرات العربية، الأمازيغية، والأفريقية</p>
-            </div>
-            <div class="culture-content">
-                <div class="culture-text">
-                    <h3>تراث غني وتقاليد عريقة</h3>
-                    <p>يتميز المغرب بثقافة غنية تجمع بين التأثيرات العربية، الأمازيغية، والأفريقية. من الفنون التقليدية إلى الموسيقى والرقص، يقدم المغرب تجربة ثقافية فريدة.</p>
-                    <p>استكشف الفن المعماري المغربي المتميز بالقصور والمساجد والمدن العتيقة، وتذوق المأكولات التقليدية التي تعكس تنوع التأثيرات الثقافية.</p>
-                    <div class="culture-features">
-                        <div class="feature">
-                            <i class="fas fa-mosque"></i>
-                            <span>العمارة الإسلامية</span>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-music"></i>
-                            <span>الموسيقى التقليدية</span>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-tshirt"></i>
-                            <span>الأزياء التقليدية</span>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-gem"></i>
-                            <span>الحرف اليدوية</span>
-                        </div>
-                    </div>
-                    <a href="#" class="btn btn-primary">اكتشف المزيد عن الثقافة</a>
-                </div>
-                <div class="culture-media">
-                    <div class="culture-image">
-                        <img src="https://images.unsplash.com/photo-1580502304784-8985b7eb7260?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="الثقافة المغربية" loading="lazy">
-                    </div>
-                    <div class="culture-video">
-                        <div class="video-placeholder">
-                            <i class="fas fa-play"></i>
-                            <span>شاهد الفيديو</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <section id="cars" class="section container">
+      <div class="section-header">
+        <div style="display:flex;align-items:center;gap:12px">
+          <div class="badge"><i class="fas fa-car"></i></div>
+          <h3>أسطول السيارات الفاخرة</h3>
         </div>
+        <p class="text-muted">اختر من بين تشكيلتنا الحصرية من السيارات المناسبة لكل حاجة.</p>
+      </div>
+
+      <div class="cars-filter">
+        <button class="btn btn-outline filter-btn active" data-filter="all">جميع السيارات</button>
+        <button class="btn btn-outline filter-btn" data-filter="luxury">فاخرة</button>
+        <button class="btn btn-outline filter-btn" data-filter="suv">دفع رباعي</button>
+        <button class="btn btn-outline filter-btn" data-filter="family">عائلية</button>
+        
+        <select class="sort-select" style="margin-right:auto">
+          <option value="featured">الافتراضي</option>
+          <option value="price-low">السعر: من الأقل للأعلى</option>
+          <option value="price-high">السعر: من الأعلى للأقل</option>
+        </select>
+      </div>
+
+      <div class="grid cars-grid mt-8">
+        <article class="car-card fade-in" data-category="luxury" data-price="1200">
+          <div class="car-image">
+            <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=1600&q=80" alt="مرسيدس G-Class 2023" loading="lazy">
+          </div>
+          <div class="car-content">
+            <h4 class="car-title">مرسيدس G-Class 2023</h4>
+            <div class="car-specs text-muted">
+              <span><i class="fas fa-gas-pump"></i> بنزين</span>
+              <span><i class="fas fa-cog"></i> أوتوماتيك</span>
+              <span><i class="fas fa-user-friends"></i> 5 ركاب</span>
+            </div>
+            <div class="car-price">
+              <div>
+                <div style="font-weight:700;font-size:18px">1,200 <small style="font-weight:400;font-size:13px">درهم/اليوم</small></div>
+                <div class="text-muted" style="font-size:12px">كان 1,500 درهم</div>
+              </div>
+              <button class="btn btn-primary" style="width:auto;padding:10px 16px" data-car="مرسيدس G-Class">احجز</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="car-card fade-in" data-category="suv" data-price="1500">
+          <div class="car-image">
+            <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&w=1600&q=80" alt="Range Rover Vogue 2023" loading="lazy">
+          </div>
+          <div class="car-content">
+            <h4 class="car-title">Range Rover Vogue 2023</h4>
+            <div class="car-specs text-muted">
+              <span><i class="fas fa-gas-pump"></i> ديزل</span>
+              <span><i class="fas fa-cog"></i> أوتوماتيك</span>
+              <span><i class="fas fa-user-friends"></i> 5 ركاب</span>
+            </div>
+            <div class="car-price">
+              <div>
+                <div style="font-weight:700;font-size:18px">1,500 <small style="font-weight:400;font-size:13px">درهم/اليوم</small></div>
+              </div>
+              <button class="btn btn-primary" style="width:auto;padding:10px 16px" data-car="Range Rover">احجز</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="car-card fade-in" data-category="family" data-price="400">
+          <div class="car-image">
+            <img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1600&q=80" alt="تويوتا كامري 2023" loading="lazy">
+          </div>
+          <div class="car-content">
+            <h4 class="car-title">تويوتا كامري 2023</h4>
+            <div class="car-specs text-muted">
+              <span><i class="fas fa-gas-pump"></i> بنزين</span>
+              <span><i class="fas fa-cog"></i> أوتوماتيك</span>
+              <span><i class="fas fa-user-friends"></i> 5 ركاب</span>
+            </div>
+            <div class="car-price">
+              <div>
+                <div style="font-weight:700;font-size:18px">400 <small style="font-weight:400;font-size:13px">درهم/اليوم</small></div>
+              </div>
+              <button class="btn btn-primary" style="width:auto;padding:10px 16px" data-car="تويوتا كامري">احجز</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="car-card fade-in" data-category="suv" data-price="800">
+          <div class="car-image">
+            <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1600&q=80" alt="تويوتا لاندكروزر 2023" loading="lazy">
+          </div>
+          <div class="car-content">
+            <h4 class="car-title">تويوتا لاندكروزر 2023</h4>
+            <div class="car-specs text-muted">
+              <span><i class="fas fa-gas-pump"></i> ديزل</span>
+              <span><i class="fas fa-cog"></i> أوتوماتيك</span>
+              <span><i class="fas fa-user-friends"></i> 7 ركاب</span>
+            </div>
+            <div class="car-price">
+              <div>
+                <div style="font-weight:700;font-size:18px">800 <small style="font-weight:400;font-size:13px">درهم/اليوم</small></div>
+              </div>
+              <button class="btn btn-primary" style="width:auto;padding:10px 16px" data-car="لاندكروزر">احجز</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="car-card fade-in" data-category="family" data-price="200">
+          <div class="car-image">
+            <img src="https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?auto=format&fit=crop&w=1600&q=80" alt="هيونداي i10 2023" loading="lazy">
+          </div>
+          <div class="car-content">
+            <h4 class="car-title">هيونداي i10 2023</h4>
+            <div class="car-specs text-muted">
+              <span><i class="fas fa-gas-pump"></i> بنزين</span>
+              <span><i class="fas fa-cog"></i> يدوي</span>
+              <span><i class="fas fa-user-friends"></i> 4 ركاب</span>
+            </div>
+            <div class="car-price">
+              <div>
+                <div style="font-weight:700;font-size:18px">200 <small style="font-weight:400;font-size:13px">درهم/اليوم</small></div>
+              </div>
+              <button class="btn btn-primary" style="width:auto;padding:10px 16px" data-car="هيونداي i10">احجز</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="car-card fade-in" data-category="luxury" data-price="900">
+          <div class="car-image">
+            <img src="https://images.unsplash.com/photo-1617531653332-bd46c24f2068?auto=format&fit=crop&w=1600&q=80" alt="بي إم دبليو X5 2023" loading="lazy">
+          </div>
+          <div class="car-content">
+            <h4 class="car-title">بي إم دبليو X5 2023</h4>
+            <div class="car-specs text-muted">
+              <span><i class="fas fa-gas-pump"></i> بنزين</span>
+              <span><i class="fas fa-cog"></i> أوتوماتيك</span>
+              <span><i class="fas fa-user-friends"></i> 5 ركاب</span>
+            </div>
+            <div class="car-price">
+              <div>
+                <div style="font-weight:700;font-size:18px">900 <small style="font-weight:400;font-size:13px">درهم/اليوم</small></div>
+              </div>
+              <button class="btn btn-primary" style="width:auto;padding:10px 16px" data-car="BMW X5">احجز</button>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="text-center mt-8">
+        <button class="btn btn-outline" id="loadMoreCars" style="width:auto">
+          <i class="fas fa-plus-circle"></i>
+          عرض المزيد من السيارات
+        </button>
+      </div>
     </section>
 
-    <!-- قسم المطبخ -->
-    <section class="section cuisine" id="cuisine">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">المطبخ المغربي</h2>
-                <p class="section-description">استمتع بمذاق الأطباق المغربية الشهية التي تشتهر بها المطابخ العالمية</p>
-            </div>
-            <div class="cuisine-grid">
-                <div class="cuisine-card">
-                    <div class="cuisine-image">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Tajine-marocain-un-plat-varie-et-sain.jpg/960px-Tajine-marocain-un-plat-varie-et-sain.jpg" alt="الطاجين المغربي" loading="lazy">
-                    </div>
-                    <div class="cuisine-content">
-                        <h3>الطاجين</h3>
-                        <p>طبق تقليدي مغربي يطهى ببطء في إناء فخاري خاص، ويقدم بمختلف النكهات من لحم، دجاج، أو سمك مع الخضار.</p>
-                        <div class="cuisine-meta">
-                            <span class="time"><i class="fas fa-clock"></i> 2-3 ساعات</span>
-                            <span class="difficulty"><i class="fas fa-chef-hat"></i> متوسط</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="cuisine-card">
-                    <div class="cuisine-image">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbAZFFW9ytXNOzxatMK1TsiZyfGKNC8ezqSw&s" alt="الكسكس المغربي" loading="lazy">
-                    </div>
-                    <div class="cuisine-content">
-                        <h3>الكسكس</h3>
-                        <p>الطبق الوطني المغربي، يتكون من سميد القمح المطهو على البخار ويقدم مع اللحم والخضروات والصلصة.</p>
-                        <div class="cuisine-meta">
-                            <span class="time"><i class="fas fa-clock"></i> 1-2 ساعات</span>
-                            <span class="difficulty"><i class="fas fa-chef-hat"></i> سهل</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="cuisine-card">
-                    <div class="cuisine-image">
-                        <img src="https://steemitimages.com/DQmQavz4j1wpEJyhosFtW2C4fbdakoHobkygYktorY31iC8/maxresdefault.jpg" alt="الشاي المغربي" loading="lazy">
-                    </div>
-                    <div class="cuisine-content">
-                        <h3>الشاي المغربي</h3>
-                        <p>الشاي المغربي بالنعناع هو رمز للكرم والضيافة، يقدم في كل مناسبة مع الكثير من السكر والنعناع الطازج.</p>
-                        <div class="cuisine-meta">
-                            <span class="time"><i class="fas fa-clock"></i> 15 دقيقة</span>
-                            <span class="difficulty"><i class="fas fa-chef-hat"></i> سهل</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="cuisine-card">
-                    <div class="cuisine-image">
-                        <img src="https://patisseriegato.ma/wp-content/uploads/2023/06/14-%D8%A7%D9%84%D8%AD%D9%84%D9%88%D9%8A%D8%A7%D8%AA-%D8%A7%D9%84%D9%85%D8%BA%D8%B1%D8%A8%D9%8A%D8%A9.jpg" alt="الحلويات المغربية" loading="lazy">
-                    </div>
-                    <div class="cuisine-content">
-                        <h3>الحلويات المغربية</h3>
-                        <p>تشكيلة واسعة من الحلويات التقليدية مثل الكعك، الغريبة، والفقاص التي تقدم مع الشاي في المناسبات.</p>
-                        <div class="cuisine-meta">
-                            <span class="time"><i class="fas fa-clock"></i> 1-3 ساعات</span>
-                            <span class="difficulty"><i class="fas fa-chef-hat"></i> صعب</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <section id="caravans" class="section container">
+      <div class="section-header">
+        <div style="display:flex;align-items:center;gap:12px">
+          <div class="badge"><i class="fas fa-caravan"></i></div>
+          <h3>كرفانات الفخامة المتنقلة</h3>
         </div>
+        <p class="text-muted">بيتك المتنقل — كرفانات مجهزة لجميع أنواع الرحلات.</p>
+      </div>
+
+      <div class="caravan-main mt-8 fade-in">
+        <div style="background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:16px;border-radius:12px">
+          <img src="https://cnn-arabic-images.cnn.io/cloudinary/image/upload/w_1600,h_900,c_fill,q_auto,g_center/cnnarabic/2023/07/31/images/246349.jpg" alt="كرفان فاخر" class="caravan-image" loading="lazy">
+        </div>
+        
+        <div class="caravan-details">
+          <h4>كرفان الفخامة العائلي 2023</h4>
+          <p class="text-muted">يشمل مطبخًا مجهزًا، تكييفًا مركزيًا، وألواح شمسية.</p>
+          
+          <div class="caravan-features">
+            <div class="caravan-feature"><i class="fas fa-users"></i> السعة: 6 أشخاص</div>
+            <div class="caravan-feature"><i class="fas fa-bed"></i> 3 غرف نوم</div>
+            <div class="caravan-feature"><i class="fas fa-tint"></i> خزان ماء 200 لتر</div>
+            <div class="caravan-feature"><i class="fas fa-wifi"></i> إنترنت مجاني</div>
+          </div>
+
+          <div class="caravan-price-row">
+            <div style="font-weight:700;font-size:20px">1,500 <small style="font-weight:400;font-size:14px">درهم/اليوم</small></div>
+            <div class="text-muted" style="font-size:13px">شامل التأمين والضرائب</div>
+            <button class="btn btn-primary" style="width:auto;margin-right:auto" data-car="كرفان فاخر">احجز هذا الكرفان</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="caravan-grid mt-8">
+        <article class="caravan-card fade-in">
+          <img src="https://admin.almalnews.com/storage/uploads/2015/06/d3337946-8bad-49b7-8a18-bec23a876cfb.jpg" alt="كرفان عائلي" loading="lazy">
+          <h4>كرفان عائلي مدمج</h4>
+          <div class="text-muted" style="margin:8px 0">سعة 4 أشخاص • مطبخ مجهز</div>
+          <div style="font-weight:700;margin:8px 0">550 درهم/اليوم</div>
+          <button class="btn btn-primary" data-car="كرفان عائلي">احجز</button>
+        </article>
+
+        <article class="caravan-card fade-in">
+          <img src="https://alkhaled-caravans.com/wp-content/uploads/2025/02/Alkhaled-Caravans-and-Containers-Caravan-for-sale-149.webp" alt="كرفان مدمج" loading="lazy">
+          <h4>كرفان مدمج للأزواج</h4>
+          <div class="text-muted" style="margin:8px 0">سعة شخصين • مثالي للرحلات الرومانسية</div>
+          <div style="font-weight:700;margin:8px 0">350 درهم/اليوم</div>
+          <button class="btn btn-primary" data-car="كرفان مدمج">احجز</button>
+        </article>
+      </div>
     </section>
 
-    <!-- قسم الفنادق -->
-    <section class="section hotels" id="hotels">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">الفنادق والإقامة</h2>
-                <p class="section-description">اختر من بين أفضل خيارات الإقامة في المغرب، من الفنادق الفاخرة إلى الريادات التقليدية</p>
-            </div>
-            <div class="hotels-grid">
-                <article class="hotel-card">
-                    <div class="hotel-image">
-                        <img src="https://media-cdn.tripadvisor.com/media/photo-s/2b/fe/c4/81/hotel-entrance.jpg" alt="فندق لا مامونيا" loading="lazy">
-                        <div class="hotel-badge">فاخر</div>
-                    </div>
-                    <div class="hotel-content">
-                        <h3>فندق لا مامونيا</h3>
-                        <div class="hotel-meta">
-                            <span class="location">
-                                <i class="fas fa-map-marker-alt"></i>
-                                مراكش، المغرب
-                            </span>
-                            <span class="rating">
-                                <i class="fas fa-star"></i>
-                                5.0
-                            </span>
-                        </div>
-                        <p class="hotel-description">فندق فاخر يقع في قلب مراكش، يتميز بتصميم مغربي تقليدي وخدمات عالمية المستوى.</p>
-                        <div class="hotel-features">
-                            <span><i class="fas fa-wifi"></i> واي فاي مجاني</span>
-                            <span><i class="fas fa-swimming-pool"></i> مسبح</span>
-                            <span><i class="fas fa-spa"></i> سبا</span>
-                        </div>
-                        <div class="hotel-footer">
-                            <div class="price">
-                                <span class="amount">$300</span>
-                                <span class="period">/ليلة</span>
-                            </div>
-                            <a href="#" class="btn btn-primary">احجز الآن</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="hotel-card">
-                    <div class="hotel-image">
-                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/502136445.jpg?k=7daf5e98c3e47258c972e43427f4d7c6bd21441f0330d59bc8cf22114ab4a524&o=" alt="رياض دار سعد" loading="lazy">
-                        <div class="hotel-badge">تقييم ممتاز</div>
-                    </div>
-                    <div class="hotel-content">
-                        <h3>رياض دار سعد</h3>
-                        <div class="hotel-meta">
-                            <span class="location">
-                                <i class="fas fa-map-marker-alt"></i>
-                                فاس، المغرب
-                            </span>
-                            <span class="rating">
-                                <i class="fas fa-star"></i>
-                                4.8
-                            </span>
-                        </div>
-                        <p class="hotel-description">رياض تقليدي في فاس يتميز بالفناء الداخلي الجميل والتصميم المعماري المغربي الأصيل.</p>
-                        <div class="hotel-features">
-                            <span><i class="fas fa-utensils"></i> مطعم</span>
-                            <span><i class="fas fa-tree"></i> حديقة</span>
-                            <span><i class="fas fa-concierge-bell"></i> خدمة الغرف</span>
-                        </div>
-                        <div class="hotel-footer">
-                            <div class="price">
-                                <span class="amount">$120</span>
-                                <span class="period">/ليلة</span>
-                            </div>
-                            <a href="#" class="btn btn-primary">احجز الآن</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="hotel-card">
-                    <div class="hotel-image">
-                        <img src="https://q-xx.bstatic.com/xdata/images/hotel/max500/611796245.jpg?k=855000e6c2d7729c1c2e9bc4058486dcc2c19fb875ab818a4996b193ce9f3dc9&o=" alt="منتجع مازاغان" loading="lazy">
-                        <div class="hotel-badge">شاطئ خاص</div>
-                    </div>
-                    <div class="hotel-content">
-                        <h3>منتجع مازاغان</h3>
-                        <div class="hotel-meta">
-                            <span class="location">
-                                <i class="fas fa-map-marker-alt"></i>
-                                الجديدة، المغرب
-                            </span>
-                            <span class="rating">
-                                <i class="fas fa-star"></i>
-                                4.9
-                            </span>
-                        </div>
-                        <p class="hotel-description">منتجع فاخر على شاطئ المحيط الأطلسي، يوفر إطلالات رائعة ومرافق ترفيهية متكاملة.</p>
-                        <div class="hotel-features">
-                            <span><i class="fas fa-umbrella-beach"></i> شاطئ خاص</span>
-                            <span><i class="fas fa-golf-ball"></i> ملعب جولف</span>
-                            <span><i class="fas fa-dumbbell"></i> نادي صحي</span>
-                        </div>
-                        <div class="hotel-footer">
-                            <div class="price">
-                                <span class="amount">$250</span>
-                                <span class="period">/ليلة</span>
-                            </div>
-                            <a href="#" class="btn btn-primary">احجز الآن</a>
-                        </div>
-                    </div>
-                </article>
-            </div>
+    <section id="services" class="section container">
+      <div class="section-header">
+        <div style="display:flex;align-items:center;gap:12px">
+          <div class="badge"><i class="fas fa-star"></i></div>
+          <h3>خدماتنا المميزة</h3>
         </div>
+        <p class="text-muted">خدمات مصممة لتجربة لا تُنسى — استقبال من المطار، مرشد سياحي، خدمات الرفاهية والمزيد.</p>
+      </div>
+
+      <div class="services-grid mt-8">
+        <article class="service-card fade-in">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+            <i class="fas fa-plane-arrival" style="font-size:22px;color:var(--accent)"></i>
+            <h4>استقبال من المطار</h4>
+          </div>
+          <p class="text-muted">استقبال في صالة الوصول مع خدمات الأمتعة وبطاقات SIM مجانية.</p>
+          <ul class="text-muted" style="margin:10px 0;padding-right:20px;font-size:13px">
+            <li>استقبال شخصي مع لافتة</li>
+            <li>مساعدة في الأمتعة</li>
+            <li>مطار مراكش أو أكادير</li>
+          </ul>
+          <div style="margin-top:12px;font-weight:700;color:var(--accent)">السعر: 100 درهم</div>
+        </article>
+
+        <article class="service-card fade-in">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+            <i class="fas fa-hands-helping" style="font-size:22px;color:var(--accent)"></i>
+            <h4>مرشد سياحي خاص</h4>
+          </div>
+          <p class="text-muted">مرشدون محترفون يتقنون العربية، الفرنسية والإنجليزية.</p>
+          <ul class="text-muted" style="margin:10px 0;padding-right:20px;font-size:13px">
+            <li>خبرة محلية عميقة</li>
+            <li>برامج مخصصة حسب الطلب</li>
+            <li>تعرف على الثقافة المغربية</li>
+          </ul>
+          <div style="margin-top:12px;font-weight:700;color:var(--accent)">السعر: 300 درهم/اليوم</div>
+        </article>
+
+        <article class="service-card fade-in">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+            <i class="fas fa-concierge-bell" style="font-size:22px;color:var(--accent)"></i>
+            <h4>خدمات رفاهية</h4>
+          </div>
+          <p class="text-muted">حجز مطاعم فاخرة، فعاليات خاصة، وفرِق موسيقية حسب الطلب.</p>
+          <ul class="text-muted" style="margin:10px 0;padding-right:20px;font-size:13px">
+            <li>حجز المطاعم والفنادق</li>
+            <li>تنظيم حفلات خاصة</li>
+            <li>جولات تسوق مصحوبة</li>
+          </ul>
+          <div style="margin-top:12px;font-weight:700;color:var(--accent)">السعر من: 150 درهم</div>
+        </article>
+      </div>
     </section>
 
-    <!-- قسم معرض الصور -->
-    <section class="section gallery" id="gallery">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">معرض الصور</h2>
-                <p class="section-description">استمتع بمشاهدة أجمل اللحظات والمناظر من مختلف أنحاء المغرب</p>
-            </div>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="https://shemstravel.com/assets/site/images/posts/5mjvhdf89c.jpg" alt="الصحراء المغربية" loading="lazy">
-                    <div class="gallery-overlay">
-                        <div class="gallery-content">
-                            <h3>الصحراء المغربية</h3>
-                            <p>مناظر خلابة من الصحراء الكبرى</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://patisseriegato.ma/wp-content/uploads/2022/07/%D8%A3%D8%B3%D9%88%D8%A7%D9%82-%D9%85%D8%AF%D9%8A%D9%86%D8%A9-%D8%A7%D9%84%D9%85%D8%BA%D8%B1%D8%A9-%D9%85%D8%B1%D8%A7%D9%83%D8%B4-%D8%A7%D9%84%D9%85%D8%BA%D8%B1%D8%A8-3.jpg" alt="أسواق مراكش" loading="lazy">
-                    <div class="gallery-overlay">
-                        <div class="gallery-content">
-                            <h3>أسواق مراكش</h3>
-                            <p>الأجواء الساحرة في الأسواق التقليدية</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://aljalya.ma/wp-content/uploads/2025/08/%D9%85%D8%B3%D8%AC%D8%AF-1.webp" alt="مسجد الحسن الثاني" loading="lazy">
-                    <div class="gallery-overlay">
-                        <div class="gallery-content">
-                            <h3>مسجد الحسن الثاني</h3>
-                            <p>تحفة معمارية في الدار البيضاء</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://attasiaa.com/wp-content/uploads/2024/12/maroc_atlas.jpg" alt="جبال الأطلس" loading="lazy">
-                    <div class="gallery-overlay">
-                        <div class="gallery-content">
-                            <h3>جبال الأطلس</h3>
-                            <p>الطبيعة الخلابة في جبال الأطلس</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="المدينة القديمة في فاس" loading="lazy">
-                    <div class="gallery-overlay">
-                        <div class="gallery-content">
-                            <h3>فاس المدينة القديمة</h3>
-                            <p>التاريخ العريق في عاصمة الثقافة</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://www.sfari.com/wp-content/uploads/2023/01/%D8%A7%D9%8A%D9%86-%D8%AA%D9%82%D8%B9-%D8%B4%D9%81%D8%B4%D8%A7%D9%88%D9%86-%D9%88%D8%A7%D9%84%D9%85%D8%B3%D8%A7%D9%81%D8%A9-%D8%A8%D9%8A%D9%86%D9%87%D8%A7-%D9%88%D8%A8%D9%8A%D9%86-%D8%A7%D9%87%D9%85-%D9%85%D8%AF%D9%86-%D8%A7%D9%84%D9%85%D8%BA%D8%B1%D8%A8.jpg" alt="شفشاون" loading="lazy">
-                    <div class="gallery-overlay">
-                        <div class="gallery-content">
-                            <h3>شفشاون</h3>
-                            <p>الجوهرة الزرقاء في جبال الريف</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <section id="experience" class="section container">
+      <div class="section-header">
+        <div style="display:flex;align-items:center;gap:12px">
+          <div class="badge"><i class="fas fa-compass"></i></div>
+          <h3>رحلاتنا المميزة</h3>
         </div>
+        <p class="text-muted">مسارات مُعدّة بعناية لاكتشاف أجمل ما في المغرب.</p>
+      </div>
+
+      <div class="experiences-grid mt-8">
+        <article class="experience-card fade-in">
+          <img src="https://media.istockphoto.com/id/1124472714/fr/photo/mosqu%C3%A9e-de-la-koutoubia-et-gardem-marrakech.jpg?s=612x612&w=0&k=20&c=V7hZe8qpsHPuPRJKL6i2LH0pR9UCHofXauK5htkHGgc=" alt="رحلات مراكش" loading="lazy">
+          <h4>سحر مراكش</h4>
+          <div class="text-muted" style="margin:8px 0">
+            <i class="fas fa-clock"></i> 5 أيام - 4 ليالي<br>
+            <i class="fas fa-map-marker-alt"></i> مراكش • أطلس • الصويرة
+          </div>
+          <div style="font-weight:700;color:var(--accent);margin:8px 0">2,400 درهم للفرد</div>
+          <button class="btn btn-primary">استكشف الرحلة</button>
+        </article>
+
+        <article class="experience-card fade-in">
+          <img src="https://media.istockphoto.com/id/974875544/photo/beautiful-view-of-the-square-in-the-blue-city-of-chefchaouen-location-chefchaouen-morocco.jpg?s=612x612&w=0&k=20&c=R-_oYJQTawXTFOOv60GrFQTxdshEWUpV2J4a6f64f3E=" alt="شفشاون" loading="lazy">
+          <h4>شفشاون الزرقاء</h4>
+          <div class="text-muted" style="margin:8px 0">
+            <i class="fas fa-clock"></i> 4 أيام - 3 ليالي<br>
+            <i class="fas fa-map-marker-alt"></i> شفشاون • طنجة • تطوان
+          </div>
+          <div style="font-weight:700;color:var(--accent);margin:8px 0">1,800 درهم للفرد</div>
+          <button class="btn btn-primary">استكشف الرحلة</button>
+        </article>
+
+        <article class="experience-card fade-in">
+          <img src="https://pbs.twimg.com/media/DcmBZ2jWkAArW4T.jpg" alt="صحراء المغرب" loading="lazy">
+          <h4>مغامرة الصحراء</h4>
+          <div class="text-muted" style="margin:8px 0">
+            <i class="fas fa-clock"></i> 7 أيام - 6 ليالي<br>
+            <i class="fas fa-map-marker-alt"></i> مرزوكة • ورزازات • درعة
+          </div>
+          <div style="font-weight:700;color:var(--accent);margin:8px 0">3,200 درهم للفرد</div>
+          <button class="btn btn-primary">استكشف الرحلة</button>
+        </article>
+      </div>
     </section>
 
-    <!-- قسم الاتصال -->
-    <section class="section contact" id="contact">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">اتصل بنا</h2>
-                <p class="section-description">لا تتردد في التواصل معنا للحصول على استشارة مجانية أو لحجز رحلتك إلى المغرب</p>
-            </div>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3>تواصل مع مستشارينا</h3>
-                    <p>فريقنا من الخبراء السياحيين مستعد لمساعدتك في تخطيط رحلتك المثالية إلى المغرب. اتصل بنا أو املأ النموذج وسنرد عليك في أقرب وقت ممكن.</p>
-                    
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h4>العنوان</h4>
-                                <p>شارع محمد الخامس، الرباط، المغرب</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h4>الهاتف</h4>
-                                <p>+212 5 37 123 456</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h4>البريد الإلكتروني</h4>
-                                <p>info@dshp-morocco.com</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-clock"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h4>ساعات العمل</h4>
-                                <p>الإثنين - الجمعة: 9:00 - 18:00</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="social-links">
-                        <a href="#" aria-label="فيسبوك"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="تويتر"><i class="fab fa-twitter"></i></a>
-                        <a href="#" aria-label="إنستغرام"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="يوتيوب"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                
-                <div class="contact-form">
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="name">الاسم الكامل *</label>
-                            <input type="text" id="name" name="name" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">البريد الإلكتروني *</label>
-                            <input type="email" id="email" name="email" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">رقم الهاتف</label>
-                            <input type="tel" id="phone" name="phone" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="subject">الموضوع *</label>
-                            <input type="text" id="subject" name="subject" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">الرسالة *</label>
-                            <textarea id="message" name="message" class="form-control" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-block">إرسال الرسالة</button>
-                    </form>
-                </div>
-            </div>
+    <section id="testimonials" class="section container">
+      <div class="section-header">
+        <div style="display:flex;align-items:center;gap:12px">
+          <div class="badge"><i class="fas fa-comment-alt"></i></div>
+          <h3>آراء عملائنا</h3>
         </div>
+        <p class="text-muted">ثقة أكثر من 1000 عميل سعيد تجعلنا الأفضل.</p>
+      </div>
+
+      <div class="testimonials-slider mt-8 fade-in">
+        <blockquote class="testimonial-card">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;color:var(--accent)">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <p class="testimonial-text">"تجربة رائعة! السيارة كانت نظيفة ومريحة، وخدمة التوصيل من مطار مراكش كانت ممتازة. الفريق محترف جداً والأسعار معقولة."</p>
+          <footer class="text-muted">— سارة أحمد، مراكش • 15 نوفمبر 2023</footer>
+        </blockquote>
+
+        <blockquote class="testimonial-card">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;color:var(--accent)">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <p class="testimonial-text">"الكرفان كان مجهزاً بكل ما نحتاجه لرحلة عائلية. استمتعنا برحلة لا تُنسى عبر الصحراء المغربية. خدمة ممتازة من البداية للنهاية."</p>
+          <footer class="text-muted">— محمد الخالد، أكادير • 8 ديسمبر 2023</footer>
+        </blockquote>
+
+        <blockquote class="testimonial-card">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;color:var(--accent)">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <p class="testimonial-text">"أفضل خدمة كراء سيارات جربتها في المغرب! السائق كان محترف والمرشد السياحي ساعدنا كثيراً. سأحجز معهم مرة أخرى بكل تأكيد."</p>
+          <footer class="text-muted">— فاطمة الزهراء، الدار البيضاء • 22 يناير 2024</footer>
+        </blockquote>
+      </div>
     </section>
 
-    <!-- الفوتر -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <div class="footer-logo">
-                        <h2>DSHP<span>.</span></h2>
-                        <p>نحن وكالة سياحية متخصصة في تقديم أفضل تجارب السفر إلى المغرب. نقدم مجموعة واسعة من الخدمات السياحية المصممة خصيصًا لتلبية توقعاتك.</p>
-                    </div>
-                    <div class="footer-social">
-                        <a href="#" aria-label="فيسبوك"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="تويتر"><i class="fab fa-twitter"></i></a>
-                        <a href="#" aria-label="إنستغرام"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="يوتيوب"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>روابط سريعة</h3>
-                    <ul class="footer-links">
-                        <li><a href="#home">الرئيسية</a></li>
-                        <li><a href="#destinations">الوجهات</a></li>
-                        <li><a href="#culture">الثقافة</a></li>
-                        <li><a href="#cuisine">المطبخ</a></li>
-                        <li><a href="#hotels">الفنادق</a></li>
-                        <li><a href="#gallery">المعرض</a></li>
-                        <li><a href="#contact">اتصل بنا</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>الوجهات الشعبية</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">مراكش</a></li>
-                        <li><a href="#">فاس</a></li>
-                        <li><a href="#">الدار البيضاء</a></li>
-                        <li><a href="#">شفشاون</a></li>
-                        <li><a href="#">الصحراء المغربية</a></li>
-                        <li><a href="#">طنجة</a></li>
-                        <li><a href="#">أغادير</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>اتصل بنا</h3>
-                    <div class="footer-contact">
-                        <p><i class="fas fa-map-marker-alt"></i> شارع محمد الخامس، الرباط، المغرب</p>
-                        <p><i class="fas fa-phone"></i> +212 5 22 111 000</p>
-                        <p><i class="fas fa-envelope"></i> info@dshp-morocco.com</p>
-                    </div>
-                </div>
+    <section id="faq" class="section container">
+      <div class="section-header">
+        <div style="display:flex;align-items:center;gap:12px">
+          <div class="badge"><i class="fas fa-question-circle"></i></div>
+          <h3>أسئلة متكررة</h3>
+        </div>
+        <p class="text-muted">إجابات سريعة على الأسئلة الأكثر شيوعاً.</p>
+      </div>
+
+      <div class="faq-grid mt-8">
+        <div class="faq-item active fade-in">
+          <div class="faq-question">
+            <h4>ما هي مستندات الحجز المطلوبة؟</h4>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p class="text-muted">رخصة قيادة سارية، جواز السفر أو بطاقة الهوية، وبريد إلكتروني للتأكيد. لا حاجة لبطاقة ائتمان.</p>
+          </div>
+        </div>
+
+        <div class="faq-item fade-in">
+          <div class="faq-question">
+            <h4>هل يمكن استلام السيارة في مطار مختلف؟</h4>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p class="text-muted">نعم — نقدم خدمة الاستلام والتسليم في مطار مراكش ومطار أكادير مع رسوم إضافية بسيطة.</p>
+          </div>
+        </div>
+
+        <div class="faq-item fade-in">
+          <div class="faq-question">
+            <h4>ما هي سياسة الإلغاء؟</h4>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p class="text-muted">يمكن الإلغاء مجاناً قبل 48 ساعة من موعد الحجز. بعد ذلك تطبق رسوم إلغاء بنسبة 30% من قيمة الحجز.</p>
+          </div>
+        </div>
+
+        <div class="faq-item fade-in">
+          <div class="faq-question">
+            <h4>هل التأمين شامل؟</h4>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p class="text-muted">نعم، جميع سياراتنا مؤمنة تأميناً شاملاً يغطي الحوادث والسرقة والأضرار. يشمل أيضاً المساعدة على الطريق 24/7.</p>
+          </div>
+        </div>
+
+        <div class="faq-item fade-in">
+          <div class="faq-question">
+            <h4>هل يمكنني القيادة بنفسي أو مع سائق؟</h4>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p class="text-muted">نوفر الخيارين! يمكنك القيادة بنفسك أو طلب سائق محترف بتكلفة إضافية 200 درهم/اليوم.</p>
+          </div>
+        </div>
+
+        <div class="faq-item fade-in">
+          <div class="faq-question">
+            <h4>ما هي طرق الدفع المتاحة؟</h4>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p class="text-muted">نقبل الدفع النقدي، التحويل البنكي، وبطاقات الائتمان (Visa, Mastercard). يمكن الدفع عند الاستلام أو مقدماً.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section container">
+      <div class="section-header">
+        <div style="display:flex;align-items:center;gap:12px">
+          <div class="badge"><i class="fas fa-phone"></i></div>
+          <h3>تواصل معنا</h3>
+        </div>
+        <p class="text-muted">فريقنا جاهز لخدمتك — راسلنا وسنرد عليك في أقرب وقت.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info fade-in">
+          <h4>معلومات الاتصال</h4>
+          <p class="text-muted" style="margin:12px 0">
+            <i class="fas fa-envelope" style="color:var(--accent);margin-left:8px"></i>
+            contact@DSHTp.ma
+          </p>
+
+          <h4 style="margin-top:24px">العنوان</h4>
+          <p class="text-muted">
+            <i class="fas fa-map-marker-alt" style="color:var(--accent);margin-left:8px"></i>
+            مراكش، المغرب
+          </p>
+
+          <h4 style="margin-top:24px">ساعات العمل</h4>
+          <p class="text-muted">
+            <i class="fas fa-clock" style="color:var(--accent);margin-left:8px"></i>
+            الاثنين — الأحد: 08:00 — 22:00
+          </p>
+
+          <h4 style="margin-top:24px">المطارات التي نخدمها</h4>
+          <p class="text-muted">
+            <i class="fas fa-plane" style="color:var(--accent);margin-left:8px"></i>
+            مطار مراكش المنارة<br>
+            <i class="fas fa-plane" style="color:var(--accent);margin-left:8px;margin-top:8px"></i>
+            مطار أكادير المسيرة
+          </p>
+
+          <div style="margin-top:24px">
+            <h4>تابعنا على مواقع التواصل</h4>
+            <div style="display:flex;gap:10px;margin-top:12px">
+              <button class="btn btn-outline" style="width:auto;padding:10px 14px" aria-label="فيسبوك">
+                <i class="fab fa-facebook-f"></i>
+              </button>
+              <button class="btn btn-outline" style="width:auto;padding:10px 14px" aria-label="إنستغرام">
+                <i class="fab fa-instagram"></i>
+              </button>
+              <button class="btn btn-outline" style="width:auto;padding:10px 14px" aria-label="واتساب">
+                <i class="fab fa-whatsapp"></i>
+              </button>
+              <button class="btn btn-outline" style="width:auto;padding:10px 14px" aria-label="تويتر">
+                <i class="fab fa-twitter"></i>
+              </button>
             </div>
+          </div>
+        </div>
+
+        <div class="contact-form-wrapper fade-in">
+          <h4>أرسل رسالة</h4>
+          <form id="contactForm">
+            <div class="form-group">
+              <label for="cname">الاسم الكامل</label>
+              <input id="cname" name="name" type="text" placeholder="أدخل اسمك الكامل" required>
+            </div>
+            <div class="form-group">
+              <label for="cemail">البريد الإلكتروني</label>
+              <input id="cemail" name="email" type="email" placeholder="example@email.com" required>
+            </div>
+            <div class="form-group">
+              <label for="csubject">الموضوع</label>
+              <select id="csubject" name="subject" required>
+                <option value="">اختر الموضوع</option>
+                <option value="booking">استفسار عن حجز</option>
+                <option value="pricing">الأسعار والعروض</option>
+                <option value="services">الخدمات المتوفرة</option>
+                <option value="complaint">شكوى أو اقتراح</option>
+                <option value="other">أخرى</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="cmessage">الرسالة</label>
+              <textarea id="cmessage" name="message" rows="4" placeholder="اكتب رسالتك هنا..." required></textarea>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary" type="submit">
+                <span class="btn-text"><i class="fas fa-paper-plane"></i> أرسل الرسالة</span>
+                <span class="loading-spinner" style="display:none"></span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+          <div class="logo-wrap" style="width:44px;height:44px" src="https://f.top4top.io/p_3592mygm91.png"></div>
+          <div>
+            <strong style="font-size:18px">DSHT</strong>
+            <div class="text-muted" style="font-size:12px">الفخامة المغربية على الطريق</div>
+          </div>
+        </div>
+        <p class="text-muted">نوفر أسطولاً فاخراً من السيارات والكرفانات مع خدمات سفر راقية في جميع أنحاء المغرب.</p>
+        <p class="text-muted" style="margin-top:16px">© <span id="year"></span> DSHT — جميع الحقوق محفوظة</p>
+      </div>
+
+      <div>
+        <h4>روابط سريعة</h4>
+        <nav>
+          <a href="#home">الرئيسية</a>
+          <a href="#cars">أسطول السيارات</a>
+          <a href="#caravans">الكرفانات</a>
+          <a href="#services">الخدمات</a>
+          <a href="#experience">الرحلات</a>
+          <a href="#testimonials">آراء العملاء</a>
+          <a href="#faq">الأسئلة الشائعة</a>
+          <a href="#contact">اتصل بنا</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <button class="scroll-top" id="scrollTop" aria-label="العودة للأعلى">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script>
+    (function(){
+      'use strict';
+
+      function qs(sel){return document.querySelector(sel)}
+      function qsa(sel){return Array.from(document.querySelectorAll(sel))}
+
+      // Toast system
+      function showToast(message, type = 'success') {
+        const toast = qs('#toast');
+        if (!toast) return;
+        
+        toast.textContent = message;
+        toast.className = `toast ${type}`;
+        toast.classList.add('show');
+        
+        setTimeout(() => {
+          toast.classList.remove('show');
+        }, 4000);
+      }
+
+      // Form validation
+      function validateForm(form) {
+        let isValid = true;
+        const inputs = form.querySelectorAll('input[required], select[required], textarea[required]');
+        
+        inputs.forEach(input => {
+          const formGroup = input.closest('.form-group');
+          if (!formGroup) return;
+          
+          const existingError = formGroup.querySelector('.error-message');
+          if (existingError) existingError.remove();
+          
+          if (!input.value.trim()) {
+            formGroup.classList.add('error');
+            isValid = false;
+          } else {
+            formGroup.classList.remove('error');
             
-            <div class="footer-bottom">
-                <div class="footer-bottom-content">
-                    <p>&copy; 2025 DSHP. جميع الحقوق محفوظة</p>
-                    <div class="footer-legal">
-                        <a href="#">سياسة الخصوصية</a>
-                        <a href="#">شروط الاستخدام</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+            if (input.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) {
+              formGroup.classList.add('error');
+              isValid = false;
+            }
+          }
+        });
+        
+        return isValid;
+      }
 
-    <script src="main.js"></script>
+      // Hide loader
+      const topLoader = qs('#topLoader');
+      const topFill = qs('#topLoaderFill');
+      let progress = 0;
+      const progInt = setInterval(()=>{ 
+        progress += Math.random()*30; 
+        if(progress>=100){ 
+          progress=100; 
+          clearInterval(progInt); 
+          setTimeout(()=>{ 
+            topLoader.style.display='none';
+          },300) 
+        } 
+        topFill.style.width = Math.min(100,Math.round(progress)) + '%'; 
+      },150);
+
+      // Header scroll
+      const header = qs('.site-header');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          header.classList.add('header-scrolled');
+        } else {
+          header.classList.remove('header-scrolled');
+        }
+      });
+
+      // Scroll to top
+      const scrollTopBtn = qs('#scrollTop');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+          scrollTopBtn.classList.add('visible');
+        } else {
+          scrollTopBtn.classList.remove('visible');
+        }
+      });
+
+      scrollTopBtn.addEventListener('click', ()=> {
+        window.scrollTo({top:0,behavior:'smooth'});
+      });
+
+      // Hero slider
+      const slides = qsa('.hero-visual .slide');
+      let active = 0;
+      
+      function showSlide(i){ 
+        slides.forEach((s,idx)=>{ 
+          s.classList.toggle('active',idx===i); 
+        }); 
+        active=i; 
+      }
+      
+      const nextBtn = qs('#nextSlide');
+      const prevBtn = qs('#prevSlide');
+      
+      if(nextBtn) nextBtn.addEventListener('click', ()=> showSlide((active+1)%slides.length));
+      if(prevBtn) prevBtn.addEventListener('click', ()=> showSlide((active-1+slides.length)%slides.length));
+      
+      let slideInterval = setInterval(()=> showSlide((active+1)%slides.length),5000);
+
+      // Mobile panel
+      const mobilePanel = qs('#mobilePanel');
+      const openMobile = qs('#openMobile');
+      const closeMobile = qs('#closeMobile');
+      
+      function openMobileMenu() {
+        mobilePanel.classList.add('open'); 
+        document.body.style.overflow='hidden';
+      }
+      
+      function closeMobileMenu() {
+        mobilePanel.classList.remove('open'); 
+        document.body.style.overflow='';
+      }
+      
+      if(openMobile) openMobile.addEventListener('click', openMobileMenu);
+      if(closeMobile) closeMobile.addEventListener('click', closeMobileMenu);
+      
+      qsa('.mobile-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+          closeMobileMenu();
+          const target = link.getAttribute('href');
+          if(target.startsWith('#')) {
+            e.preventDefault();
+            const el = qs(target);
+            if(el) {
+              setTimeout(() => {
+                el.scrollIntoView({behavior:'smooth',block:'start'});
+              }, 300);
+            }
+          }
+        });
+      });
+
+      // Mobile book button
+      const mobileBookBtn = qs('.mobile-book-btn');
+      if(mobileBookBtn) {
+        mobileBookBtn.addEventListener('click', () => {
+          closeMobileMenu();
+          setTimeout(() => {
+            qs('#home').scrollIntoView({behavior:'smooth'});
+          }, 300);
+        });
+      }
+
+      // Year
+      const yearEl = qs('#year');
+      if(yearEl) yearEl.textContent = new Date().getFullYear();
+
+      // Booking form
+      const bForm = qs('#heroBookingForm');
+      if(bForm){
+        bForm.addEventListener('submit', function(e){
+          e.preventDefault();
+          
+          if (!validateForm(this)) {
+            showToast('يرجى ملء جميع الحقول المطلوبة', 'error');
+            return;
+          }
+          
+          const submitBtn = this.querySelector('button[type="submit"]');
+          const btnText = submitBtn.querySelector('.btn-text');
+          const spinner = submitBtn.querySelector('.loading-spinner');
+          
+          btnText.style.display = 'none';
+          spinner.style.display = 'inline-block';
+          submitBtn.disabled = true;
+          
+          setTimeout(() => {
+            btnText.style.display = 'inline';
+            spinner.style.display = 'none';
+            submitBtn.disabled = false;
+            
+            showToast('تم إرسال طلب الحجز بنجاح! سنتواصل معك قريباً.');
+            bForm.reset();
+          }, 2000);
+        });
+      }
+
+      // Contact form
+      const contactForm = qs('#contactForm');
+      if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          if (!validateForm(this)) {
+            showToast('يرجى ملء جميع الحقول المطلوبة', 'error');
+            return;
+          }
+          
+          const submitBtn = this.querySelector('button[type="submit"]');
+          const btnText = submitBtn.querySelector('.btn-text');
+          const spinner = submitBtn.querySelector('.loading-spinner');
+          
+          btnText.style.display = 'none';
+          spinner.style.display = 'inline-block';
+          submitBtn.disabled = true;
+          
+          setTimeout(() => {
+            btnText.style.display = 'inline';
+            spinner.style.display = 'none';
+            submitBtn.disabled = false;
+            
+            showToast('تم إرسال رسالتك بنجاح، سنرد عليك قريباً.');
+            this.reset();
+          }, 2000);
+        });
+      }
+
+      // FAQ toggle
+      qsa('.faq-question').forEach(q=> {
+        q.addEventListener('click', function(){ 
+          const item = this.parentElement; 
+          const wasActive = item.classList.contains('active');
+          
+          qsa('.faq-item').forEach(i => i.classList.remove('active'));
+          
+          if(!wasActive) {
+            item.classList.add('active');
+          }
+        });
+      });
+
+      // Car filters
+      qsa('.filter-btn').forEach(btn=> {
+        btn.addEventListener('click', function(){ 
+          qsa('.filter-btn').forEach(x=>x.classList.remove('active')); 
+          this.classList.add('active'); 
+          
+          const cat = this.getAttribute('data-filter'); 
+          qsa('.car-card').forEach(card=>{ 
+            const cardCat = card.getAttribute('data-category');
+            if(cat==='all'){ 
+              card.style.display='flex';
+            } else { 
+              card.style.display = (cardCat===cat)?'flex':'none';
+            } 
+          }); 
+        });
+      });
+
+      // Car sorting
+      const sortSelect = qs('.sort-select');
+      if (sortSelect) {
+        sortSelect.addEventListener('change', function() {
+          const value = this.value;
+          const carCards = qsa('.car-card');
+          const container = qs('.cars-grid');
+          
+          const cardsArray = Array.from(carCards);
+          
+          cardsArray.sort((a, b) => {
+            const aPrice = parseInt(a.getAttribute('data-price'));
+            const bPrice = parseInt(b.getAttribute('data-price'));
+            
+            switch(value) {
+              case 'price-low':
+                return aPrice - bPrice;
+              case 'price-high':
+                return bPrice - aPrice;
+              default:
+                return 0;
+            }
+          });
+          
+          container.innerHTML = '';
+          cardsArray.forEach(card => container.appendChild(card));
+        });
+      }
+
+      // Load more cars
+      const loadMoreBtn = qs('#loadMoreCars');
+      if(loadMoreBtn){ 
+        loadMoreBtn.addEventListener('click', function(){ 
+          showToast('تم تحميل المزيد من السيارات');
+          this.style.display = 'none';
+        }) 
+      }
+
+      // Book car buttons
+      qsa('.car-card .btn-primary, .caravan-card .btn-primary').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const carName = this.getAttribute('data-car') || 'المركبة المختارة';
+          showToast(`تم اختيار ${carName}. يرجى ملء نموذج الحجز.`);
+          qs('#home').scrollIntoView({behavior:'smooth'});
+        });
+      });
+
+      // Smooth scroll for all anchor links
+      qsa('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          const href = this.getAttribute('href');
+          if (href === '#') return;
+          
+          e.preventDefault();
+          const targetEl = qs(href);
+          if (targetEl) {
+            const headerHeight = header.offsetHeight;
+            const targetPosition = targetEl.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
+            
+            window.scrollTo({
+              top: targetPosition,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+
+      // Active nav link on scroll
+      const sections = qsa('section[id]');
+      window.addEventListener('scroll', () => {
+        let current = '';
+        
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+          if (window.pageYOffset >= sectionTop - 200) {
+            current = section.getAttribute('id');
+          }
+        });
+
+        qsa('.main-nav a').forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('active');
+          }
+        });
+      });
+
+      // Language switcher
+      qsa('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          qsa('.lang-btn').forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          const lang = this.getAttribute('data-lang');
+          showToast(`تم تبديل اللغة إلى: ${this.textContent}`);
+        });
+      });
+
+      // Open booking from header button
+      const openBookingBtn = qs('#openBookingBtn');
+      if(openBookingBtn) {
+        openBookingBtn.addEventListener('click', () => {
+          qs('#home').scrollIntoView({behavior:'smooth'});
+          setTimeout(() => {
+            const firstInput = qs('#vehicleType');
+            if(firstInput) firstInput.focus();
+          }, 800);
+        });
+      }
+
+    })();
+  </script>
 </body>
-
 </html>
