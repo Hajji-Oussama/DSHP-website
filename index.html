@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -8,682 +7,1325 @@
   <title>DSHT — كراء السيارات الفاخرة والكرفانات | الفخامة المغربية على الطريق</title>
   <meta name="description" content="DSHT — كراء سيارات فاخرة وكرفانات مجهزة. احجز رحلتك براحة وفخامة عبر خدماتنا المدعومة في جميع أنحاء المغرب.">
   <meta name="theme-color" content="#0b1220">
-
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=El+Messiri:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
-
+  
   <style>
-    :root{
-      --bg:#0b1220;
-      --surface:#0f1724;
-      --accent:#d4af37;
-      --accent-light:#e7d08f;
-      --muted:#9aa4b2;
-      --glass: rgba(255,255,255,0.04);
-      --card-radius:16px;
-      --container:1200px;
-      --transition:200ms cubic-bezier(.2,.9,.3,1);
-      color-scheme: dark;
+    :root {
+      --primary: #0b1220;
+      --secondary: #1e293b;
+      --accent: #d4af37;
+      --accent-light: #f0d36b;
+      --text: #e2e8f0;
+      --text-muted: #94a3b8;
+      --success: #10b981;
+      --error: #ef4444;
+      --warning: #f59e0b;
+      --glass: rgba(255, 255, 255, 0.05);
+      --glass-dark: rgba(0, 0, 0, 0.3);
+      --border: rgba(255, 255, 255, 0.1);
+      --shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.4);
+      --radius: 16px;
+      --radius-sm: 8px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    *,*::before,*::after{box-sizing:border-box}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    html{scroll-behavior:smooth;scroll-padding-top:80px}
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
 
-    body{
-      height:100%;
-      font-family:'Cairo',system-ui,sans-serif;
-      background:linear-gradient(180deg,var(--bg),#07101a);
-      margin:0;
-      color:#e6eef6;
-      -webkit-font-smoothing:antialiased;
+    body {
+      font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif;
+      background: linear-gradient(135deg, var(--primary) 0%, #1a2436 100%);
+      color: var(--text);
+      line-height: 1.6;
       overflow-x: hidden;
+      min-height: 100vh;
     }
 
-    .container{max-width:var(--container);margin:0 auto;padding:0 20px;width:100%}
-    img{display:block;max-width:100%;height:auto}
-    a{text-decoration:none;color:inherit}
-    button{font-family:inherit;cursor:pointer;border:none}
-    :focus-visible{outline:3px solid rgba(212,175,55,0.5);outline-offset:3px}
-
-    /* Header */
-    header.site-header{
-      position:sticky;
-      top:0;
-      z-index:80;
-      background:linear-gradient(180deg,rgba(11,18,32,0.92),rgba(11,18,32,0.75));
-      backdrop-filter: blur(10px);
-      border-bottom:1px solid rgba(255,255,255,0.03);
-      transition: all var(--transition);
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      width: 100%;
     }
 
-    .header-scrolled {
-      background: rgba(11,18,32,0.97);
-      backdrop-filter: blur(15px);
-      box-shadow:0 4px 20px rgba(0,0,0,0.3);
+    /* Typography */
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1rem;
     }
 
-    .nav-row{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:14px 0;
-      gap:10px;
-      flex-wrap:wrap;
+    .section-title {
+      font-size: 2.5rem;
+      background: linear-gradient(135deg, var(--text) 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
     }
 
-    .brand{display:flex;align-items:center;gap:12px}
-    .brand .logo-wrap{
-      width:52px;
-      height:52px;
-      border-radius:12px;
-      object-fit: contain; /* يحافظ على نسبة أبعاد الصورة */
-  background: transparent !important; /* يضمن عدم وجود خلفية */
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      color:#081018;
-      font-weight:700;
-      transition: transform var(--transition);
-      flex-shrink:0;
-      font-size:20px;
+    .section-description {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto;
     }
 
-    .brand:hover .logo-wrap {
-      transform: rotate(5deg) scale(1.05);
-    }
-
-    .brand h1{font-size:18px;margin:0;line-height:1.2;color:#fff}
-    .brand p{margin:0;font-size:12px;color:var(--muted);display:none}
-
-    nav.main-nav{display:none}
-    
-    .nav-actions{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-
-    .cta-btn{
-      background:var(--accent);
-      color:#07101a;
-      padding:10px 14px;
-      border-radius:12px;
-      cursor:pointer;
-      box-shadow:0 6px 18px rgba(212,175,55,0.08);
-      transition:transform var(--transition),box-shadow var(--transition);
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-family: inherit;
+      font-size: 14px;
       font-weight: 600;
-      font-size:14px;
-      display:flex;
-      align-items:center;
-      gap:6px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
     }
 
-    .cta-btn:hover{
-      transform:translateY(-3px);
-      box-shadow:0 10px 25px rgba(212,175,55,0.15);
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
     }
 
-    .hamburger{
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      width:46px;
-      height:46px;
-      border-radius:10px;
-      background:transparent;
-      border:1px solid rgba(255,255,255,0.04);
-      cursor:pointer;
-      transition: all var(--transition);
-      flex-shrink:0;
-      gap:5px;
+    .btn:hover::before {
+      left: 100%;
     }
 
-    .hamburger:hover {
-      background: rgba(255,255,255,0.05);
-      border-color: rgba(255,255,255,0.08);
-    }
-
-    .hamburger span{
-      display:block;
-      width:22px;
-      height:2px;
-      background:#e6eef6;
-      border-radius:2px;
-      transition:all var(--transition);
-    }
-
-    .hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
-    .hamburger.active span:nth-child(2){opacity:0}
-    .hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
-    
-    .lang-switcher{display:flex;gap:6px;align-items:center}
-    .lang-switcher button{
-      background:transparent;
-      border:1px solid rgba(255,255,255,0.04);
-      color:var(--muted);
-      padding:6px 10px;
-      border-radius:8px;
-      transition: all var(--transition);
-      font-size:13px;
-    }
-    .lang-switcher button:hover {
-      background: rgba(255,255,255,0.05);
-    }
-    .lang-switcher button.active{
-      border-color:var(--accent);
-      color:var(--accent);
-      background:linear-gradient(180deg,rgba(212,175,55,0.06),transparent)
-    }
-
-    /* Hero Section */
-    .hero{padding:20px 0}
-
-    .hero-grid{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:18px;
-      align-items:start;
-    }
-
-    .hero-card{
-      background:linear-gradient(180deg,var(--glass),transparent);
-      border-radius:var(--card-radius);
-      overflow:hidden;
-      padding:18px;
-      transition: transform var(--transition);
-    }
-
-    .hero-visual{
-      position:relative;
-      border-radius:14px;
-      overflow:hidden;
-      height:400px;
-      box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-    }
-
-    .hero-visual .slide{
-      position:absolute;
-      inset:0;
-      background-size:cover;
-      background-position:center;
-      transition:opacity 800ms ease-in-out;
-      opacity:0;
-    }
-    .hero-visual .slide.active{opacity:1}
-    .hero-visual::after{
-      content:'';
-      position:absolute;
-      inset:0;
-      background:linear-gradient(180deg,transparent 50%,rgba(2,6,23,0.8));
-      z-index:1;
-    }
-
-    .hero-overlay-content{
-      position:absolute;
-      left:18px;
-      bottom:18px;
-      right:18px;
-      color:#fff;
-      z-index:2;
-    }
-
-    .hero-text h2{
-      font-size:24px;
-      line-height:1.2;
-      margin:0 0 10px;
-      color:#fff;
-    }
-
-    .hero-text p.lead{
-      margin:0;
-      color:var(--muted);
-      font-size:14px;
-      line-height:1.6;
-    }
-
-    .stats-grid{
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:10px;
-      margin-top:14px;
-    }
-
-    .stat{
-      background:var(--surface);
-      padding:12px;
-      border-radius:10px;
-      text-align:center;
-      transition: transform var(--transition);
-    }
-
-    .stat:hover {
-      transform:translateY(-5px);
-    }
-
-    .stat .num{font-weight:700;font-size:20px;color:var(--accent)}
-    .stat .label{font-size:12px;color:var(--muted)}
-
-    /* Booking card */
-    .booking-card{
-      background:linear-gradient(180deg,rgba(0,0,0,0.7),rgba(0,0,0,0.5));
-      border-radius:12px;
-      padding:16px;
-      margin-top:20px;
-      box-shadow:0 8px 30px rgba(2,6,23,0.6);
-    }
-
-    .booking-card h3{
-      margin:0 0 14px;
-      font-size:18px;
-      display:flex;
-      align-items:center;
-      gap:8px;
-    }
-
-    .form-row{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:10px;
-    }
-
-    .form-group{
-      display:flex;
-      flex-direction:column;
-      gap:6px;
-      margin-bottom:10px;
-    }
-
-    label{font-size:13px;color:var(--muted)}
-    
-    input[type='text'],
-    input[type='email'],
-    input[type='tel'],
-    input[type='date'],
-    select,
-    textarea{
-      background:rgba(255,255,255,0.05);
-      border:1px solid rgba(255,255,255,0.1);
-      padding:10px;
-      border-radius:10px;
-      color:#e6eef6;
-      transition: all var(--transition);
-      width:100%;
-      font-size:14px;
-    }
-
-    select{
-      cursor:pointer;
-      appearance:none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23e6eef6' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: left 12px center;
-      padding-right:35px;
-    }
-
-    select option{
-      background:#0f1724;
-      color:#e6eef6;
-      padding:10px;
-    }
-
-    input:focus,select:focus,textarea:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 2px rgba(212,175,55,0.2);
-      background:rgba(255,255,255,0.08);
-      outline:none;
-    }
-
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-      border-radius:10px;
-      padding:12px 16px;
-      border:none;
-      cursor:pointer;
-      transition: all var(--transition);
-      font-weight: 600;
-      font-size:14px;
-      width:100%;
-    }
-
-    .btn-outline{
-      background:transparent;
-      border:1px solid rgba(255,255,255,0.1);
-      color:var(--muted);
-    }
-
-    .btn-outline:hover {
-      background: rgba(255,255,255,0.05);
-      border-color: rgba(255,255,255,0.2);
-      color: #fff;
-    }
-
-    .btn-primary{
-      background:var(--accent);
-      color:#081018;
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+      color: var(--primary);
+      box-shadow: var(--shadow);
     }
 
     .btn-primary:hover {
-      background: var(--accent-light);
       transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(212,175,55,0.2);
+      box-shadow: var(--shadow-lg);
     }
 
-    .btn-primary:disabled{
-      opacity:0.6;
-      cursor:not-allowed;
-      transform:none;
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--border);
+      color: var(--text);
     }
 
-    /* Hero controls */
-    .hero-controls{
-      position:absolute;
-      left:18px;
-      top:18px;
-      display:flex;
-      gap:8px;
-      z-index:3;
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
     }
 
-    .hero-controls .btn{
-      width:auto;
-      padding:8px 12px;
+    .btn-large {
+      padding: 16px 32px;
+      font-size: 16px;
     }
 
-    /* Cards grid */
-    .grid{display:grid;gap:18px}
-    .cars-grid{grid-template-columns:repeat(1,1fr)}
+    .btn-block {
+      width: 100%;
+    }
 
-    .car-card{
-      background:var(--surface);
-      border-radius:14px;
-      overflow:hidden;
-      display:flex;
-      flex-direction:column;
-      transition: transform var(--transition), box-shadow var(--transition);
+    .btn-sm {
+      padding: 8px 16px;
+      font-size: 12px;
+    }
+
+    /* Header */
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(11, 18, 32, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      z-index: 1000;
+      transition: var(--transition);
+    }
+
+    .site-header.scrolled {
+      background: rgba(11, 18, 32, 0.98);
+      box-shadow: var(--shadow);
+    }
+
+    .nav-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-wrap {
+      width: 50px;
+      height: 50px;
+      
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      font-weight: 900;
+      font-size: 18px;
+      transition: var(--transition);
+    }
+
+    .brand:hover .logo-wrap {
+      transform: rotate(5deg) scale(1.1);
+    }
+
+    .brand-text h1 {
+      margin: 0;
+      font-size: 1.5rem;
+      background: linear-gradient(135deg, var(--text) 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .brand-text p {
+      margin: 0;
+      font-size: 0.875rem;
+    }
+
+    /* Navigation */
+    .main-nav ul {
+      display: flex;
+      list-style: none;
+      gap: 2px;
+    }
+
+    .nav-link {
+      padding: 10px 20px;
+      border-radius: var(--radius-sm);
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: var(--transition);
+      font-weight: 500;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--accent);
+      background: var(--glass);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .lang-switcher {
+      display: flex;
+      background: var(--glass);
+      border-radius: var(--radius-sm);
+      padding: 4px;
+    }
+
+    .lang-btn {
+      padding: 6px 12px;
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: var(--transition);
+      font-size: 12px;
+    }
+
+    .lang-btn.active {
+      background: var(--accent);
+      color: var(--primary);
+    }
+
+    .cta-btn {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+      color: var(--primary);
+      padding: 10px 20px;
+      border-radius: var(--radius-sm);
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    .hamburger span {
+      width: 24px;
+      height: 2px;
+      background: var(--text);
+      transition: var(--transition);
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    .hero-background .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .hero-background .slide.active {
+      opacity: 1;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(11, 18, 32, 0.9) 0%, rgba(11, 18, 32, 0.7) 100%);
+    }
+
+    .hero-container {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      padding: 8rem 0 4rem;
+    }
+
+    .hero-content {
+      max-width: 600px;
+    }
+
+    .hero-badge {
+      margin-bottom: 2rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      color: var(--accent);
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .hero-title {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.1;
+    }
+
+    .hero-title .highlight {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-description {
+      font-size: 1rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .stat {
+      text-align: center;
+      padding: 1rem;
+      background: var(--glass);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    /* Booking Widget */
+    .booking-widget {
+      position: relative;
+      max-height: 100%;
+    }
+
+    .booking-card {
+      background: var(--glass-dark);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .booking-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .booking-header h3 {
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    /* Forms */
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 12px 16px;
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 14px;
+      transition: var(--transition);
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+    }
+
+    select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2394a3b8' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: left 16px center;
+      padding-left: 40px;
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+    }
+
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    .checkbox-label input {
+      width: auto;
+      margin: 0;
+    }
+
+    .checkmark {
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--border);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+
+    .checkbox-label input:checked + .checkmark {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .checkbox-label input:checked + .checkmark::after {
+      content: '✓';
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    /* Sections */
+    .section {
+      padding: 6rem 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-badge {
+      margin-bottom: 1rem;
+    }
+
+    /* Features Grid */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .feature-card {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      text-align: center;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+      transition: left 0.6s;
+    }
+
+    .feature-card:hover::before {
+      left: 100%;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--accent);
+    }
+
+    .feature-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      color: var(--primary);
+      font-size: 2rem;
+    }
+
+    .feature-card h3 {
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+
+    .feature-card p {
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .feature-list {
+      list-style: none;
+      text-align: right;
+    }
+
+    .feature-list li {
+      padding: 8px 0;
+      color: var(--text-muted);
+      position: relative;
+    }
+
+    .feature-list li::before {
+      content: '✓';
+      color: var(--accent);
+      font-weight: bold;
+      margin-left: 8px;
+    }
+
+    /* Cars Grid */
+    .cars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+
+    .car-card {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: var(--transition);
+      position: relative;
     }
 
     .car-card:hover {
       transform: translateY(-8px);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+      border-color: var(--accent);
+      box-shadow: var(--shadow-lg);
     }
 
-    .car-image{
-      position:relative;
-      height:200px;
-      overflow:hidden;
+    .car-image {
+      position: relative;
+      height: 200px;
+      overflow: hidden;
     }
 
-    .car-image img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      transition: transform 400ms;
+    .car-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
     }
 
     .car-card:hover .car-image img {
-      transform: scale(1.05);
+      transform: scale(1.1);
     }
 
-    .car-content{padding:14px}
-    .car-title{margin:0 0 10px;font-size:16px}
-    .car-specs{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin:8px 0;
-      color:var(--muted);
-      font-size:13px;
+    .car-badge {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      z-index: 2;
     }
 
-    .car-price{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      margin-top:12px;
-      flex-wrap:wrap;
+    .availability-status {
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
     }
 
-    /* Features */
-    .section{padding:40px 0}
-
-    .section-header{margin-bottom:24px}
-
-    .section-header h3{
-      font-size:24px;
-      margin:10px 0;
+    .availability-status.available {
+      background: rgba(16, 185, 129, 0.2);
+      color: var(--success);
+      border: 1px solid rgba(16, 185, 129, 0.3);
     }
 
-    .features-grid{
-      display:grid;
-      grid-template-columns:repeat(1,1fr);
-      gap:14px;
+    .availability-status.not-available {
+      background: rgba(239, 68, 68, 0.2);
+      color: var(--error);
+      border: 1px solid rgba(239, 68, 68, 0.3);
     }
 
-    .feature-card{
-      background:linear-gradient(180deg,rgba(255,255,255,0.03),transparent);
-      padding:16px;
-      border-radius:12px;
-      transition: transform var(--transition);
+    .car-content {
+      padding: 1.5rem;
     }
 
-    .feature-card:hover {
+    .car-title {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .car-specs {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .car-spec {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+
+    .car-price {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.5rem;
+      background: var(--glass-dark);
+      border-top: 1px solid var(--border);
+    }
+
+    .price-amount {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .price-period {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+
+    /* Filters */
+    .cars-filter {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-group {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 8px 16px;
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: var(--transition);
+      font-size: 0.875rem;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: var(--accent);
+      color: var(--primary);
+      border-color: var(--accent);
+    }
+
+    .sort-group {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .sort-select {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--text);
+      padding: 8px 16px;
+      font-size: 0.875rem;
+    }
+
+    /* Services Grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+
+    .service-card {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      transition: var(--transition);
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .service-card:hover {
       transform: translateY(-5px);
-      background: linear-gradient(180deg,rgba(255,255,255,0.05),transparent);
+      border-color: var(--accent);
     }
 
-    .feature-card h4{
-      margin:8px 0 10px;
-      font-size:16px;
+    .service-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      font-size: 1.5rem;
+      flex-shrink: 0;
     }
 
-    .feature-card ul{
-      margin:10px 0 0;
-      padding-right:20px;
-      font-size:13px;
+    .service-content {
+      flex: 1;
     }
 
-    .feature-card ul li{margin:6px 0}
-
-    /* Services & Experiences */
-    .services-grid,
-    .experiences-grid{
-      display:grid;
-      grid-template-columns:repeat(1,1fr);
-      gap:14px;
+    .service-content h3 {
+      color: var(--text);
+      margin-bottom: 0.5rem;
     }
 
-    .service-card,
-    .experience-card{
-      background:var(--surface);
-      padding:16px;
-      border-radius:12px;
-      transition: transform var(--transition);
+    .service-content p {
+      color: var(--text-muted);
+      margin-bottom: 1rem;
     }
 
-    .service-card:hover,
-    .experience-card:hover{
-      transform:translateY(-5px);
+    .service-features {
+      list-style: none;
+      margin-bottom: 1.5rem;
     }
 
-    .service-card h4,
-    .experience-card h4{
-      margin:8px 0 10px;
-      font-size:16px;
+    .service-features li {
+      padding: 4px 0;
+      color: var(--text-muted);
+      position: relative;
+      padding-right: 1rem;
     }
 
-    .experience-card img{
-      width:100%;
-      height:180px;
-      object-fit:cover;
-      border-radius:8px;
-      margin-bottom:12px;
+    .service-features li::before {
+      content: '•';
+      color: var(--accent);
+      position: absolute;
+      right: 0;
+    }
+
+    .service-price {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .price {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--accent);
     }
 
     /* Testimonials */
-    .testimonials-slider{
-      padding:16px;
-      background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));
-      border-radius:12px;
+    .testimonials-slider {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
     }
 
-    .testimonial-card{
-      padding:16px;
-      border-radius:12px;
-      background:rgba(255,255,255,0.02);
-      margin-bottom:14px;
-      transition: transform var(--transition);
+    .testimonial-card {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      transition: var(--transition);
     }
 
     .testimonial-card:hover {
       transform: translateY(-5px);
+      border-color: var(--accent);
     }
 
-    .testimonial-card:last-child{margin-bottom:0}
+    .testimonial-rating {
+      display: flex;
+      gap: 2px;
+      margin-bottom: 1rem;
+      color: var(--accent);
+    }
 
-    .testimonial-text{
-      font-size:14px;
-      color:var(--muted);
-      margin:0 0 12px;
-      line-height:1.6;
+    .testimonial-text {
+      font-style: italic;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .author-avatar {
+      width: 50px;
+      height: 50px;
+      background: var(--glass);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 1.25rem;
+    }
+
+    .author-info {
+      flex: 1;
+    }
+
+    .author-info strong {
+      display: block;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+
+    .author-info span {
+      font-size: 0.875rem;
+      color: var(--text-muted);
     }
 
     /* FAQ */
-    .faq-grid{display:grid;gap:12px}
-    .faq-item{
-      background:var(--glass);
-      padding:14px;
-      border-radius:10px;
-      transition: all var(--transition);
+    .faq-grid {
+      max-width: 800px;
+      margin: 0 auto;
     }
 
-    .faq-item:hover {
-      background: rgba(255,255,255,0.04);
+    .faq-item {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 1rem;
+      overflow: hidden;
+      transition: var(--transition);
     }
 
-    .faq-question{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      cursor:pointer;
-      gap:10px;
+    .faq-item.active {
+      border-color: var(--accent);
     }
 
-    .faq-question h4{
-      margin:0;
-      font-size:15px;
+    .faq-question {
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: var(--transition);
     }
 
-    .faq-question i{
-      transition:transform var(--transition);
-      color:var(--accent);
+    .faq-question:hover {
+      background: var(--glass-dark);
     }
 
-    .faq-answer{
-      max-height:0;
-      overflow:hidden;
-      transition:max-height 320ms ease;
+    .faq-question h3 {
+      margin: 0;
+      font-size: 1.1rem;
+      color: var(--text);
     }
 
-    .faq-item.active .faq-answer{
-      max-height:240px;
-      padding-top:12px;
+    .faq-question i {
+      color: var(--accent);
+      transition: var(--transition);
     }
 
-    .faq-item.active .faq-question i{
-      transform:rotate(180deg);
+    .faq-item.active .faq-question i {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 200px;
+    }
+
+    .faq-answer p {
+      padding: 0 1.5rem 1.5rem;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+
+    .contact-card {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .contact-card h3 {
+      color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .contact-item i {
+      color: var(--accent);
+      font-size: 1.25rem;
+      margin-top: 2px;
+      width: 20px;
+    }
+
+    .contact-item div {
+      flex: 1;
+    }
+
+    .contact-item strong {
+      display: block;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .contact-item span {
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .social-links h4 {
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+
+    .social-buttons {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .social-btn {
+      width: 45px;
+      height: 45px;
+      padding: 0;
+      border-radius: 50%;
+    }
+
+    .form-card {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+    }
+
+    .form-card h3 {
+      color: var(--text);
+      margin-bottom: 1.5rem;
     }
 
     /* Footer */
-    footer.site-footer{
-      margin-top:40px;
-      padding:28px 0;
-      border-top:1px solid rgba(255,255,255,0.03);
+    .site-footer {
+      background: var(--secondary);
+      border-top: 1px solid var(--border);
+      padding: 4rem 0 2rem;
     }
 
-    .footer-grid{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:24px;
+    .footer-content {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 3rem;
+      margin-bottom: 2rem;
     }
 
-    .footer-grid h4{
-      margin:0 0 12px;
-      font-size:16px;
+    .footer-brand {
+      max-width: 300px;
     }
 
-    .footer-grid nav{
-      display:flex;
-      flex-direction:column;
-      gap:8px;
+    .footer-description {
+      color: var(--text-muted);
+      margin-top: 1rem;
+      line-height: 1.6;
     }
 
-    .footer-grid a{
-      color:var(--muted);
-      transition:color var(--transition);
-      font-size:14px;
+    .footer-links {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
     }
 
-    .footer-grid a:hover{
-      color:var(--accent);
+    .footer-column h4 {
+      color: var(--text);
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
     }
 
-    /* Mobile panel */
-    .mobile-panel{
-      position:fixed;
-      inset:0;
-      z-index:120;
-      display:flex;
-      flex-direction:column;
-      background:linear-gradient(180deg,rgba(2,6,23,0.98),rgba(2,6,23,0.99));
-      transform:translateX(100%);
-      transition:transform 360ms cubic-bezier(.2,.9,.3,1);
-      overflow-y:auto;
+    .footer-column nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
     }
 
-    .mobile-panel.open{transform:none}
-    .mobile-panel .panel-content{padding:22px}
-
-    .mobile-nav{margin-top:24px}
-
-    .mobile-nav a{
-      display:block;
-      padding:14px;
-      border-radius:10px;
-      transition: all var(--transition);
-      margin-bottom:6px;
-      font-size:15px;
+    .footer-column a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: var(--transition);
     }
 
-    .mobile-nav a:hover {
-      background: rgba(255,255,255,0.05);
+    .footer-column a:hover {
+      color: var(--accent);
     }
 
-    /* Scroll to top */
-    .scroll-top{
-      position:fixed;
-      left:18px;
-      bottom:18px;
-      background:var(--accent);
-      border-radius:50%;
-      width:48px;
-      height:48px;
-      display:grid;
-      place-items:center;
-      box-shadow:0 10px 30px rgba(2,6,23,0.6);
-      cursor:pointer;
-      transition: all var(--transition);
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 2rem;
+      text-align: center;
+      color: var(--text-muted);
+    }
+
+    /* Mobile Menu */
+    .mobile-panel {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--primary);
+      z-index: 2000;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      overflow-y: auto;
+    }
+
+    .mobile-panel.open {
+      transform: translateX(0);
+    }
+
+    .panel-content {
+      padding: 2rem;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .panel-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-close {
+      background: transparent;
+      border: none;
+      color: var(--text);
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    .mobile-nav {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .mobile-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 1rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      border-radius: var(--radius-sm);
+      transition: var(--transition);
+      font-size: 1.1rem;
+    }
+
+    .mobile-link:hover,
+    .mobile-link.active {
+      background: var(--glass);
+      color: var(--accent);
+    }
+
+    .mobile-link i {
+      width: 20px;
+      text-align: center;
+    }
+
+    .panel-actions {
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    /* Modal */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 3000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
       opacity: 0;
       visibility: hidden;
-      z-index: 100;
-      color:#081018;
+      transition: all 0.3s ease;
+    }
+
+    .modal.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+    }
+
+    .modal-container {
+      position: relative;
+      background: var(--primary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      max-width: 600px;
+      width: 100%;
+      max-height: 90vh;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      transform: translateY(20px);
+      transition: transform 0.3s ease;
+    }
+
+    .modal.active .modal-container {
+      transform: translateY(0);
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .modal-header h3 {
+      margin: 0;
+      color: var(--text);
+    }
+
+    .modal-close {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 4px;
+      transition: var(--transition);
+    }
+
+    .modal-close:hover {
+      color: var(--accent);
+    }
+
+    .modal-body {
+      padding: 1.5rem;
+      max-height: calc(90vh - 80px);
+      overflow-y: auto;
+    }
+
+    /* Scroll to Top */
+    .scroll-top {
+      position: fixed;
+      bottom: 2rem;
+      left: 2rem;
+      width: 50px;
+      height: 50px;
+      background: var(--accent);
+      color: var(--primary);
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .scroll-top.visible {
@@ -692,73 +1334,143 @@
     }
 
     .scroll-top:hover {
-      background: var(--accent-light);
       transform: translateY(-3px);
+      box-shadow: var(--shadow);
     }
 
     /* Toast */
     .toast {
       position: fixed;
-      bottom: 20px;
-      left: 20px;
-      right: 20px;
-      background: var(--surface);
-      color: #fff;
-      padding: 14px 18px;
-      border-radius: 10px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-      z-index: 1000;
+      bottom: 2rem;
+      left: 2rem;
+      right: 2rem;
+      max-width: 400px;
+      background: var(--secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.5rem;
+      box-shadow: var(--shadow-lg);
       transform: translateY(100px);
       opacity: 0;
       transition: all 0.3s ease;
-      font-size:14px;
+      z-index: 4000;
     }
-    
+
     .toast.show {
       transform: translateY(0);
       opacity: 1;
     }
-    
+
     .toast.success {
-      border-right: 4px solid #4CAF50;
+      border-right: 4px solid var(--success);
     }
-    
+
     .toast.error {
-      border-right: 4px solid #f44336;
+      border-right: 4px solid var(--error);
     }
 
-    /* Loading */
+    /* Loading States */
+    .loading-state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem;
+      color: var(--text-muted);
+    }
+
     .loading-spinner {
-      display: inline-block;
-      width: 18px;
-      height: 18px;
-      border: 3px solid rgba(255,255,255,0.3);
+      width: 40px;
+      height: 40px;
+      border: 3px solid var(--glass);
+      border-top: 3px solid var(--accent);
       border-radius: 50%;
-      border-top-color: var(--accent);
-      animation: spin 1s ease-in-out infinite;
-    }
-    
-    @keyframes spin {
-      to { transform: rotate(360deg); }
+      animation: spin 1s linear infinite;
+      margin-bottom: 1rem;
     }
 
-    /* Badge */
-    .badge{
-      display:inline-flex;
-      align-items:center;
-      gap:6px;
-      padding:6px 12px;
-      border-radius:999px;
-      background:rgba(212,175,55,0.12);
-      color:var(--accent);
-      font-weight:600;
-      font-size:13px;
+    .loading-spinner.large {
+      width: 60px;
+      height: 60px;
+      border-width: 4px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Loader */
+   /* Top loader */
+#topLoader{
+    position:fixed;
+    inset:0;
+    z-index:200;
+    display:grid;
+    place-items:center;
+    background:linear-gradient(180deg,rgba(2,6,23,0.98),rgba(2,6,23,0.95));
+}
+
+.loader-content{
+    text-align:center;
+    color:#fff;
+    max-width:360px;
+    padding:24px;
+    border-radius:12px;
+    background:linear-gradient(180deg,rgba(255,255,255,0.03),transparent);
+}
+
+.loader-title{
+    font-size:28px;
+    font-weight:700;
+    color:var(--accent);
+    margin-bottom:12px;
+}
+
+.loader-text{
+    color:var(--muted);
+    margin-bottom:18px;
+    font-size:14px;
+}
+
+.loader-bar{
+    height:10px;
+    background:rgba(255,255,255,0.05);
+    border-radius:999px;
+    overflow:hidden;
+}
+
+.loader-fill{
+    width:0%;
+    height:10px;
+    background:linear-gradient(90deg,var(--accent),#e7d08f);
+    transition:width 400ms ease;
+}
+
+    /* Search Results */
+    .search-results {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      color: var(--primary);
+    }
+
+    .search-results-header h3 {
+      margin: 0 0 0.5rem 0;
+      color: var(--primary);
+    }
+
+    .search-results-header p {
+      margin: 0 0 1rem 0;
+      color: rgba(11, 18, 32, 0.8);
     }
 
     /* Utilities */
-    .mt-8{margin-top:24px}
-    .text-muted{color:var(--muted)}
-    .text-center{text-align:center}
+    .text-muted {
+      color: var(--text-muted);
+    }
+
     .sr-only {
       position: absolute;
       width: 1px;
@@ -771,296 +1483,496 @@
       border: 0;
     }
 
-    /* Filters */
-    .cars-filter{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      align-items:center;
-      margin-top:20px;
-    }
-
-    .filter-btn{
-      width:auto;
-      padding:10px 16px;
-      font-size:13px;
-    }
-
-    .filter-btn.active{
-      background:var(--accent);
-      color:#081018;
-      border-color:var(--accent);
-    }
-
-    .sort-select{
-      background:rgba(255,255,255,0.05);
-      border:1px solid rgba(255,255,255,0.1);
-      padding:10px 14px;
-      border-radius:10px;
-      color:#e6eef6;
-      font-size:13px;
-      cursor:pointer;
-    }
-
-    /* Contact */
-    .contact-grid{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:18px;
-      margin-top:20px;
-    }
-
-    .contact-info,
-    .contact-form-wrapper{
-      background:var(--surface);
-      padding:20px;
-      border-radius:12px;
-    }
-
-    .contact-info h4,
-    .contact-form-wrapper h4{
-      margin:0 0 12px;
-      font-size:16px;
-    }
-
-    .contact-info p{
-      margin:8px 0;
-      font-size:14px;
-    }
-
-    /* Caravans */
-    .caravan-grid{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:14px;
-    }
-
-    .caravan-main{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:14px;
-    }
-
-    .caravan-image{
-      width:100%;
-      height:300px;
-      object-fit:cover;
-      border-radius:12px;
-    }
-
-    .caravan-details{
-      background:var(--surface);
-      padding:16px;
-      border-radius:12px;
-    }
-
-    .caravan-details h4{
-      margin:0 0 10px;
-      font-size:18px;
-    }
-
-    .caravan-features{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin:12px 0;
-    }
-
-    .caravan-feature{
-      background:rgba(255,255,255,0.03);
-      padding:8px 12px;
-      border-radius:8px;
-      font-size:13px;
-    }
-
-    .caravan-price-row{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      align-items:center;
-      margin-top:14px;
-    }
-
-    .caravan-card{
-      background:var(--surface);
-      padding:14px;
-      border-radius:12px;
-      transition:transform var(--transition);
-    }
-
-    .caravan-card:hover{
-      transform:translateY(-5px);
-    }
-
-    .caravan-card img{
-      width:100%;
-      height:160px;
-      object-fit:cover;
-      border-radius:8px;
-      margin-bottom:10px;
-    }
-
-    .caravan-card h4{
-      margin:0 0 8px;
-      font-size:15px;
-    }
-
-    /* Top loader */
-    #topLoader{
-      position:fixed;
-      inset:0;
-      z-index:200;
-      display:grid;
-      place-items:center;
-      background:linear-gradient(180deg,rgba(2,6,23,0.98),rgba(2,6,23,0.95));
-    }
-
-    .loader-content{
-      text-align:center;
-      color:#fff;
-      max-width:360px;
-      padding:24px;
-      border-radius:12px;
-      background:linear-gradient(180deg,rgba(255,255,255,0.03),transparent);
-    }
-
-    .loader-title{
-      font-size:28px;
-      font-weight:700;
-      color:var(--accent);
-      margin-bottom:12px;
-    }
-
-    .loader-text{
-      color:var(--muted);
-      margin-bottom:18px;
-      font-size:14px;
-    }
-
-    .loader-bar{
-      height:10px;
-      background:rgba(255,255,255,0.05);
-      border-radius:999px;
-      overflow:hidden;
-    }
-
-    .loader-fill{
-      width:0%;
-      height:10px;
-      background:linear-gradient(90deg,var(--accent),#e7d08f);
-      transition:width 400ms ease;
-    }
-
-    /* Responsive */
-    @media(min-width:640px){
-      .brand p{display:block}
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .hero-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        text-align: center;
+      }
       
-      .hero-visual{height:500px}
+      .hero-stats {
+        grid-template-columns: repeat(4, 1fr);
+      }
+      
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .footer-content {
+        grid-template-columns: 1fr;
+      }
+      
+      .footer-links {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
 
-      .hero-text h2{font-size:32px}
-
-      .stats-grid{grid-template-columns:repeat(4,1fr)}
-
-      .form-row{grid-template-columns:1fr 1fr}
-
-      .cars-grid{grid-template-columns:repeat(2,1fr)}
-
-      .features-grid{grid-template-columns:repeat(2,1fr)}
-
+    @media (max-width: 768px) {
+      .main-nav {
+        display: none;
+      }
+      
+      .hamburger {
+        display: flex;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .hero-title {
+        font-size: 2.5rem;
+      }
+      
+      .hero-actions {
+        flex-direction: column;
+      }
+      
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+      
+      .cars-filter {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      
+      .filter-group {
+        justify-content: center;
+      }
+      
+      .sort-group {
+        justify-content: center;
+      }
+      
+      .features-grid,
       .services-grid,
-      .experiences-grid{grid-template-columns:repeat(2,1fr)}
-
-      .footer-grid{grid-template-columns:1fr 1fr}
-
-      .contact-grid{grid-template-columns:1fr 1fr}
-
-      .caravan-grid{grid-template-columns:repeat(2,1fr)}
+      .testimonials-slider {
+        grid-template-columns: 1fr;
+      }
+      
+      .footer-links {
+        grid-template-columns: 1fr;
+      }
     }
 
-    @media(min-width:980px){
-      nav.main-nav{display:block}
-
-      nav.main-nav ul{
-        display:flex;
-        gap:4px;
-        align-items:center;
-        list-style:none;
-        margin:0;
-        padding:0;
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 1rem;
       }
-
-      nav.main-nav a{
-        display:inline-flex;
-        align-items:center;
-        gap:6px;
-        padding:10px 14px;
-        border-radius:10px;
-        color:var(--muted);
-        transition: all var(--transition);
-        font-size:14px;
+      
+      .hero-title {
+        font-size: 2rem;
       }
-
-      nav.main-nav a:hover {
-        background: rgba(255,255,255,0.03);
-        color: #fff;
+      
+      .hero-stats {
+        grid-template-columns: 1fr;
       }
-
-      nav.main-nav a.active{
-        background:linear-gradient(90deg,rgba(212,175,55,0.08),transparent);
-        color:var(--accent);
+      
+      .cars-grid {
+        grid-template-columns: 1fr;
       }
-
-      .hamburger{display:none}
-
-      .hero-grid{
-        grid-template-columns:1.5fr 1fr;
-        gap:24px;
+      
+      .service-card {
+        flex-direction: column;
+        text-align: center;
       }
-
-      .hero-visual{height:600px}
-
-      .hero-text h2{font-size:38px}
-
-      .booking-card{margin-top:0}
-
-      .cars-grid{grid-template-columns:repeat(3,1fr)}
-
-      .features-grid{grid-template-columns:repeat(4,1fr)}
-
-      .services-grid,
-      .experiences-grid{grid-template-columns:repeat(3,1fr)}
+      
+      .service-price {
+        flex-direction: column;
+        gap: 1rem;
+      }
     }
 
-    /* Smooth animations */
-    @keyframes fadeIn{
-      from{opacity:0;transform:translateY(20px)}
-      to{opacity:1;transform:translateY(0)}
+    /* Dark mode support */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --primary: #0b1220;
+        --secondary: #1e293b;
+        --text: #e2e8f0;
+        --text-muted: #94a3b8;
+      }
     }
 
-    .fade-in{animation:fadeIn 0.6s ease-out}
+    /* Reduced motion support */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* Booking Wizard Styles */
+    .booking-wizard {
+      padding: 1rem;
+    }
+
+    .booking-progress {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .progress-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .step-number {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--glass);
+      border: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: var(--text-muted);
+      transition: var(--transition);
+    }
+
+    .progress-step.active .step-number {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--primary);
+    }
+
+    .step-label {
+      margin-top: 8px;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      transition: var(--transition);
+    }
+
+    .progress-step.active .step-label {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .progress-line {
+      position: absolute;
+      top: 20px;
+      right: 0;
+      left: 0;
+      height: 2px;
+      background: var(--border);
+      z-index: 1;
+    }
+
+    .booking-form-steps {
+      position: relative;
+    }
+
+    .booking-step {
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .booking-step.active {
+      display: block;
+    }
+
+    .step-title {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.5rem;
+    }
+
+    .booking-summary {
+      background: var(--glass);
+      border-radius: var(--radius-sm);
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .summary-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
+
+    .summary-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .step-actions {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2rem;
+      gap: 1rem;
+    }
+
+    .confirmation-summary {
+      background: var(--glass);
+      border-radius: var(--radius-sm);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero{padding:20px 0;}
+
+.hero-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:18px;
+    align-items:start;
+}
+
+.hero-card{
+    background:linear-gradient(180deg,var(--glass),transparent);
+    border-radius:var(--card-radius);
+    overflow:hidden;
+    padding:18px;
+    transition: transform var(--transition);
+}
+
+.hero-visual{
+    position:relative;
+    border-radius:14px;
+    overflow:hidden;
+    height:400px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+}
+
+.hero-visual .slide{
+    position:absolute;
+    inset:0;
+    background-size:cover;
+    background-position:center;
+    transition:opacity 800ms ease-in-out;
+    opacity:0;
+}
+.hero-visual .slide.active{opacity:1;}
+.hero-visual::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg,transparent 50%,rgba(2,6,23,0.8));
+    z-index:1;
+}
+.hero-overlay-content{
+    position:absolute;
+    left:18px;
+    bottom:18px;
+    right:18px;
+    color:#fff;
+    z-index:2;
+}
+
+.hero-text h2{
+    font-size:24px;
+    line-height:1.2;
+    margin:0 0 10px;
+    color:#fff;
+}
+
+.hero-text p.lead{
+    margin:0;
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.6;
+}
+
+.stats-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+    margin-top:14px;
+}
+
+.stat{
+    background:var(--surface);
+    padding:12px;
+    border-radius:10px;
+    text-align:center;
+    transition: transform var(--transition);
+}
+
+.stat:hover {
+    transform:translateY(-5px);
+}
+
+.stat .num{font-weight:700;font-size:20px;color:var(--accent);}
+.stat .label{font-size:12px;color:var(--muted);}
+
+
+
+/* Hero controls */
+.hero-controls{
+    position:absolute;
+    left:18px;
+    top:18px;
+    display:flex;
+    gap:8px;
+    z-index:3;
+}
+
+.hero-controls .btn{
+    width:auto;
+    padding:8px 12px;
+}
+
+/* Improved Slider Sync */
+.slider-sync {
+  position: relative;
+}
+
+.slider-indicators {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 5;
+}
+
+.slider-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.slider-indicator.active {
+  background: var(--accent);
+  transform: scale(1.2);
+}
+
+/* Improved Mobile Responsiveness */
+@media (max-width: 768px) {
+  .hero-visual {
+    height: 300px;
+  }
+  
+  .hero-overlay-content h2 {
+    font-size: 20px;
+  }
+  
+  .slider-indicators {
+    bottom: 10px;
+  }
+  
+  .hero-controls {
+    top: 10px;
+    left: 10px;
+  }
+  
+  .booking-card {
+    padding: 1.5rem;
+  }
+}
+
+/* Improved Booking Confirmation */
+.confirmation-success {
+  text-align: center;
+  padding: 2rem;
+}
+
+.confirmation-success .icon {
+  width: 80px;
+  height: 80px;
+  background: var(--success);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  color: white;
+  font-size: 2rem;
+}
+
+.confirmation-success h3 {
+  color: var(--success);
+  margin-bottom: 1rem;
+}
+
+.booking-reference {
+  background: var(--glass);
+  border-radius: var(--radius-sm);
+  padding: 1rem;
+  margin: 1.5rem 0;
+  text-align: center;
+}
+
+.booking-reference strong {
+  color: var(--accent);
+  font-size: 1.5rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+/* WhatsApp Button */
+.whatsapp-btn {
+  background: #25D366;
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.whatsapp-btn:hover {
+  background: #128C7E;
+  transform: translateY(-2px);
+}
   </style>
 </head>
 <body>
-  <a class="sr-only" href="#main">تخطي إلى المحتوى</a>
-
-  <div id="toast" class="toast" role="alert" aria-live="polite"></div>
-
+  <!-- Loader -->
   <div id="topLoader">
     <div class="loader-content">
-      <div class="loader-title">DSHT</div>
-      <div class="loader-text">جاري تهيئة الموقع — يرجى الانتظار</div>
+      <div class="loader-logo">
+        <div class="logo-animation">
+          <span>D</span>
+          <span>S</span>
+          <span>H</span>
+          <span>T</span>
+        </div>
+      </div>
+      <div class="loader-text">جاري تهيئة الفخامة المغربية</div>
       <div class="loader-bar">
         <div id="topLoaderFill" class="loader-fill"></div>
       </div>
     </div>
   </div>
 
+  <!-- Skip to main content -->
+  <a class="sr-only" href="#main">تخطي إلى المحتوى</a>
+
+  <!-- Toast Notifications -->
+  <div id="toast" class="toast" role="alert" aria-live="polite"></div>
+
+  <!-- Header -->
   <header class="site-header" role="banner">
     <div class="container nav-row">
       <div class="brand">
-      <img class="logo-wrap" src="https://f.top4top.io/p_3592mygm91.png" alt="DSHT Logo">
-        <div>
-         
+        <div class="logo-wrap">
+         <img src="https://f.top4top.io/p_3592mygm91.png" alt="DSHT Logo" style="max-width: 60%; height: auto;">
+        </div>
+        <div class="brand-text">
+          <h1>DSHT</h1>
           <p class="text-muted">الفخامة المغربية على الطريق</p>
         </div>
       </div>
@@ -1072,7 +1984,8 @@
           <li><a class="nav-link" href="#caravans">الكرفانات</a></li>
           <li><a class="nav-link" href="#services">خدماتنا</a></li>
           <li><a class="nav-link" href="#experience">رحلاتنا</a></li>
-          <li><a class="nav-link" href="#testimonials">آراء العملاء</a></li>
+        
+          <li><a class="nav-link" href="#faq">الأسئلة الشائعة</a></li>
           <li><a class="nav-link" href="#contact">اتصل بنا</a></li>
         </ul>
       </nav>
@@ -1086,10 +1999,10 @@
 
         <button class="cta-btn" id="openBookingBtn">
           <i class="fas fa-calendar-check"></i>
-          احجز الآن
+          <span>احجز الآن</span>
         </button>
 
-        <button class="hamburger" id="openMobile">
+        <button class="hamburger" id="openMobile" aria-label="فتح القائمة">
           <span></span>
           <span></span>
           <span></span>
@@ -1098,32 +2011,60 @@
     </div>
   </header>
 
+  <!-- Mobile Menu -->
   <div id="mobilePanel" class="mobile-panel">
     <div class="panel-content">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
-        <div style="display:flex;gap:12px;align-items:center">
-          <div class="logo-wrap" style="width:44px;height:44px">DS</div>
+      <div class="panel-header">
+        <div class="panel-brand">
+          <div class="logo-wrap">
+           <img src="https://f.top4top.io/p_3592mygm91.png" alt="DSHT Logo" style="max-width: 100%; height: auto;">
+          </div>
           <div>
             <strong>DSHT</strong>
-            <div class="text-muted" style="font-size:12px">الفخامة المغربية</div>
+            <div class="text-muted">الفخامة المغربية</div>
           </div>
         </div>
-        <button id="closeMobile" class="btn btn-outline" style="width:auto">
+        <button id="closeMobile" class="btn btn-close" aria-label="إغلاق القائمة">
           <i class="fas fa-times"></i>
         </button>
       </div>
 
       <nav class="mobile-nav">
-        <a href="#home" class="mobile-link">الرئيسية</a>
-        <a href="#cars" class="mobile-link">السيارات</a>
-        <a href="#caravans" class="mobile-link">الكرفانات</a>
-        <a href="#services" class="mobile-link">خدماتنا</a>
-        <a href="#experience" class="mobile-link">رحلاتنا</a>
-        <a href="#testimonials" class="mobile-link">آراء العملاء</a>
-        <a href="#contact" class="mobile-link">اتصل بنا</a>
+        <a href="#home" class="mobile-link">
+          <i class="fas fa-home"></i>
+          الرئيسية
+        </a>
+        <a href="#cars" class="mobile-link">
+          <i class="fas fa-car"></i>
+          السيارات
+        </a>
+        <a href="#caravans" class="mobile-link">
+          <i class="fas fa-caravan"></i>
+          الكرفانات
+        </a>
+        <a href="#services" class="mobile-link">
+          <i class="fas fa-star"></i>
+          خدماتنا
+        </a>
+        <a href="#experience" class="mobile-link">
+          <i class="fas fa-compass"></i>
+          رحلاتنا
+        </a>
+        <a href="#testimonials" class="mobile-link">
+          <i class="fas fa-comment-alt"></i>
+          آراء العملاء
+        </a>
+        <a href="#faq" class="mobile-link">
+          <i class="fas fa-question-circle"></i>
+          الأسئلة الشائعة
+        </a>
+        <a href="#contact" class="mobile-link">
+          <i class="fas fa-phone"></i>
+          اتصل بنا
+        </a>
       </nav>
 
-      <div style="margin-top:24px;">
+      <div class="panel-actions">
         <button class="btn btn-primary mobile-book-btn">
           <i class="fas fa-calendar-check"></i>
           احجز رحلتك
@@ -1132,103 +2073,649 @@
     </div>
   </div>
 
+  <!-- Main Content -->
   <main id="main" tabindex="-1">
-    <section id="home" class="hero container">
-      <div class="hero-grid">
-        <div class="hero-card fade-in" style="padding:0;position:relative">
-          <div class="hero-visual">
-            <div class="slide active" style="background-image:url('https://4kwallpapers.com/images/walls/thumbs_3t/4109.jpeg')"></div>
-            <div class="slide" style="background-image:url('https://cdn.mos.cms.futurecdn.net/MnfUHuePh2WS3693KoiCqM-1024-80.jpg.webp')"></div>
-            <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&w=1600&q=80')"></div>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <div class="hero-background slider-sync">
+        <div class="slide active" style="background-image:url('https://4kwallpapers.com/images/walls/thumbs_3t/4109.jpeg')"></div>
+        <div class="slide" style="background-image:url('https://cdn.mos.cms.futurecdn.net/MnfUHuePh2WS3693KoiCqM-1024-80.jpg.webp')"></div>
+        <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&w=1600&q=80')"></div>
+        <div class="hero-overlay"></div>
+        <div class="slider-indicators">
+          <div class="slider-indicator active" data-index="0"></div>
+          <div class="slider-indicator" data-index="1"></div>
+          <div class="slider-indicator" data-index="2"></div>
+        </div>
+      </div>
+      
+      <div class="container hero-container">
+        <div class="hero-content">
+          <h1 class="hero-title">
+            استأجر سيارة فاخرة
+            <span class="highlight">أو كرفان مجهز</span>
+          </h1>
+          
+          <p class="hero-description">
+            خدمة موثوقة، أساطيل متنوعة، وسائقين محترفين. احجز رحلتك الآن واستمتع بتجربة فريدة تجمع بين الأصالة والرفاهية.
+          </p>
+          
+          <div class="hero-card fade-in" style="padding:0;position:relative">
+            <div class="hero-visual slider-sync">
+              <div class="hero-controls">
+                <button class="btn btn-outline" id="prevSlide" aria-label="الشريحة السابقة">
+                  <i class="fas fa-chevron-right"></i>
+                </button>
+                <button class="btn btn-outline" id="nextSlide" aria-label="الشريحة التالية">
+                  <i class="fas fa-chevron-left"></i>
+                </button>
+              </div>
 
-            <div class="hero-controls">
-              <button class="btn btn-outline" id="prevSlide" aria-label="الشريحة السابقة">
-                <i class="fas fa-chevron-right"></i>
-              </button>
-              <button class="btn btn-outline" id="nextSlide" aria-label="الشريحة التالية">
-                <i class="fas fa-chevron-left"></i>
-              </button>
+              <div class="slide active" style="background-image:url('https://4kwallpapers.com/images/walls/thumbs_3t/4109.jpeg')"></div>
+              <div class="slide" style="background-image:url('https://cdn.mos.cms.futurecdn.net/MnfUHuePh2WS3693KoiCqM-1024-80.jpg.webp')"></div>
+              <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&w=1600&q=80')"></div>
+              
+              <div class="slider-indicators">
+                <div class="slider-indicator active" data-index="0"></div>
+                <div class="slider-indicator" data-index="1"></div>
+                <div class="slider-indicator" data-index="2"></div>
+              </div>
+              
+              <div class="hero-overlay-content">
+                <span class="badge"><i class="fas fa-crown"></i> فخامة مغربية</span>
+                <div style="font-size:13px;color:var(--muted);margin-bottom:8px">اكتشف المغرب برفاهية</div>
+                <h2 style="margin:0 0 10px;font-size:28px;line-height:1.2">استأجر سيارة فاخرة أو كرفان مجهز</h2>
+                <p class="text-muted" style="margin:0;font-size:14px">خدمة موثوقة، أساطيل متنوعة، وسائقين محترفين</p>
+              </div>
             </div>
+          </div>
 
-            <div class="hero-overlay-content">
-              <div style="font-size:13px;color:var(--muted);margin-bottom:8px">اكتشف المغرب برفاهية</div>
-              <h2 style="margin:0 0 10px;font-size:28px;line-height:1.2">استأجر سيارة فاخرة أو كرفان مجهز</h2>
-              <p class="text-muted" style="margin:0;font-size:14px">خدمة موثوقة، أساطيل متنوعة، وسائقين محترفين</p>
+          <div class="hero-stats">
+            <div class="stat">
+              <div class="stat-number" id="carsCount">0</div>
+              <div class="stat-label">سيارة فاخرة</div>
             </div>
+            <div class="stat">
+              <div class="stat-number" id="caravansCount">0</div>
+              <div class="stat-label">كرفان مجهز</div>
+            </div>
+            <div class="stat">
+              <div class="stat-number">24/7</div>
+              <div class="stat-label">دعم 24 ساعة</div>
+            </div>
+            <div class="stat">
+              <div class="stat-number" id="tripsCount">0</div>
+              <div class="stat-label">رحلة متاحة</div>
+            </div>
+          </div>
+
+          <div class="hero-actions">
+            <button class="btn btn-primary btn-large" id="exploreCarsBtn">
+              <i class="fas fa-car"></i>
+              استعرض السيارات
+            </button>
+            <button class="btn btn-outline btn-large" id="exploreCaravansBtn">
+              <i class="fas fa-caravan"></i>
+              استعرض الكرفانات
+            </button>
           </div>
         </div>
 
-        <div class="hero-card fade-in">
-          <div class="hero-text">
-            <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
-              <span class="badge"><i class="fas fa-star"></i> جديد</span>
-              <div class="text-muted" style="font-size:13px">عروض الصيف</div>
-            </div>
-            <h2>فخامة مغربية على كل طريق</h2>
-            <p class="lead text-muted">احجز سيارتك أو كرفانك الآن واستفد من خصومات مميزة للعطلات الطويلة.</p>
-
-            <div class="stats-grid mt-8">
-              <div class="stat">
-                <div class="num">500+</div>
-                <div class="label text-muted">سيارة فاخرة</div>
-              </div>
-              <div class="stat">
-                <div class="num">50+</div>
-                <div class="label text-muted">كرفان مجهز</div>
-              </div>
-              <div class="stat">
-                <div class="num">24/7</div>
-                <div class="label text-muted">دعم 24 ساعة</div>
-              </div>
-              <div class="stat">
-                <div class="num">1000+</div>
-                <div class="label text-muted">عميل سعيد</div>
-              </div>
-            </div>
-
-            <div class="booking-card">
+        <div class="booking-widget">
+          <div class="booking-card">
+            <div class="booking-header">
               <h3><i class="fas fa-calendar-alt"></i> ابدأ رحلتك الآن</h3>
-              <form id="heroBookingForm">
+              <p class="text-muted">اختر مواصفات رحلتك واحجز في دقائق</p>
+            </div>
+            
+            <form id="heroBookingForm" class="booking-form">
+              <div class="form-group">
+                <label for="vehicleType">نوع المركبة</label>
+                <select id="vehicleType" name="vehicleType" required>
+                  <option value="">اختر النوع</option>
+                  <option value="cars">سيارات</option>
+                  <option value="caravans">كرفانات</option>
+                </select>
+              </div>
+
+              <div class="form-row">
                 <div class="form-group">
-                  <label for="vehicleType">نوع المركبة</label>
-                  <select id="vehicleType" name="vehicleType" required>
-                    <option value="">اختر النوع</option>
-                    <option value="mercedes">مرسيدس</option>
-                    <option value="bmw">BMW</option>
-                    <option value="range">Range Rover</option>
-                    <option value="toyota">تويوتا</option>
-                    <option value="caravan">كرفان فاخر</option>
+                  <label for="pickupDate">تاريخ الانطلاق</label>
+                  <input id="pickupDate" type="date" name="pickupDate" required>
+                </div>
+                <div class="form-group">
+                  <label for="returnDate">تاريخ العودة</label>
+                  <input id="returnDate" type="date" name="returnDate" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="pickupLocation">موقع الاستلام</label>
+                <select id="pickupLocation" name="pickupLocation" required>
+                  <option value="">اختر الموقع</option>
+                  <option value="marrakech">مراكش</option>
+                  <option value="agadir">أكادير</option>
+                  <option value="casablanca">الدار البيضاء</option>
+                  <option value="airport-marrakech">مطار مراكش المنارة</option>
+                  <option value="airport-agadir">مطار أكادير المسيرة</option>
+                </select>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="passengers">عدد الركاب</label>
+                  <select id="passengers" name="passengers" required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4" selected>4</option>
+                    <option value="5">5</option>
+                    <option value="6">6+</option>
                   </select>
                 </div>
-
-                <div class="form-row">
-                  <div class="form-group">
-                    <label for="pickupDate">تاريخ الانطلاق</label>
-                    <input id="pickupDate" type="date" name="pickupDate" required>
-                  </div>
-                  <div class="form-group">
-                    <label for="returnDate">تاريخ العودة</label>
-                    <input id="returnDate" type="date" name="returnDate" required>
-                  </div>
-                </div>
-
                 <div class="form-group">
-                  <label for="pickupLocation">مطار الانطلاق</label>
-                  <select id="pickupLocation" name="pickupLocation" required>
-                    <option value="">اختر المطار</option>
-                    <option value="marrakech">مطار مراكش المنارة</option>
-                    <option value="agadir">مطار أكادير المسيرة</option>
+                  <label for="needDriver">هل تحتاج سائق؟</label>
+                  <select id="needDriver" name="needDriver" required>
+                    <option value="no">لا</option>
+                    <option value="yes">نعم</option>
                   </select>
                 </div>
+              </div>
 
-                <div class="form-group">
-                  <label for="email">البريد الإلكتروني</label>
-                  <input id="email" name="email" type="email" placeholder="example@email.com" required>
+              <div class="form-group checkbox-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" id="airportPickup" name="airportPickup" style="display: none;">
+                  <span class="checkmark"></span>
+                  أحتاج استلام من المطار
+                </label>
+              </div>
+
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block">
+                  <span class="btn-text">ابحث عن المركبات المتاحة</span>
+                  <span class="loading-spinner" style="display:none"></span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section id="why-choose" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">
+            <span class="badge"><i class="fas fa-crown"></i> لماذا تختارنا؟</span>
+          </div>
+          <h2 class="section-title">تجربة فريدة تجمع بين الأصالة والرفاهية</h2>
+          <p class="section-description">خدمات مخصصة، أسطول حديث، وأمان كامل لرحلة لا تُنسى</p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-hands-helping"></i>
+            </div>
+            <h3>خدمة شخصية</h3>
+            <p>مرشد سياحي شخصي يتحدث لغتك ويصمم مسار الرحلة حسب رغباتك</p>
+            <ul class="feature-list">
+              <li>تخطيط الرحلة حسب رغباتك</li>
+              <li>دعم متعدد اللغات</li>
+              <li>مرونة في المواعيد</li>
+            </ul>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-car"></i>
+            </div>
+            <h3>أسطول فاخر</h3>
+            <p>أحدث الموديلات — صيانة دورية وتأمين شامل لكل الرحلات</p>
+            <ul class="feature-list">
+              <li>سيارات موديلات 2023-2025</li>
+              <li>ضمان الجودة</li>
+              <li>سائقون محترفون</li>
+            </ul>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-concierge-bell"></i>
+            </div>
+            <h3>خدمات رفاهية</h3>
+            <p>خدمات إضافية تجعل رحلتك أكثر راحة وفخامة</p>
+            <ul class="feature-list">
+              <li>حجز مطاعم فاخرة</li>
+              <li>خدمات سبا وفعاليات خاصة</li>
+              <li>توصيل من وإلى المطار</li>
+            </ul>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3>أمان كامل</h3>
+            <p>نظام تتبع، تأمين شامل، ودعم طوارئ 24/7</p>
+            <ul class="feature-list">
+              <li>تتبع المركبات GPS</li>
+              <li>دعم على الطريق</li>
+              <li>تأمين شامل</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cars Section -->
+    <section id="cars" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">
+            <span class="badge"><i class="fas fa-car"></i> أسطولنا</span>
+          </div>
+          <h2 class="section-title">السيارات الفاخرة</h2>
+          <p class="section-description">اختر من بين تشكيلتنا الحصرية من السيارات المناسبة لكل حاجة</p>
+        </div>
+
+        <div id="searchResults" class="search-results" style="display: none;">
+          <div class="search-results-header">
+            <h3><i class="fas fa-search"></i> نتائج البحث</h3>
+            <p id="searchCriteriaText"></p>
+            <button class="btn btn-outline btn-sm" onclick="clearSearchFilters()">
+              <i class="fas fa-times"></i> إزالة الفلاتر
+            </button>
+          </div>
+        </div>
+
+        <div class="cars-filter">
+          <div class="filter-group">
+            <button class="filter-btn active" data-filter="all">جميع السيارات</button>
+            <button class="filter-btn" data-filter="available">متاحة</button>
+            <button class="filter-btn" data-filter="luxury">فاخرة</button>
+            <button class="filter-btn" data-filter="suv">دفع رباعي</button>
+          </div>
+          
+          <div class="sort-group">
+            <select class="sort-select">
+              <option value="featured">الافتراضي</option>
+              <option value="price-low">السعر: من الأقل للأعلى</option>
+              <option value="price-high">السعر: من الأعلى للأقل</option>
+              <option value="name">الاسم: أ-ي</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="cars-grid" id="carsContainer">
+          <div class="loading-state">
+            <div class="loading-spinner large"></div>
+            <p>جاري تحميل السيارات...</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Caravans Section -->
+    <section id="caravans" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">
+            <span class="badge"><i class="fas fa-caravan"></i> كرفانات</span>
+          </div>
+          <h2 class="section-title">كرفانات الفخامة المتنقلة</h2>
+          <p class="section-description">بيتك المتنقل — كرفانات مجهزة لجميع أنواع الرحلات</p>
+        </div>
+
+        <div class="cars-grid" id="caravansContainer">
+          <div class="loading-state">
+            <div class="loading-spinner large"></div>
+            <p>جاري تحميل الكرفانات...</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">
+            <span class="badge"><i class="fas fa-star"></i> خدماتنا</span>
+          </div>
+          <h2 class="section-title">خدماتنا المميزة</h2>
+          <p class="section-description">خدمات مصممة لتجربة لا تُنسى — استقبال من المطار، مرشد سياحي، خدمات الرفاهية والمزيد</p>
+        </div>
+
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="fas fa-plane-arrival"></i>
+            </div>
+            <div class="service-content">
+              <h3>استقبال من المطار</h3>
+              <p>استقبال في صالة الوصول مع خدمات الأمتعة وبطاقات SIM مجانية</p>
+              <ul class="service-features">
+                <li>استقبال شخصي مع لافتة</li>
+                <li>مساعدة في الأمتعة</li>
+                <li>مطار مراكش أو أكادير</li>
+              </ul>
+              <div class="service-price">
+                <span class="price">100 درهم</span>
+                <button class="btn btn-outline btn-sm">احجز الخدمة</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="fas fa-hands-helping"></i>
+            </div>
+            <div class="service-content">
+              <h3>مرشد سياحي خاص</h3>
+              <p>مرشدون محترفون يتقنون العربية، الفرنسية والإنجليزية</p>
+              <ul class="service-features">
+                <li>خبرة محلية عميقة</li>
+                <li>برامج مخصصة حسب الطلب</li>
+                <li>تعرف على الثقافة المغربية</li>
+              </ul>
+              <div class="service-price">
+                <span class="price">300 درهم/اليوم</span>
+                <button class="btn btn-outline btn-sm">احجز الخدمة</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="fas fa-concierge-bell"></i>
+            </div>
+            <div class="service-content">
+              <h3>خدمات رفاهية</h3>
+              <p>حجز مطاعم فاخرة، فعاليات خاصة، وفرِق موسيقية حسب الطلب</p>
+              <ul class="service-features">
+                <li>حجز المطاعم والفنادق</li>
+                <li>تنظيم حفلات خاصة</li>
+                <li>جولات تسوق مصحوبة</li>
+              </ul>
+              <div class="service-price">
+                <span class="price">من 150 درهم</span>
+                <button class="btn btn-outline btn-sm">احجز الخدمة</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">
+            <span class="badge"><i class="fas fa-compass"></i> رحلاتنا</span>
+          </div>
+          <h2 class="section-title">رحلاتنا المميزة</h2>
+          <p class="section-description">مسارات مُعدّة بعناية لاكتشاف أجمل ما في المغرب</p>
+        </div>
+
+        <div class="cars-grid" id="tripsContainer">
+          <div class="loading-state">
+            <div class="loading-spinner large"></div>
+            <p>جاري تحميل الرحلات...</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">
+            <span class="badge"><i class="fas fa-comment-alt"></i> آراء العملاء</span>
+          </div>
+          <h2 class="section-title">ثقة أكثر من 1000 عميل سعيد</h2>
+          <p class="section-description">تعتبر آراء عملائنا شهادة حقيقية على جودة خدماتنا</p>
+        </div>
+
+        <div class="testimonials-slider">
+          <div class="testimonial-card">
+            <div class="testimonial-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <p class="testimonial-text">"تجربة رائعة! السيارة كانت نظيفة ومريحة، وخدمة التوصيل من مطار مراكش كانت ممتازة. الفريق محترف جداً والأسعار معقولة."</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">
+                <i class="fas fa-user"></i>
+              </div>
+              <div class="author-info">
+                <strong>سارة أحمد</strong>
+                <span>مراكش • 15 نوفمبر 2023</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <p class="testimonial-text">"الكرفان كان مجهزاً بكل ما نحتاجه لرحلة عائلية. استمتعنا برحلة لا تُنسى عبر الصحراء المغربية. خدمة ممتازة من البداية للنهاية."</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">
+                <i class="fas fa-user"></i>
+              </div>
+              <div class="author-info">
+                <strong>محمد الخالد</strong>
+                <span>أكادير • 8 ديسمبر 2023</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <p class="testimonial-text">"أفضل خدمة كراء سيارات جربتها في المغرب! السائق كان محترف والمرشد السياحي ساعدنا كثيراً. سأحجز معهم مرة أخرى بكل تأكيد."</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">
+                <i class="fas fa-user"></i>
+              </div>
+              <div class="author-info">
+                <strong>فاطمة الزهراء</strong>
+                <span>الدار البيضاء • 22 يناير 2024</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">
+            <span class="badge"><i class="fas fa-question-circle"></i> الأسئلة الشائعة</span>
+          </div>
+          <h2 class="section-title">إجابات سريعة على أسئلتك</h2>
+          <p class="section-description">كل ما تحتاج معرفته لتخطيط رحلتك بسهولة</p>
+        </div>
+
+        <div class="faq-grid">
+          <div class="faq-item active">
+            <div class="faq-question">
+              <h3>ما هي مستندات الحجز المطلوبة؟</h3>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>رخصة قيادة سارية، جواز السفر أو بطاقة الهوية، وبريد إلكتروني للتأكيد. لا حاجة لبطاقة ائتمان.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <h3>هل يمكن استلام السيارة في مطار مختلف؟</h3>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>نعم — نقدم خدمة الاستلام والتسليم في مطار مراكش ومطار أكادير مع رسوم إضافية بسيطة.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <h3>ما هي سياسة الإلغاء؟</h3>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>يمكن الإلغاء مجاناً قبل 48 ساعة من موعد الحجز. بعد ذلك تطبق رسوم إلغاء بنسبة 30% من قيمة الحجز.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <h3>هل التأمين شامل؟</h3>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>نعم، جميع سياراتنا مؤمنة تأميناً شاملاً يغطي الحوادث والسرقة والأضرار. يشمل أيضاً المساعدة على الطريق 24/7.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <h3>هل يمكنني القيادة بنفسي أو مع سائق؟</h3>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>نوفر الخيارين! يمكنك القيادة بنفسك أو طلب سائق محترف بتكلفة إضافية 200 درهم/اليوم.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <h3>ما هي طرق الدفع المتاحة؟</h3>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>نقبل الدفع النقدي، التحويل البنكي، وبطاقات الائتمان (Visa, Mastercard). يمكن الدفع عند الاستلام أو مقدماً.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">
+            <span class="badge"><i class="fas fa-phone"></i> اتصل بنا</span>
+          </div>
+          <h2 class="section-title">فريقنا جاهز لخدمتك</h2>
+          <p class="section-description">راسلنا وسنرد عليك في أقرب وقت</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-info">
+            <div class="contact-card">
+              <h3>معلومات الاتصال</h3>
+              <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <div>
+                  <strong>البريد الإلكتروني</strong>
+                  <span>contact@DSHT.ma</span>
                 </div>
+              </div>
+              
+              <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <div>
+                  <strong>العنوان</strong>
+                  <span>مراكش، المغرب</span>
+                </div>
+              </div>
+              
+              <div class="contact-item">
+                <i class="fas fa-clock"></i>
+                <div>
+                  <strong>ساعات العمل</strong>
+                  <span>الاثنين — الأحد: 08:00 — 22:00</span>
+                </div>
+              </div>
+              
+              <div class="contact-item">
+                <i class="fas fa-plane"></i>
+                <div>
+                  <strong>المطارات التي نخدمها</strong>
+                  <span>مطار مراكش المنارة<br>مطار أكادير المسيرة</span>
+                </div>
+              </div>
+            </div>
 
+            <div class="social-links">
+              <h4>تابعنا على مواقع التواصل</h4>
+              <div class="social-buttons">
+                <button class="btn btn-outline social-btn" aria-label="فيسبوك">
+                  <i class="fab fa-facebook-f"></i>
+                </button>
+                <button class="btn btn-outline social-btn" aria-label="إنستغرام">
+                  <i class="fab fa-instagram"></i>
+                </button>
+                <a href="https://wa.me/212600000000" class="whatsapp-btn social-btn" aria-label="واتساب">
+                  <i class="fab fa-whatsapp"></i>
+                </a>
+                <button class="btn btn-outline social-btn" aria-label="تويتر">
+                  <i class="fab fa-twitter"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-form">
+            <div class="form-card">
+              <h3>أرسل رسالة</h3>
+              <form id="contactForm">
                 <div class="form-group">
-                  <button type="submit" class="btn btn-primary">
-                    <span class="btn-text">ابحث عن المركبات المتاحة</span>
+                  <label for="cname">الاسم الكامل</label>
+                  <input id="cname" name="name" type="text" placeholder="أدخل اسمك الكامل" required>
+                </div>
+                <div class="form-group">
+                  <label for="cemail">البريد الإلكتروني</label>
+                  <input id="cemail" name="email" type="email" placeholder="example@email.com" required>
+                </div>
+                <div class="form-group">
+                  <label for="csubject">الموضوع</label>
+                  <select id="csubject" name="subject" required>
+                    <option value="">اختر الموضوع</option>
+                    <option value="booking">استفسار عن حجز</option>
+                    <option value="pricing">الأسعار والعروض</option>
+                    <option value="services">الخدمات المتوفرة</option>
+                    <option value="complaint">شكوى أو اقتراح</option>
+                    <option value="other">أخرى</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="cmessage">الرسالة</label>
+                  <textarea id="cmessage" name="message" rows="5" placeholder="اكتب رسالتك هنا..." required></textarea>
+                </div>
+                <div class="form-group">
+                  <button class="btn btn-primary btn-block" type="submit">
+                    <span class="btn-text"><i class="fas fa-paper-plane"></i> أرسل الرسالة</span>
                     <span class="loading-spinner" style="display:none"></span>
                   </button>
                 </div>
@@ -1238,983 +2725,1435 @@
         </div>
       </div>
     </section>
-
-    <section id="why-choose" class="section container">
-      <div class="section-header">
-        <div style="display:flex;align-items:center;gap:12px">
-          <div class="badge"><i class="fas fa-crown"></i></div>
-          <h3>لماذا تختار DSHTP؟</h3>
-        </div>
-        <p class="text-muted">تجربة فريدة تجمع بين الأصالة والرفاهية — خدمات مخصصة، أسطول حديث، وأمان كامل.</p>
-      </div>
-
-      <div class="features-grid mt-8">
-        <article class="feature-card fade-in">
-          <div style="display:flex;align-items:center;gap:10px">
-            <i class="fas fa-hands-helping" style="font-size:22px;color:var(--accent)"></i>
-            <h4>خدمة شخصية</h4>
-          </div>
-          <p class="text-muted">مرشد سياحي شخصي يتحدث لغتك ويصمم مسار الرحلة حسب رغباتك.</p>
-          <ul class="text-muted">
-            <li>تخطيط الرحلة حسب رغباتك</li>
-            <li>دعم متعدد اللغات</li>
-            <li>مرونة في المواعيد</li>
-          </ul>
-        </article>
-
-        <article class="feature-card fade-in">
-          <div style="display:flex;align-items:center;gap:10px">
-            <i class="fas fa-car" style="font-size:22px;color:var(--accent)"></i>
-            <h4>أسطول فاخر</h4>
-          </div>
-          <p class="text-muted">أحدث الموديلات — صيانة دورية وتأمين شامل لكل الرحلات.</p>
-          <ul class="text-muted">
-            <li>سيارات موديلات 2023-2025</li>
-            <li>ضمان الجودة</li>
-            <li>سائقون محترفون</li>
-          </ul>
-        </article>
-
-        <article class="feature-card fade-in">
-          <div style="display:flex;align-items:center;gap:10px">
-            <i class="fas fa-concierge-bell" style="font-size:22px;color:var(--accent)"></i>
-            <h4>خدمات رفاهية</h4>
-          </div>
-          <p class="text-muted">خدمات إضافية تجعل رحلتك أكثر راحة وفخامة.</p>
-          <ul class="text-muted">
-            <li>حجز مطاعم فاخرة</li>
-            <li>خدمات سبا وفعاليات خاصة</li>
-            <li>توصيل من وإلى المطار</li>
-          </ul>
-        </article>
-
-        <article class="feature-card fade-in">
-          <div style="display:flex;align-items:center;gap:10px">
-            <i class="fas fa-shield-alt" style="font-size:22px;color:var(--accent)"></i>
-            <h4>أمان كامل</h4>
-          </div>
-          <p class="text-muted">نظام تتبع، تأمين شامل، ودعم طوارئ 24/7.</p>
-          <ul class="text-muted">
-            <li>تتبع المركبات GPS</li>
-            <li>دعم على الطريق</li>
-            <li>تأمين شامل</li>
-          </ul>
-        </article>
-      </div>
-    </section>
-
-    <section id="cars" class="section container">
-      <div class="section-header">
-        <div style="display:flex;align-items:center;gap:12px">
-          <div class="badge"><i class="fas fa-car"></i></div>
-          <h3>أسطول السيارات الفاخرة</h3>
-        </div>
-        <p class="text-muted">اختر من بين تشكيلتنا الحصرية من السيارات المناسبة لكل حاجة.</p>
-      </div>
-
-      <div class="cars-filter">
-        <button class="btn btn-outline filter-btn active" data-filter="all">جميع السيارات</button>
-        <button class="btn btn-outline filter-btn" data-filter="luxury">فاخرة</button>
-        <button class="btn btn-outline filter-btn" data-filter="suv">دفع رباعي</button>
-        <button class="btn btn-outline filter-btn" data-filter="family">عائلية</button>
-        
-        <select class="sort-select" style="margin-right:auto">
-          <option value="featured">الافتراضي</option>
-          <option value="price-low">السعر: من الأقل للأعلى</option>
-          <option value="price-high">السعر: من الأعلى للأقل</option>
-        </select>
-      </div>
-
-      <div class="grid cars-grid mt-8">
-        <article class="car-card fade-in" data-category="luxury" data-price="1200">
-          <div class="car-image">
-            <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=1600&q=80" alt="مرسيدس G-Class 2023" loading="lazy">
-          </div>
-          <div class="car-content">
-            <h4 class="car-title">مرسيدس G-Class 2023</h4>
-            <div class="car-specs text-muted">
-              <span><i class="fas fa-gas-pump"></i> بنزين</span>
-              <span><i class="fas fa-cog"></i> أوتوماتيك</span>
-              <span><i class="fas fa-user-friends"></i> 5 ركاب</span>
-            </div>
-            <div class="car-price">
-              <div>
-                <div style="font-weight:700;font-size:18px">1,200 <small style="font-weight:400;font-size:13px">درهم/اليوم</small></div>
-                <div class="text-muted" style="font-size:12px">كان 1,500 درهم</div>
-              </div>
-              <button class="btn btn-primary" style="width:auto;padding:10px 16px" data-car="مرسيدس G-Class">احجز</button>
-            </div>
-          </div>
-        </article>
-
-        <article class="car-card fade-in" data-category="suv" data-price="1500">
-          <div class="car-image">
-            <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&w=1600&q=80" alt="Range Rover Vogue 2023" loading="lazy">
-          </div>
-          <div class="car-content">
-            <h4 class="car-title">Range Rover Vogue 2023</h4>
-            <div class="car-specs text-muted">
-              <span><i class="fas fa-gas-pump"></i> ديزل</span>
-              <span><i class="fas fa-cog"></i> أوتوماتيك</span>
-              <span><i class="fas fa-user-friends"></i> 5 ركاب</span>
-            </div>
-            <div class="car-price">
-              <div>
-                <div style="font-weight:700;font-size:18px">1,500 <small style="font-weight:400;font-size:13px">درهم/اليوم</small></div>
-              </div>
-              <button class="btn btn-primary" style="width:auto;padding:10px 16px" data-car="Range Rover">احجز</button>
-            </div>
-          </div>
-        </article>
-
-        <article class="car-card fade-in" data-category="family" data-price="400">
-          <div class="car-image">
-            <img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1600&q=80" alt="تويوتا كامري 2023" loading="lazy">
-          </div>
-          <div class="car-content">
-            <h4 class="car-title">تويوتا كامري 2023</h4>
-            <div class="car-specs text-muted">
-              <span><i class="fas fa-gas-pump"></i> بنزين</span>
-              <span><i class="fas fa-cog"></i> أوتوماتيك</span>
-              <span><i class="fas fa-user-friends"></i> 5 ركاب</span>
-            </div>
-            <div class="car-price">
-              <div>
-                <div style="font-weight:700;font-size:18px">400 <small style="font-weight:400;font-size:13px">درهم/اليوم</small></div>
-              </div>
-              <button class="btn btn-primary" style="width:auto;padding:10px 16px" data-car="تويوتا كامري">احجز</button>
-            </div>
-          </div>
-        </article>
-
-        <article class="car-card fade-in" data-category="suv" data-price="800">
-          <div class="car-image">
-            <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1600&q=80" alt="تويوتا لاندكروزر 2023" loading="lazy">
-          </div>
-          <div class="car-content">
-            <h4 class="car-title">تويوتا لاندكروزر 2023</h4>
-            <div class="car-specs text-muted">
-              <span><i class="fas fa-gas-pump"></i> ديزل</span>
-              <span><i class="fas fa-cog"></i> أوتوماتيك</span>
-              <span><i class="fas fa-user-friends"></i> 7 ركاب</span>
-            </div>
-            <div class="car-price">
-              <div>
-                <div style="font-weight:700;font-size:18px">800 <small style="font-weight:400;font-size:13px">درهم/اليوم</small></div>
-              </div>
-              <button class="btn btn-primary" style="width:auto;padding:10px 16px" data-car="لاندكروزر">احجز</button>
-            </div>
-          </div>
-        </article>
-
-        <article class="car-card fade-in" data-category="family" data-price="200">
-          <div class="car-image">
-            <img src="https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?auto=format&fit=crop&w=1600&q=80" alt="هيونداي i10 2023" loading="lazy">
-          </div>
-          <div class="car-content">
-            <h4 class="car-title">هيونداي i10 2023</h4>
-            <div class="car-specs text-muted">
-              <span><i class="fas fa-gas-pump"></i> بنزين</span>
-              <span><i class="fas fa-cog"></i> يدوي</span>
-              <span><i class="fas fa-user-friends"></i> 4 ركاب</span>
-            </div>
-            <div class="car-price">
-              <div>
-                <div style="font-weight:700;font-size:18px">200 <small style="font-weight:400;font-size:13px">درهم/اليوم</small></div>
-              </div>
-              <button class="btn btn-primary" style="width:auto;padding:10px 16px" data-car="هيونداي i10">احجز</button>
-            </div>
-          </div>
-        </article>
-
-        <article class="car-card fade-in" data-category="luxury" data-price="900">
-          <div class="car-image">
-            <img src="https://images.unsplash.com/photo-1617531653332-bd46c24f2068?auto=format&fit=crop&w=1600&q=80" alt="بي إم دبليو X5 2023" loading="lazy">
-          </div>
-          <div class="car-content">
-            <h4 class="car-title">بي إم دبليو X5 2023</h4>
-            <div class="car-specs text-muted">
-              <span><i class="fas fa-gas-pump"></i> بنزين</span>
-              <span><i class="fas fa-cog"></i> أوتوماتيك</span>
-              <span><i class="fas fa-user-friends"></i> 5 ركاب</span>
-            </div>
-            <div class="car-price">
-              <div>
-                <div style="font-weight:700;font-size:18px">900 <small style="font-weight:400;font-size:13px">درهم/اليوم</small></div>
-              </div>
-              <button class="btn btn-primary" style="width:auto;padding:10px 16px" data-car="BMW X5">احجز</button>
-            </div>
-          </div>
-        </article>
-      </div>
-
-      <div class="text-center mt-8">
-        <button class="btn btn-outline" id="loadMoreCars" style="width:auto">
-          <i class="fas fa-plus-circle"></i>
-          عرض المزيد من السيارات
-        </button>
-      </div>
-    </section>
-
-    <section id="caravans" class="section container">
-      <div class="section-header">
-        <div style="display:flex;align-items:center;gap:12px">
-          <div class="badge"><i class="fas fa-caravan"></i></div>
-          <h3>كرفانات الفخامة المتنقلة</h3>
-        </div>
-        <p class="text-muted">بيتك المتنقل — كرفانات مجهزة لجميع أنواع الرحلات.</p>
-      </div>
-
-      <div class="caravan-main mt-8 fade-in">
-        <div style="background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:16px;border-radius:12px">
-          <img src="https://cnn-arabic-images.cnn.io/cloudinary/image/upload/w_1600,h_900,c_fill,q_auto,g_center/cnnarabic/2023/07/31/images/246349.jpg" alt="كرفان فاخر" class="caravan-image" loading="lazy">
-        </div>
-        
-        <div class="caravan-details">
-          <h4>كرفان الفخامة العائلي 2023</h4>
-          <p class="text-muted">يشمل مطبخًا مجهزًا، تكييفًا مركزيًا، وألواح شمسية.</p>
-          
-          <div class="caravan-features">
-            <div class="caravan-feature"><i class="fas fa-users"></i> السعة: 6 أشخاص</div>
-            <div class="caravan-feature"><i class="fas fa-bed"></i> 3 غرف نوم</div>
-            <div class="caravan-feature"><i class="fas fa-tint"></i> خزان ماء 200 لتر</div>
-            <div class="caravan-feature"><i class="fas fa-wifi"></i> إنترنت مجاني</div>
-          </div>
-
-          <div class="caravan-price-row">
-            <div style="font-weight:700;font-size:20px">1,500 <small style="font-weight:400;font-size:14px">درهم/اليوم</small></div>
-            <div class="text-muted" style="font-size:13px">شامل التأمين والضرائب</div>
-            <button class="btn btn-primary" style="width:auto;margin-right:auto" data-car="كرفان فاخر">احجز هذا الكرفان</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="caravan-grid mt-8">
-        <article class="caravan-card fade-in">
-          <img src="https://admin.almalnews.com/storage/uploads/2015/06/d3337946-8bad-49b7-8a18-bec23a876cfb.jpg" alt="كرفان عائلي" loading="lazy">
-          <h4>كرفان عائلي مدمج</h4>
-          <div class="text-muted" style="margin:8px 0">سعة 4 أشخاص • مطبخ مجهز</div>
-          <div style="font-weight:700;margin:8px 0">550 درهم/اليوم</div>
-          <button class="btn btn-primary" data-car="كرفان عائلي">احجز</button>
-        </article>
-
-        <article class="caravan-card fade-in">
-          <img src="https://alkhaled-caravans.com/wp-content/uploads/2025/02/Alkhaled-Caravans-and-Containers-Caravan-for-sale-149.webp" alt="كرفان مدمج" loading="lazy">
-          <h4>كرفان مدمج للأزواج</h4>
-          <div class="text-muted" style="margin:8px 0">سعة شخصين • مثالي للرحلات الرومانسية</div>
-          <div style="font-weight:700;margin:8px 0">350 درهم/اليوم</div>
-          <button class="btn btn-primary" data-car="كرفان مدمج">احجز</button>
-        </article>
-      </div>
-    </section>
-
-    <section id="services" class="section container">
-      <div class="section-header">
-        <div style="display:flex;align-items:center;gap:12px">
-          <div class="badge"><i class="fas fa-star"></i></div>
-          <h3>خدماتنا المميزة</h3>
-        </div>
-        <p class="text-muted">خدمات مصممة لتجربة لا تُنسى — استقبال من المطار، مرشد سياحي، خدمات الرفاهية والمزيد.</p>
-      </div>
-
-      <div class="services-grid mt-8">
-        <article class="service-card fade-in">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-            <i class="fas fa-plane-arrival" style="font-size:22px;color:var(--accent)"></i>
-            <h4>استقبال من المطار</h4>
-          </div>
-          <p class="text-muted">استقبال في صالة الوصول مع خدمات الأمتعة وبطاقات SIM مجانية.</p>
-          <ul class="text-muted" style="margin:10px 0;padding-right:20px;font-size:13px">
-            <li>استقبال شخصي مع لافتة</li>
-            <li>مساعدة في الأمتعة</li>
-            <li>مطار مراكش أو أكادير</li>
-          </ul>
-          <div style="margin-top:12px;font-weight:700;color:var(--accent)">السعر: 100 درهم</div>
-        </article>
-
-        <article class="service-card fade-in">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-            <i class="fas fa-hands-helping" style="font-size:22px;color:var(--accent)"></i>
-            <h4>مرشد سياحي خاص</h4>
-          </div>
-          <p class="text-muted">مرشدون محترفون يتقنون العربية، الفرنسية والإنجليزية.</p>
-          <ul class="text-muted" style="margin:10px 0;padding-right:20px;font-size:13px">
-            <li>خبرة محلية عميقة</li>
-            <li>برامج مخصصة حسب الطلب</li>
-            <li>تعرف على الثقافة المغربية</li>
-          </ul>
-          <div style="margin-top:12px;font-weight:700;color:var(--accent)">السعر: 300 درهم/اليوم</div>
-        </article>
-
-        <article class="service-card fade-in">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-            <i class="fas fa-concierge-bell" style="font-size:22px;color:var(--accent)"></i>
-            <h4>خدمات رفاهية</h4>
-          </div>
-          <p class="text-muted">حجز مطاعم فاخرة، فعاليات خاصة، وفرِق موسيقية حسب الطلب.</p>
-          <ul class="text-muted" style="margin:10px 0;padding-right:20px;font-size:13px">
-            <li>حجز المطاعم والفنادق</li>
-            <li>تنظيم حفلات خاصة</li>
-            <li>جولات تسوق مصحوبة</li>
-          </ul>
-          <div style="margin-top:12px;font-weight:700;color:var(--accent)">السعر من: 150 درهم</div>
-        </article>
-      </div>
-    </section>
-
-    <section id="experience" class="section container">
-      <div class="section-header">
-        <div style="display:flex;align-items:center;gap:12px">
-          <div class="badge"><i class="fas fa-compass"></i></div>
-          <h3>رحلاتنا المميزة</h3>
-        </div>
-        <p class="text-muted">مسارات مُعدّة بعناية لاكتشاف أجمل ما في المغرب.</p>
-      </div>
-
-      <div class="experiences-grid mt-8">
-        <article class="experience-card fade-in">
-          <img src="https://media.istockphoto.com/id/1124472714/fr/photo/mosqu%C3%A9e-de-la-koutoubia-et-gardem-marrakech.jpg?s=612x612&w=0&k=20&c=V7hZe8qpsHPuPRJKL6i2LH0pR9UCHofXauK5htkHGgc=" alt="رحلات مراكش" loading="lazy">
-          <h4>سحر مراكش</h4>
-          <div class="text-muted" style="margin:8px 0">
-            <i class="fas fa-clock"></i> 5 أيام - 4 ليالي<br>
-            <i class="fas fa-map-marker-alt"></i> مراكش • أطلس • الصويرة
-          </div>
-          <div style="font-weight:700;color:var(--accent);margin:8px 0">2,400 درهم للفرد</div>
-          <button class="btn btn-primary">استكشف الرحلة</button>
-        </article>
-
-        <article class="experience-card fade-in">
-          <img src="https://media.istockphoto.com/id/974875544/photo/beautiful-view-of-the-square-in-the-blue-city-of-chefchaouen-location-chefchaouen-morocco.jpg?s=612x612&w=0&k=20&c=R-_oYJQTawXTFOOv60GrFQTxdshEWUpV2J4a6f64f3E=" alt="شفشاون" loading="lazy">
-          <h4>شفشاون الزرقاء</h4>
-          <div class="text-muted" style="margin:8px 0">
-            <i class="fas fa-clock"></i> 4 أيام - 3 ليالي<br>
-            <i class="fas fa-map-marker-alt"></i> شفشاون • طنجة • تطوان
-          </div>
-          <div style="font-weight:700;color:var(--accent);margin:8px 0">1,800 درهم للفرد</div>
-          <button class="btn btn-primary">استكشف الرحلة</button>
-        </article>
-
-        <article class="experience-card fade-in">
-          <img src="https://pbs.twimg.com/media/DcmBZ2jWkAArW4T.jpg" alt="صحراء المغرب" loading="lazy">
-          <h4>مغامرة الصحراء</h4>
-          <div class="text-muted" style="margin:8px 0">
-            <i class="fas fa-clock"></i> 7 أيام - 6 ليالي<br>
-            <i class="fas fa-map-marker-alt"></i> مرزوكة • ورزازات • درعة
-          </div>
-          <div style="font-weight:700;color:var(--accent);margin:8px 0">3,200 درهم للفرد</div>
-          <button class="btn btn-primary">استكشف الرحلة</button>
-        </article>
-      </div>
-    </section>
-
-    <section id="testimonials" class="section container">
-      <div class="section-header">
-        <div style="display:flex;align-items:center;gap:12px">
-          <div class="badge"><i class="fas fa-comment-alt"></i></div>
-          <h3>آراء عملائنا</h3>
-        </div>
-        <p class="text-muted">ثقة أكثر من 1000 عميل سعيد تجعلنا الأفضل.</p>
-      </div>
-
-      <div class="testimonials-slider mt-8 fade-in">
-        <blockquote class="testimonial-card">
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;color:var(--accent)">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-          </div>
-          <p class="testimonial-text">"تجربة رائعة! السيارة كانت نظيفة ومريحة، وخدمة التوصيل من مطار مراكش كانت ممتازة. الفريق محترف جداً والأسعار معقولة."</p>
-          <footer class="text-muted">— سارة أحمد، مراكش • 15 نوفمبر 2023</footer>
-        </blockquote>
-
-        <blockquote class="testimonial-card">
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;color:var(--accent)">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-          </div>
-          <p class="testimonial-text">"الكرفان كان مجهزاً بكل ما نحتاجه لرحلة عائلية. استمتعنا برحلة لا تُنسى عبر الصحراء المغربية. خدمة ممتازة من البداية للنهاية."</p>
-          <footer class="text-muted">— محمد الخالد، أكادير • 8 ديسمبر 2023</footer>
-        </blockquote>
-
-        <blockquote class="testimonial-card">
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;color:var(--accent)">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-          </div>
-          <p class="testimonial-text">"أفضل خدمة كراء سيارات جربتها في المغرب! السائق كان محترف والمرشد السياحي ساعدنا كثيراً. سأحجز معهم مرة أخرى بكل تأكيد."</p>
-          <footer class="text-muted">— فاطمة الزهراء، الدار البيضاء • 22 يناير 2024</footer>
-        </blockquote>
-      </div>
-    </section>
-
-    <section id="faq" class="section container">
-      <div class="section-header">
-        <div style="display:flex;align-items:center;gap:12px">
-          <div class="badge"><i class="fas fa-question-circle"></i></div>
-          <h3>أسئلة متكررة</h3>
-        </div>
-        <p class="text-muted">إجابات سريعة على الأسئلة الأكثر شيوعاً.</p>
-      </div>
-
-      <div class="faq-grid mt-8">
-        <div class="faq-item active fade-in">
-          <div class="faq-question">
-            <h4>ما هي مستندات الحجز المطلوبة؟</h4>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            <p class="text-muted">رخصة قيادة سارية، جواز السفر أو بطاقة الهوية، وبريد إلكتروني للتأكيد. لا حاجة لبطاقة ائتمان.</p>
-          </div>
-        </div>
-
-        <div class="faq-item fade-in">
-          <div class="faq-question">
-            <h4>هل يمكن استلام السيارة في مطار مختلف؟</h4>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            <p class="text-muted">نعم — نقدم خدمة الاستلام والتسليم في مطار مراكش ومطار أكادير مع رسوم إضافية بسيطة.</p>
-          </div>
-        </div>
-
-        <div class="faq-item fade-in">
-          <div class="faq-question">
-            <h4>ما هي سياسة الإلغاء؟</h4>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            <p class="text-muted">يمكن الإلغاء مجاناً قبل 48 ساعة من موعد الحجز. بعد ذلك تطبق رسوم إلغاء بنسبة 30% من قيمة الحجز.</p>
-          </div>
-        </div>
-
-        <div class="faq-item fade-in">
-          <div class="faq-question">
-            <h4>هل التأمين شامل؟</h4>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            <p class="text-muted">نعم، جميع سياراتنا مؤمنة تأميناً شاملاً يغطي الحوادث والسرقة والأضرار. يشمل أيضاً المساعدة على الطريق 24/7.</p>
-          </div>
-        </div>
-
-        <div class="faq-item fade-in">
-          <div class="faq-question">
-            <h4>هل يمكنني القيادة بنفسي أو مع سائق؟</h4>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            <p class="text-muted">نوفر الخيارين! يمكنك القيادة بنفسك أو طلب سائق محترف بتكلفة إضافية 200 درهم/اليوم.</p>
-          </div>
-        </div>
-
-        <div class="faq-item fade-in">
-          <div class="faq-question">
-            <h4>ما هي طرق الدفع المتاحة؟</h4>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            <p class="text-muted">نقبل الدفع النقدي، التحويل البنكي، وبطاقات الائتمان (Visa, Mastercard). يمكن الدفع عند الاستلام أو مقدماً.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="section container">
-      <div class="section-header">
-        <div style="display:flex;align-items:center;gap:12px">
-          <div class="badge"><i class="fas fa-phone"></i></div>
-          <h3>تواصل معنا</h3>
-        </div>
-        <p class="text-muted">فريقنا جاهز لخدمتك — راسلنا وسنرد عليك في أقرب وقت.</p>
-      </div>
-
-      <div class="contact-grid">
-        <div class="contact-info fade-in">
-          <h4>معلومات الاتصال</h4>
-          <p class="text-muted" style="margin:12px 0">
-            <i class="fas fa-envelope" style="color:var(--accent);margin-left:8px"></i>
-            contact@DSHTp.ma
-          </p>
-
-          <h4 style="margin-top:24px">العنوان</h4>
-          <p class="text-muted">
-            <i class="fas fa-map-marker-alt" style="color:var(--accent);margin-left:8px"></i>
-            مراكش، المغرب
-          </p>
-
-          <h4 style="margin-top:24px">ساعات العمل</h4>
-          <p class="text-muted">
-            <i class="fas fa-clock" style="color:var(--accent);margin-left:8px"></i>
-            الاثنين — الأحد: 08:00 — 22:00
-          </p>
-
-          <h4 style="margin-top:24px">المطارات التي نخدمها</h4>
-          <p class="text-muted">
-            <i class="fas fa-plane" style="color:var(--accent);margin-left:8px"></i>
-            مطار مراكش المنارة<br>
-            <i class="fas fa-plane" style="color:var(--accent);margin-left:8px;margin-top:8px"></i>
-            مطار أكادير المسيرة
-          </p>
-
-          <div style="margin-top:24px">
-            <h4>تابعنا على مواقع التواصل</h4>
-            <div style="display:flex;gap:10px;margin-top:12px">
-              <button class="btn btn-outline" style="width:auto;padding:10px 14px" aria-label="فيسبوك">
-                <i class="fab fa-facebook-f"></i>
-              </button>
-              <button class="btn btn-outline" style="width:auto;padding:10px 14px" aria-label="إنستغرام">
-                <i class="fab fa-instagram"></i>
-              </button>
-              <button class="btn btn-outline" style="width:auto;padding:10px 14px" aria-label="واتساب">
-                <i class="fab fa-whatsapp"></i>
-              </button>
-              <button class="btn btn-outline" style="width:auto;padding:10px 14px" aria-label="تويتر">
-                <i class="fab fa-twitter"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="contact-form-wrapper fade-in">
-          <h4>أرسل رسالة</h4>
-          <form id="contactForm">
-            <div class="form-group">
-              <label for="cname">الاسم الكامل</label>
-              <input id="cname" name="name" type="text" placeholder="أدخل اسمك الكامل" required>
-            </div>
-            <div class="form-group">
-              <label for="cemail">البريد الإلكتروني</label>
-              <input id="cemail" name="email" type="email" placeholder="example@email.com" required>
-            </div>
-            <div class="form-group">
-              <label for="csubject">الموضوع</label>
-              <select id="csubject" name="subject" required>
-                <option value="">اختر الموضوع</option>
-                <option value="booking">استفسار عن حجز</option>
-                <option value="pricing">الأسعار والعروض</option>
-                <option value="services">الخدمات المتوفرة</option>
-                <option value="complaint">شكوى أو اقتراح</option>
-                <option value="other">أخرى</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="cmessage">الرسالة</label>
-              <textarea id="cmessage" name="message" rows="4" placeholder="اكتب رسالتك هنا..." required></textarea>
-            </div>
-            <div class="form-group">
-              <button class="btn btn-primary" type="submit">
-                <span class="btn-text"><i class="fas fa-paper-plane"></i> أرسل الرسالة</span>
-                <span class="loading-spinner" style="display:none"></span>
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </section>
   </main>
 
+  <!-- Footer -->
   <footer class="site-footer">
-    <div class="container footer-grid">
-      <div>
-        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
-          <div class="logo-wrap" style="width:44px;height:44px" src="https://f.top4top.io/p_3592mygm91.png"></div>
-          <div>
-            <strong style="font-size:18px">DSHT</strong>
-            <div class="text-muted" style="font-size:12px">الفخامة المغربية على الطريق</div>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="brand">
+            <div class="logo-wrap">
+              <img src="https://f.top4top.io/p_3592mygm91.png" alt="DSHT Logo" style="max-width: 100%; height: auto;">
+      
+            </div>
+            <div class="brand-text">
+              <strong>DSHT</strong>
+              <p class="text-muted">الفخامة المغربية على الطريق</p>
+            </div>
+          </div>
+          <p class="footer-description">نوفر أسطولاً فاخراً من السيارات والكرفانات مع خدمات سفر راقية في جميع أنحاء المغرب.</p>
+        </div>
+
+        <div class="footer-links">
+          <div class="footer-column">
+            <h4>روابط سريعة</h4>
+            <nav>
+              <a href="#home">الرئيسية</a>
+              <a href="#cars">أسطول السيارات</a>
+              <a href="#caravans">الكرفانات</a>
+              <a href="#services">الخدمات</a>
+              <a href="#experience">الرحلات</a>
+              <a href="#testimonials">آراء العملاء</a>
+              <a href="#faq">الأسئلة الشائعة</a>
+              <a href="#contact">اتصل بنا</a>
+            </nav>
+          </div>
+
+          <div class="footer-column">
+            <h4>خدماتنا</h4>
+            <nav>
+              <a href="#cars">كراء السيارات</a>
+              <a href="#caravans">كراء الكرفانات</a>
+              <a href="#services">المرشد السياحي</a>
+              <a href="#services">استقبال المطار</a>
+              <a href="#services">خدمات الرفاهية</a>
+            </nav>
+          </div>
+
+          <div class="footer-column">
+            <h4>الدعم</h4>
+            <nav>
+              <a href="#faq">الأسئلة الشائعة</a>
+              <a href="#contact">اتصل بنا</a>
+              <a href="#contact">الشكاوى والمقترحات</a>
+              <a href="#contact">سياسة الخصوصية</a>
+              <a href="#contact">شروط الاستخدام</a>
+            </nav>
           </div>
         </div>
-        <p class="text-muted">نوفر أسطولاً فاخراً من السيارات والكرفانات مع خدمات سفر راقية في جميع أنحاء المغرب.</p>
-        <p class="text-muted" style="margin-top:16px">© <span id="year"></span> DSHT — جميع الحقوق محفوظة</p>
       </div>
-
-      <div>
-        <h4>روابط سريعة</h4>
-        <nav>
-          <a href="#home">الرئيسية</a>
-          <a href="#cars">أسطول السيارات</a>
-          <a href="#caravans">الكرفانات</a>
-          <a href="#services">الخدمات</a>
-          <a href="#experience">الرحلات</a>
-          <a href="#testimonials">آراء العملاء</a>
-          <a href="#faq">الأسئلة الشائعة</a>
-          <a href="#contact">اتصل بنا</a>
-        </nav>
+      
+      <div class="footer-bottom">
+        <p>&copy; <span id="year"></span> DSHT — جميع الحقوق محفوظة</p>
       </div>
     </div>
   </footer>
 
+  <!-- Scroll to Top Button -->
   <button class="scroll-top" id="scrollTop" aria-label="العودة للأعلى">
     <i class="fas fa-arrow-up"></i>
   </button>
 
+  <!-- Booking Modal -->
+  <div id="bookingModal" class="modal">
+    <div class="modal-overlay" id="modalOverlay"></div>
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3>تأكيد الحجز</h3>
+        <button class="modal-close" id="closeModalBtn" aria-label="إغلاق">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body" id="modalContent">
+        <div class="loading-state">
+          <div class="loading-spinner"></div>
+          <p>جاري تحميل النموذج...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+  
   <script>
-    (function(){
-      'use strict';
+    // Firebase Configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyD0edM1rM1_S7VpyNw49_oRMw0l03wFx-k",
+      authDomain: "njnk-30822.firebaseapp.com",
+      databaseURL: "https://njnk-30822-default-rtdb.firebaseio.com",
+      projectId: "njnk-30822",
+      storageBucket: "njnk-30822.firebasestorage.app",
+      messagingSenderId: "885935279167",
+      appId: "1:885935279167:web:2e82af47052184036c3c8a",
+      measurementId: "G-BSTJJ6V3XE"
+    };
 
-      function qs(sel){return document.querySelector(sel)}
-      function qsa(sel){return Array.from(document.querySelectorAll(sel))}
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
 
-      // Toast system
-      function showToast(message, type = 'success') {
-        const toast = qs('#toast');
+    // Utility Functions
+    const $ = (selector) => document.querySelector(selector);
+    const $$ = (selector) => Array.from(document.querySelectorAll(selector));
+
+    // State Management
+    let currentSearchCriteria = null;
+    let currentStep = 1;
+
+    // DOM Elements
+    const elements = {
+      topLoader: $('#topLoader'),
+      topLoaderFill: $('#topLoaderFill'),
+      header: $('.site-header'),
+      scrollTop: $('#scrollTop'),
+      mobilePanel: $('#mobilePanel'),
+      openMobile: $('#openMobile'),
+      closeMobile: $('#closeMobile'),
+      bookingModal: $('#bookingModal'),
+      closeModalBtn: $('#closeModalBtn'),
+      modalOverlay: $('#modalOverlay'),
+      modalContent: $('#modalContent'),
+      heroBookingForm: $('#heroBookingForm'),
+      contactForm: $('#contactForm'),
+      carsContainer: $('#carsContainer'),
+      caravansContainer: $('#caravansContainer'),
+      tripsContainer: $('#tripsContainer'),
+      searchResults: $('#searchResults'),
+      searchCriteriaText: $('#searchCriteriaText'),
+      year: $('#year')
+    };
+
+    // Toast System
+    class Toast {
+      static show(message, type = 'success') {
+        const toast = $('#toast');
         if (!toast) return;
-        
+
         toast.textContent = message;
         toast.className = `toast ${type}`;
         toast.classList.add('show');
-        
+
         setTimeout(() => {
           toast.classList.remove('show');
         }, 4000);
       }
+    }
 
-      // Form validation
-      function validateForm(form) {
-        let isValid = true;
-        const inputs = form.querySelectorAll('input[required], select[required], textarea[required]');
-        
-        inputs.forEach(input => {
-          const formGroup = input.closest('.form-group');
-          if (!formGroup) return;
-          
-          const existingError = formGroup.querySelector('.error-message');
-          if (existingError) existingError.remove();
-          
-          if (!input.value.trim()) {
-            formGroup.classList.add('error');
-            isValid = false;
+    // Loader Management
+    class Loader {
+      static start() {
+        let progress = 0;
+        const interval = setInterval(() => {
+          progress += Math.random() * 25;
+          if (progress >= 100) {
+            progress = 100;
+            clearInterval(interval);
+            setTimeout(() => {
+              if (elements.topLoader) {
+                elements.topLoader.style.display = 'none';
+              }
+            }, 300);
+          }
+          if (elements.topLoaderFill) {
+            elements.topLoaderFill.style.width = `${Math.min(100, Math.round(progress))}%`;
+          }
+        }, 150);
+      }
+    }
+
+    // Header Scroll Effect
+    class HeaderManager {
+      constructor() {
+        this.header = elements.header;
+        this.init();
+      }
+
+      init() {
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 50) {
+            this.header.classList.add('scrolled');
           } else {
-            formGroup.classList.remove('error');
-            
-            if (input.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) {
-              formGroup.classList.add('error');
-              isValid = false;
-            }
+            this.header.classList.remove('scrolled');
           }
         });
-        
-        return isValid;
+      }
+    }
+
+    // Scroll to Top
+    class ScrollManager {
+      constructor() {
+        this.scrollTopBtn = elements.scrollTop;
+        this.init();
       }
 
-      // Hide loader
-      const topLoader = qs('#topLoader');
-      const topFill = qs('#topLoaderFill');
-      let progress = 0;
-      const progInt = setInterval(()=>{ 
-        progress += Math.random()*30; 
-        if(progress>=100){ 
-          progress=100; 
-          clearInterval(progInt); 
-          setTimeout(()=>{ 
-            topLoader.style.display='none';
-          },300) 
-        } 
-        topFill.style.width = Math.min(100,Math.round(progress)) + '%'; 
-      },150);
-
-      // Header scroll
-      const header = qs('.site-header');
-      window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-          header.classList.add('header-scrolled');
-        } else {
-          header.classList.remove('header-scrolled');
-        }
-      });
-
-      // Scroll to top
-      const scrollTopBtn = qs('#scrollTop');
-      window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) {
-          scrollTopBtn.classList.add('visible');
-        } else {
-          scrollTopBtn.classList.remove('visible');
-        }
-      });
-
-      scrollTopBtn.addEventListener('click', ()=> {
-        window.scrollTo({top:0,behavior:'smooth'});
-      });
-
-      // Hero slider
-      const slides = qsa('.hero-visual .slide');
-      let active = 0;
-      
-      function showSlide(i){ 
-        slides.forEach((s,idx)=>{ 
-          s.classList.toggle('active',idx===i); 
-        }); 
-        active=i; 
-      }
-      
-      const nextBtn = qs('#nextSlide');
-      const prevBtn = qs('#prevSlide');
-      
-      if(nextBtn) nextBtn.addEventListener('click', ()=> showSlide((active+1)%slides.length));
-      if(prevBtn) prevBtn.addEventListener('click', ()=> showSlide((active-1+slides.length)%slides.length));
-      
-      let slideInterval = setInterval(()=> showSlide((active+1)%slides.length),5000);
-
-      // Mobile panel
-      const mobilePanel = qs('#mobilePanel');
-      const openMobile = qs('#openMobile');
-      const closeMobile = qs('#closeMobile');
-      
-      function openMobileMenu() {
-        mobilePanel.classList.add('open'); 
-        document.body.style.overflow='hidden';
-      }
-      
-      function closeMobileMenu() {
-        mobilePanel.classList.remove('open'); 
-        document.body.style.overflow='';
-      }
-      
-      if(openMobile) openMobile.addEventListener('click', openMobileMenu);
-      if(closeMobile) closeMobile.addEventListener('click', closeMobileMenu);
-      
-      qsa('.mobile-link').forEach(link => {
-        link.addEventListener('click', (e) => {
-          closeMobileMenu();
-          const target = link.getAttribute('href');
-          if(target.startsWith('#')) {
-            e.preventDefault();
-            const el = qs(target);
-            if(el) {
-              setTimeout(() => {
-                el.scrollIntoView({behavior:'smooth',block:'start'});
-              }, 300);
-            }
+      init() {
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 300) {
+            this.scrollTopBtn.classList.add('visible');
+          } else {
+            this.scrollTopBtn.classList.remove('visible');
           }
         });
-      });
 
-      // Mobile book button
-      const mobileBookBtn = qs('.mobile-book-btn');
-      if(mobileBookBtn) {
-        mobileBookBtn.addEventListener('click', () => {
-          closeMobileMenu();
+        this.scrollTopBtn.addEventListener('click', () => {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        });
+      }
+    }
+
+    // Mobile Menu
+    class MobileMenu {
+      constructor() {
+        this.panel = elements.mobilePanel;
+        this.openBtn = elements.openMobile;
+        this.closeBtn = elements.closeMobile;
+        this.init();
+      }
+
+      init() {
+        this.openBtn.addEventListener('click', () => this.open());
+        this.closeBtn.addEventListener('click', () => this.close());
+
+        // Close menu when clicking on links
+        $$('.mobile-link').forEach(link => {
+          link.addEventListener('click', (e) => {
+            this.close();
+            const target = link.getAttribute('href');
+            if (target.startsWith('#')) {
+              e.preventDefault();
+              this.scrollToSection(target);
+            }
+          });
+        });
+
+        // Mobile book button
+        $('.mobile-book-btn')?.addEventListener('click', () => {
+          this.close();
           setTimeout(() => {
-            qs('#home').scrollIntoView({behavior:'smooth'});
+            this.scrollToSection('#home');
           }, 300);
         });
       }
 
-      // Year
-      const yearEl = qs('#year');
-      if(yearEl) yearEl.textContent = new Date().getFullYear();
+      open() {
+        this.panel.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
 
-      // Booking form
-      const bForm = qs('#heroBookingForm');
-      if(bForm){
-        bForm.addEventListener('submit', function(e){
-          e.preventDefault();
-          
-          if (!validateForm(this)) {
-            showToast('يرجى ملء جميع الحقول المطلوبة', 'error');
-            return;
+      close() {
+        this.panel.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+
+      scrollToSection(selector) {
+        const element = $(selector);
+        if (element) {
+          element.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      }
+    }
+
+    // Improved Hero Slider with Sync
+    class HeroSlider {
+      constructor() {
+        this.backgroundSlides = $$('.hero-background .slide');
+        this.visualSlides = $$('.hero-visual .slide');
+        this.backgroundIndicators = $$('.hero-background .slider-indicator');
+        this.visualIndicators = $$('.hero-visual .slider-indicator');
+        this.activeIndex = 0;
+        this.interval = null;
+        this.init();
+      }
+
+      init() {
+        if (this.backgroundSlides.length === 0 || this.visualSlides.length === 0) return;
+
+        this.showSlide(this.activeIndex);
+        this.startAutoSlide();
+
+        // Navigation buttons
+        $('#prevSlide')?.addEventListener('click', () => this.prevSlide());
+        $('#nextSlide')?.addEventListener('click', () => this.nextSlide());
+
+        // Indicator clicks
+        this.backgroundIndicators.forEach((indicator, index) => {
+          indicator.addEventListener('click', () => this.showSlide(index));
+        });
+        
+        this.visualIndicators.forEach((indicator, index) => {
+          indicator.addEventListener('click', () => this.showSlide(index));
+        });
+
+        // Pause on hover
+        $('.hero')?.addEventListener('mouseenter', () => this.stopAutoSlide());
+        $('.hero')?.addEventListener('mouseleave', () => this.startAutoSlide());
+      }
+
+      showSlide(index) {
+        // Update background slides
+        this.backgroundSlides.forEach((slide, i) => {
+          slide.classList.toggle('active', i === index);
+        });
+        
+        // Update visual slides
+        this.visualSlides.forEach((slide, i) => {
+          slide.classList.toggle('active', i === index);
+        });
+        
+        // Update indicators
+        this.backgroundIndicators.forEach((indicator, i) => {
+          indicator.classList.toggle('active', i === index);
+        });
+        
+        this.visualIndicators.forEach((indicator, i) => {
+          indicator.classList.toggle('active', i === index);
+        });
+        
+        this.activeIndex = index;
+      }
+
+      nextSlide() {
+        const nextIndex = (this.activeIndex + 1) % this.backgroundSlides.length;
+        this.showSlide(nextIndex);
+      }
+
+      prevSlide() {
+        const prevIndex = (this.activeIndex - 1 + this.backgroundSlides.length) % this.backgroundSlides.length;
+        this.showSlide(prevIndex);
+      }
+
+      startAutoSlide() {
+        this.interval = setInterval(() => this.nextSlide(), 5000);
+      }
+
+      stopAutoSlide() {
+        if (this.interval) {
+          clearInterval(this.interval);
+          this.interval = null;
+        }
+      }
+    }
+
+    // Modal System
+    class ModalSystem {
+      constructor() {
+        this.modal = elements.bookingModal;
+        this.closeBtn = elements.closeModalBtn;
+        this.overlay = elements.modalOverlay;
+        this.init();
+      }
+
+      init() {
+        this.closeBtn.addEventListener('click', () => this.close());
+        this.overlay.addEventListener('click', () => this.close());
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && this.modal.classList.contains('active')) {
+            this.close();
           }
-          
-          const submitBtn = this.querySelector('button[type="submit"]');
-          const btnText = submitBtn.querySelector('.btn-text');
-          const spinner = submitBtn.querySelector('.loading-spinner');
-          
-          btnText.style.display = 'none';
-          spinner.style.display = 'inline-block';
-          submitBtn.disabled = true;
-          
-          setTimeout(() => {
-            btnText.style.display = 'inline';
-            spinner.style.display = 'none';
-            submitBtn.disabled = false;
-            
-            showToast('تم إرسال طلب الحجز بنجاح! سنتواصل معك قريباً.');
-            bForm.reset();
-          }, 2000);
         });
       }
 
-      // Contact form
-      const contactForm = qs('#contactForm');
-      if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-          e.preventDefault();
-          
-          if (!validateForm(this)) {
-            showToast('يرجى ملء جميع الحقول المطلوبة', 'error');
-            return;
+      open() {
+        this.modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      close() {
+        this.modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    // Booking System
+    class BookingSystem {
+      constructor() {
+        this.modalSystem = new ModalSystem();
+        this.init();
+      }
+
+      init() {
+        // Open booking modal from various buttons
+        $('#openBookingBtn')?.addEventListener('click', () => {
+          this.scrollToBooking();
+        });
+
+        $('#exploreCarsBtn')?.addEventListener('click', () => {
+          this.scrollToSection('#cars');
+        });
+
+        $('#exploreCaravansBtn')?.addEventListener('click', () => {
+          this.scrollToSection('#caravans');
+        });
+
+        // Hero booking form
+        elements.heroBookingForm?.addEventListener('submit', (e) => {
+          this.handleHeroBooking(e);
+        });
+
+        // Initialize date inputs
+        this.initDateInputs();
+      }
+
+      scrollToBooking() {
+        this.scrollToSection('#home');
+      }
+
+      scrollToSection(selector) {
+        const element = $(selector);
+        if (element) {
+          element.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      }
+
+      initDateInputs() {
+        const pickupDate = $('#pickupDate');
+        const returnDate = $('#returnDate');
+
+        if (!pickupDate || !returnDate) return;
+
+        const today = new Date().toISOString().split('T')[0];
+        const tomorrow = this.getNextDay(today);
+
+        pickupDate.min = today;
+        returnDate.min = tomorrow;
+
+        // Set default values only if not already set by search criteria
+        if (!currentSearchCriteria) {
+          pickupDate.value = today;
+          returnDate.value = tomorrow;
+        }
+
+        pickupDate.addEventListener('change', (e) => {
+          const nextDay = this.getNextDay(e.target.value);
+          returnDate.min = nextDay;
+          if (returnDate.value < nextDay) {
+            returnDate.value = nextDay;
           }
-          
-          const submitBtn = this.querySelector('button[type="submit"]');
-          const btnText = submitBtn.querySelector('.btn-text');
-          const spinner = submitBtn.querySelector('.loading-spinner');
-          
-          btnText.style.display = 'none';
-          spinner.style.display = 'inline-block';
-          submitBtn.disabled = true;
-          
-          setTimeout(() => {
-            btnText.style.display = 'inline';
-            spinner.style.display = 'none';
-            submitBtn.disabled = false;
-            
-            showToast('تم إرسال رسالتك بنجاح، سنرد عليك قريباً.');
-            this.reset();
-          }, 2000);
         });
       }
 
-      // FAQ toggle
-      qsa('.faq-question').forEach(q=> {
-        q.addEventListener('click', function(){ 
-          const item = this.parentElement; 
-          const wasActive = item.classList.contains('active');
-          
-          qsa('.faq-item').forEach(i => i.classList.remove('active'));
-          
-          if(!wasActive) {
-            item.classList.add('active');
-          }
-        });
-      });
+      getNextDay(dateString) {
+        const date = new Date(dateString);
+        date.setDate(date.getDate() + 1);
+        return date.toISOString().split('T')[0];
+      }
 
-      // Car filters
-      qsa('.filter-btn').forEach(btn=> {
-        btn.addEventListener('click', function(){ 
-          qsa('.filter-btn').forEach(x=>x.classList.remove('active')); 
-          this.classList.add('active'); 
-          
-          const cat = this.getAttribute('data-filter'); 
-          qsa('.car-card').forEach(card=>{ 
-            const cardCat = card.getAttribute('data-category');
-            if(cat==='all'){ 
-              card.style.display='flex';
-            } else { 
-              card.style.display = (cardCat===cat)?'flex':'none';
-            } 
-          }); 
-        });
-      });
+      handleHeroBooking(e) {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        
+        currentSearchCriteria = {
+          vehicleType: formData.get('vehicleType'),
+          pickupDate: formData.get('pickupDate'),
+          returnDate: formData.get('returnDate'),
+          pickupLocation: formData.get('pickupLocation'),
+          passengers: parseInt(formData.get('passengers')),
+          needDriver: formData.get('needDriver'),
+          airportPickup: formData.get('airportPickup') === 'on'
+        };
 
-      // Car sorting
-      const sortSelect = qs('.sort-select');
-      if (sortSelect) {
-        sortSelect.addEventListener('change', function() {
-          const value = this.value;
-          const carCards = qsa('.car-card');
-          const container = qs('.cars-grid');
-          
-          const cardsArray = Array.from(carCards);
-          
-          cardsArray.sort((a, b) => {
-            const aPrice = parseInt(a.getAttribute('data-price'));
-            const bPrice = parseInt(b.getAttribute('data-price'));
-            
-            switch(value) {
-              case 'price-low':
-                return aPrice - bPrice;
-              case 'price-high':
-                return bPrice - aPrice;
-              default:
-                return 0;
+        // Validate dates
+        if (new Date(currentSearchCriteria.pickupDate) >= new Date(currentSearchCriteria.returnDate)) {
+          Toast.show('❌ تاريخ العودة يجب أن يكون بعد تاريخ الانطلاق', 'error');
+          return;
+        }
+
+        Toast.show('🔍 جاري البحث عن المركبات المتاحة...');
+
+        // Scroll to appropriate section
+        if (currentSearchCriteria.vehicleType === 'cars' || currentSearchCriteria.vehicleType === '') {
+          this.scrollToSection('#cars');
+          setTimeout(() => {
+            SearchSystem.applySearchFilter();
+          }, 800);
+        } else if (currentSearchCriteria.vehicleType === 'caravans') {
+          this.scrollToSection('#caravans');
+          setTimeout(() => {
+            Toast.show('🔍 تم العثور على الكرفانات');
+          }, 800);
+        }
+      }
+
+      showBookingModal(type, id, name, price) {
+        const modalContent = `
+          <div class="booking-wizard">
+            <div class="booking-progress">
+              <div class="progress-step active" data-step="1">
+                <div class="step-number">1</div>
+                <div class="step-label">الرحلة</div>
+              </div>
+              <div class="progress-line"></div>
+              <div class="progress-step" data-step="2">
+                <div class="step-number">2</div>
+                <div class="step-label">المعلومات</div>
+              </div>
+              <div class="progress-line"></div>
+              <div class="progress-step" data-step="3">
+                <div class="step-number">3</div>
+                <div class="step-label">التأكيد</div>
+              </div>
+            </div>
+
+            <form id="confirmBookingForm" class="booking-form-steps">
+              <input type="hidden" name="vehicleType" value="${type}">
+              <input type="hidden" name="vehicleId" value="${id}">
+              <input type="hidden" name="vehicleName" value="${name}">
+              <input type="hidden" name="vehiclePrice" value="${price}">
+              
+              <!-- Step 1: Trip Details -->
+              <div class="booking-step active" data-step="1">
+                <h4 class="step-title">تفاصيل الرحلة</h4>
+                
+                <div class="booking-summary">
+                  <div class="summary-item">
+                    <span>المركبة:</span>
+                    <strong>${name}</strong>
+                  </div>
+                  <div class="summary-item">
+                    <span>السعر اليومي:</span>
+                    <strong>${price} درهم</strong>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="modalPickupDate">تاريخ الانطلاق *</label>
+                    <input type="date" id="modalPickupDate" name="pickupDate" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="modalReturnDate">تاريخ العودة *</label>
+                    <input type="date" id="modalReturnDate" name="returnDate" required>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="modalPickupLocation">موقع الاستلام *</label>
+                  <select id="modalPickupLocation" name="pickupLocation" required>
+                    <option value="">اختر الموقع</option>
+                    <option value="marrakech">مراكش</option>
+                    <option value="agadir">أكادير</option>
+                    <option value="casablanca">الدار البيضاء</option>
+                    <option value="airport-marrakech">مطار مراكش المنارة</option>
+                    <option value="airport-agadir">مطار أكادير المسيرة</option>
+                  </select>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="modalPassengers">عدد الركاب</label>
+                    <select id="modalPassengers" name="passengers">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4" selected>4</option>
+                      <option value="5">5</option>
+                      <option value="6">6+</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="modalNeedDriver">سائق</label>
+                    <select id="modalNeedDriver" name="needDriver">
+                      <option value="no">بدون سائق</option>
+                      <option value="yes">مع سائق</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group checkbox-group">
+                  <label class="checkbox-label">
+                    <input type="checkbox" id="modalAirportPickup" name="airportPickup">
+                    <span class="checkmark"></span>
+                    أحتاج استلام من المطار
+                  </label>
+                </div>
+
+                <div class="step-actions">
+                  <button type="button" class="btn btn-primary btn-next" data-next="2">
+                    التالي <i class="fas fa-arrow-left"></i>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Step 2: Personal Information -->
+              <div class="booking-step" data-step="2">
+                <h4 class="step-title">معلوماتك الشخصية</h4>
+
+                <div class="form-group">
+                  <label for="modalFullName">الاسم الكامل *</label>
+                  <input type="text" id="modalFullName" name="fullName" required>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="modalEmail">البريد الإلكتروني *</label>
+                    <input type="email" id="modalEmail" name="email" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="modalPhone">رقم الهاتف *</label>
+                    <input type="tel" id="modalPhone" name="phone" required>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="modalNotes">ملاحظات إضافية</label>
+                  <textarea id="modalNotes" name="notes" rows="3" placeholder="أي متطلبات خاصة أو ملاحظات..."></textarea>
+                </div>
+
+                <div class="step-actions">
+                  <button type="button" class="btn btn-outline btn-prev" data-prev="1">
+                    <i class="fas fa-arrow-right"></i> السابق
+                  </button>
+                  <button type="button" class="btn btn-primary btn-next" data-next="3">
+                    التالي <i class="fas fa-arrow-left"></i>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Step 3: Confirmation -->
+              <div class="booking-step" data-step="3">
+                <h4 class="step-title">مراجعة وتأكيد</h4>
+
+                <div class="confirmation-summary" id="modalSummary">
+                  <!-- Will be populated by JavaScript -->
+                </div>
+
+                <div class="step-actions">
+                  <button type="button" class="btn btn-outline btn-prev" data-prev="2">
+                    <i class="fas fa-arrow-right"></i> السابق
+                  </button>
+                  <button type="submit" class="btn btn-primary">
+                    <span class="btn-text">تأكيد الحجز</span>
+                    <span class="loading-spinner" style="display:none"></span>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        `;
+
+        elements.modalContent.innerHTML = modalContent;
+        this.setupBookingWizard();
+        this.modalSystem.open();
+      }
+
+      setupBookingWizard() {
+        const steps = $$('.booking-step');
+        const progressSteps = $$('.progress-step');
+        const nextButtons = $$('.btn-next');
+        const prevButtons = $$('.btn-prev');
+        const form = $('#confirmBookingForm');
+
+        // Initialize step navigation
+        nextButtons.forEach(button => {
+          button.addEventListener('click', () => {
+            const nextStep = parseInt(button.getAttribute('data-next'));
+            if (this.validateStep(currentStep)) {
+              this.showStep(nextStep);
+            } else {
+              Toast.show('يرجى ملء جميع الحقول المطلوبة', 'error');
             }
           });
-          
-          container.innerHTML = '';
-          cardsArray.forEach(card => container.appendChild(card));
         });
-      }
 
-      // Load more cars
-      const loadMoreBtn = qs('#loadMoreCars');
-      if(loadMoreBtn){ 
-        loadMoreBtn.addEventListener('click', function(){ 
-          showToast('تم تحميل المزيد من السيارات');
-          this.style.display = 'none';
-        }) 
-      }
-
-      // Book car buttons
-      qsa('.car-card .btn-primary, .caravan-card .btn-primary').forEach(btn => {
-        btn.addEventListener('click', function() {
-          const carName = this.getAttribute('data-car') || 'المركبة المختارة';
-          showToast(`تم اختيار ${carName}. يرجى ملء نموذج الحجز.`);
-          qs('#home').scrollIntoView({behavior:'smooth'});
+        prevButtons.forEach(button => {
+          button.addEventListener('click', () => {
+            const prevStep = parseInt(button.getAttribute('data-prev'));
+            this.showStep(prevStep);
+          });
         });
-      });
 
-      // Smooth scroll for all anchor links
-      qsa('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-          const href = this.getAttribute('href');
-          if (href === '#') return;
-          
+        // Form submission
+        form.addEventListener('submit', (e) => {
           e.preventDefault();
-          const targetEl = qs(href);
-          if (targetEl) {
-            const headerHeight = header.offsetHeight;
-            const targetPosition = targetEl.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
-            
-            window.scrollTo({
-              top: targetPosition,
-              behavior: 'smooth'
-            });
-          }
-        });
-      });
-
-      // Active nav link on scroll
-      const sections = qsa('section[id]');
-      window.addEventListener('scroll', () => {
-        let current = '';
-        
-        sections.forEach(section => {
-          const sectionTop = section.offsetTop;
-          const sectionHeight = section.clientHeight;
-          if (window.pageYOffset >= sectionTop - 200) {
-            current = section.getAttribute('id');
+          if (this.validateStep(3)) {
+            this.confirmBooking(form);
           }
         });
 
-        qsa('.main-nav a').forEach(link => {
-          link.classList.remove('active');
-          if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('active');
+        // Initialize date inputs in modal
+        this.initModalDateInputs();
+      }
+
+      showStep(stepNumber) {
+        // Hide all steps
+        $$('.booking-step').forEach(step => {
+          step.classList.remove('active');
+        });
+
+        // Show current step
+        $(`.booking-step[data-step="${stepNumber}"]`).classList.add('active');
+
+        // Update progress steps
+        $$('.progress-step').forEach((step, index) => {
+          if (index + 1 <= stepNumber) {
+            step.classList.add('active');
+          } else {
+            step.classList.remove('active');
           }
         });
-      });
 
-      // Language switcher
-      qsa('.lang-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-          qsa('.lang-btn').forEach(b => b.classList.remove('active'));
-          this.classList.add('active');
-          const lang = this.getAttribute('data-lang');
-          showToast(`تم تبديل اللغة إلى: ${this.textContent}`);
+        currentStep = stepNumber;
+
+        // Update summary if we're on the last step
+        if (stepNumber === 3) {
+          this.updateBookingSummary();
+        }
+      }
+
+      validateStep(stepNumber) {
+        const currentStepEl = $(`.booking-step[data-step="${stepNumber}"]`);
+        const requiredInputs = currentStepEl.querySelectorAll('input[required], select[required]');
+        let isValid = true;
+
+        requiredInputs.forEach(input => {
+          if (!input.value) {
+            isValid = false;
+            input.classList.add('error');
+          } else {
+            input.classList.remove('error');
+          }
         });
-      });
 
-      // Open booking from header button
-      const openBookingBtn = qs('#openBookingBtn');
-      if(openBookingBtn) {
-        openBookingBtn.addEventListener('click', () => {
-          qs('#home').scrollIntoView({behavior:'smooth'});
-          setTimeout(() => {
-            const firstInput = qs('#vehicleType');
-            if(firstInput) firstInput.focus();
-          }, 800);
+        // Additional validation for dates
+        if (stepNumber === 1) {
+          const pickupDate = $('#modalPickupDate').value;
+          const returnDate = $('#modalReturnDate').value;
+          if (new Date(pickupDate) >= new Date(returnDate)) {
+            isValid = false;
+            Toast.show('❌ تاريخ العودة يجب أن يكون بعد تاريخ الانطلاق', 'error');
+          }
+        }
+
+        return isValid;
+      }
+
+      initModalDateInputs() {
+        const modalPickup = $('#modalPickupDate');
+        const modalReturn = $('#modalReturnDate');
+
+        if (!modalPickup || !modalReturn) return;
+
+        const today = new Date().toISOString().split('T')[0];
+        const tomorrow = this.getNextDay(today);
+
+        modalPickup.min = today;
+        modalReturn.min = tomorrow;
+
+        // Pre-fill with search criteria if available
+        if (currentSearchCriteria) {
+          modalPickup.value = currentSearchCriteria.pickupDate;
+          const nextDay = this.getNextDay(currentSearchCriteria.pickupDate);
+          modalReturn.min = nextDay;
+          modalReturn.value = currentSearchCriteria.returnDate > nextDay ? currentSearchCriteria.returnDate : nextDay;
+          
+          $('#modalPassengers').value = currentSearchCriteria.passengers;
+          $('#modalPickupLocation').value = currentSearchCriteria.pickupLocation;
+          $('#modalNeedDriver').value = currentSearchCriteria.needDriver;
+          $('#modalAirportPickup').checked = currentSearchCriteria.airportPickup;
+        } else {
+          modalPickup.value = today;
+          modalReturn.value = tomorrow;
+        }
+
+        modalPickup.addEventListener('change', (e) => {
+          const nextDay = this.getNextDay(e.target.value);
+          modalReturn.min = nextDay;
+          if (modalReturn.value < nextDay) {
+            modalReturn.value = nextDay;
+          }
         });
       }
 
-    })();
+      updateBookingSummary() {
+        const formData = new FormData($('#confirmBookingForm'));
+        const summary = $('#modalSummary');
+        
+        if (!summary) return;
+
+        const pickupLocationNames = {
+          'marrakech': 'مراكش',
+          'agadir': 'أكادير',
+          'casablanca': 'الدار البيضاء',
+          'airport-marrakech': 'مطار مراكش المنارة',
+          'airport-agadir': 'مطار أكادير المسيرة'
+        };
+
+        summary.innerHTML = `
+          <div class="summary-item">
+            <span>الاسم:</span>
+            <strong>${formData.get('fullName')}</strong>
+          </div>
+          <div class="summary-item">
+            <span>البريد الإلكتروني:</span>
+            <strong>${formData.get('email')}</strong>
+          </div>
+          <div class="summary-item">
+            <span>رقم الهاتف:</span>
+            <strong>${formData.get('phone')}</strong>
+          </div>
+          <div class="summary-item">
+            <span>المركبة:</span>
+            <strong>${formData.get('vehicleName')}</strong>
+          </div>
+          <div class="summary-item">
+            <span>تاريخ الانطلاق:</span>
+            <strong>${formData.get('pickupDate')}</strong>
+          </div>
+          <div class="summary-item">
+            <span>تاريخ العودة:</span>
+            <strong>${formData.get('returnDate')}</strong>
+          </div>
+          <div class="summary-item">
+            <span>موقع الاستلام:</span>
+            <strong>${pickupLocationNames[formData.get('pickupLocation')] || formData.get('pickupLocation')}</strong>
+          </div>
+          <div class="summary-item">
+            <span>عدد الركاب:</span>
+            <strong>${formData.get('passengers')}</strong>
+          </div>
+          <div class="summary-item">
+            <span>السائق:</span>
+            <strong>${formData.get('needDriver') === 'yes' ? 'مع سائق' : 'بدون سائق'}</strong>
+          </div>
+          ${formData.get('airportPickup') ? `
+          <div class="summary-item">
+            <span>استلام من المطار:</span>
+            <strong>نعم</strong>
+          </div>
+          ` : ''}
+          ${formData.get('notes') ? `
+          <div class="summary-item">
+            <span>ملاحظات:</span>
+            <strong>${formData.get('notes')}</strong>
+          </div>
+          ` : ''}
+        `;
+      }
+
+      async confirmBooking(form) {
+        const formData = new FormData(form);
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const btnText = submitBtn.querySelector('.btn-text');
+        const spinner = submitBtn.querySelector('.loading-spinner');
+
+        // Show loading state
+        btnText.style.display = 'none';
+        spinner.style.display = 'inline-block';
+        submitBtn.disabled = true;
+
+        const bookingData = {
+          fullName: formData.get('fullName'),
+          email: formData.get('email'),
+          phone: formData.get('phone'),
+          vehicleType: formData.get('vehicleType'),
+          vehicleId: formData.get('vehicleId'),
+          vehicleName: formData.get('vehicleName'),
+          vehiclePrice: formData.get('vehiclePrice'),
+          passengers: formData.get('passengers'),
+          pickupDate: formData.get('pickupDate'),
+          returnDate: formData.get('returnDate'),
+          pickupLocation: formData.get('pickupLocation'),
+          needDriver: formData.get('needDriver'),
+          airportPickup: formData.get('airportPickup') === 'on',
+          notes: formData.get('notes'),
+          status: 'pending',
+          createdAt: new Date().toISOString()
+        };
+
+        try {
+          // Save to Firebase
+          const bookingRef = await database.ref('bookings').push(bookingData);
+          const bookingId = bookingRef.key;
+          
+          // Success - Show confirmation
+          this.showConfirmation(bookingId, bookingData);
+          
+          // Reset form
+          form.reset();
+        } catch (error) {
+          console.error('Error saving booking:', error);
+          Toast.show('حدث خطأ أثناء تأكيد الحجز. يرجى المحاولة مرة أخرى.', 'error');
+        } finally {
+          // Reset button state
+          btnText.style.display = 'inline';
+          spinner.style.display = 'none';
+          submitBtn.disabled = false;
+        }
+      }
+
+      showConfirmation(bookingId, bookingData) {
+        const modalContent = `
+          <div class="confirmation-success">
+            <div class="icon">
+              <i class="fas fa-check"></i>
+            </div>
+            <h3>تم تأكيد حجزك بنجاح!</h3>
+            <p>تم إرسال تفاصيل الحجز إلى بريدك الإلكتروني. سنتواصل معك قريباً لتأكيد التفاصيل النهائية.</p>
+            
+            <div class="booking-reference">
+              <strong>رقم المرجع: ${bookingId.substring(0, 8).toUpperCase()}</strong>
+              <p>احتفظ برقم المرجع للاستفسارات المستقبلية</p>
+            </div>
+            
+            <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
+              <a href="https://wa.me/212600000000?text=مرحباً، لدي استفسار حول الحجز برقم المرجع: ${bookingId.substring(0, 8).toUpperCase()}" class="whatsapp-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i> تواصل عبر واتساب
+              </a>
+              <button class="btn btn-outline" id="closeConfirmationBtn">
+                <i class="fas fa-times"></i> إغلاق
+              </button>
+            </div>
+          </div>
+        `;
+
+        elements.modalContent.innerHTML = modalContent;
+        
+        // Add event listener to close button
+        $('#closeConfirmationBtn')?.addEventListener('click', () => {
+          this.modalSystem.close();
+        });
+      }
+    }
+
+    // Search System
+    class SearchSystem {
+      static applySearchFilter() {
+        const searchResults = elements.searchResults;
+        const searchCriteriaText = elements.searchCriteriaText;
+        
+        if (!currentSearchCriteria) return;
+
+        searchResults.style.display = 'block';
+        
+        const locationNames = {
+          'marrakech': 'مراكش',
+          'agadir': 'أكادير',
+          'casablanca': 'الدار البيضاء',
+          'airport-marrakech': 'مطار مراكش المنارة',
+          'airport-agadir': 'مطار أكادير المسيرة'
+        };
+
+        searchCriteriaText.textContent = 
+          `${currentSearchCriteria.pickupDate} → ${currentSearchCriteria.returnDate} | ${currentSearchCriteria.passengers} ركاب | ${locationNames[currentSearchCriteria.pickupLocation] || currentSearchCriteria.pickupLocation}`;
+
+        this.filterCarsBySearch();
+      }
+
+      static filterCarsBySearch() {
+        const carCards = $$('.car-card');
+        let foundMatches = false;
+
+        carCards.forEach(card => {
+          const isAvailable = card.getAttribute('data-available') === 'true';
+          const passengers = parseInt(card.getAttribute('data-passengers'));
+          
+          const matchesSearch = 
+            isAvailable &&
+            passengers >= currentSearchCriteria.passengers &&
+            this.isVehicleAvailableForDates(card.getAttribute('data-id'), 'car');
+
+          card.style.display = matchesSearch ? '' : 'none';
+          if (matchesSearch) foundMatches = true;
+        });
+
+        if (!foundMatches) {
+          this.showNoResults();
+        } else {
+          this.hideNoResults();
+        }
+      }
+
+      static isVehicleAvailableForDates(vehicleId, vehicleType) {
+        // In a real application, this would check against a database
+        // For now, we'll assume all vehicles are available
+        return true;
+      }
+
+      static showNoResults() {
+        const carsContainer = elements.carsContainer;
+        if ($('.no-results')) return;
+
+        const noResultsHTML = `
+          <div class="no-results" style="grid-column: 1/-1; text-align: center; padding: 60px 20px;">
+            <i class="fas fa-search" style="font-size: 48px; margin-bottom: 16px; color: var(--text-muted);"></i>
+            <h4 style="color: var(--text); margin-bottom: 8px;">لم نعثر على سيارات مطابقة لبحثك</h4>
+            <p class="text-muted" style="margin-bottom: 24px;">جرب تعديل معايير البحث أو اختر تواريخ مختلفة</p>
+            <button class="btn btn-outline" onclick="clearSearchFilters()" style="width: auto;">
+              <i class="fas fa-times"></i> إزالة فلاتر البحث
+            </button>
+          </div>
+        `;
+        
+        carsContainer.insertAdjacentHTML('beforeend', noResultsHTML);
+      }
+
+      static hideNoResults() {
+        const noResults = $('.no-results');
+        if (noResults) noResults.remove();
+      }
+    }
+
+    // Data Management
+    class DataManager {
+      static loadCars() {
+        const carsContainer = elements.carsContainer;
+        const carsCount = $('#carsCount');
+
+        database.ref('cars').on('value', (snapshot) => {
+          if (!snapshot.exists()) {
+            carsContainer.innerHTML = '<div class="loading-state"><p>لا توجد سيارات متاحة حالياً</p></div>';
+            carsCount.textContent = '0';
+            return;
+          }
+
+          const cars = snapshot.val();
+          let carsHTML = '';
+
+          Object.keys(cars).forEach(key => {
+            const car = cars[key];
+            carsHTML += `
+              <div class="car-card" data-category="${car.company || 'other'}" data-price="${car.pricePerDay}" data-available="${car.available}" data-passengers="${car.passengers}" data-id="${key}">
+                <div class="car-image">
+                  <img src="${car.image || 'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&w=1600&q=80'}" alt="${car.name}" loading="lazy">
+                  <div class="car-badge">
+                    <span class="availability-status ${car.available ? 'available' : 'not-available'}">
+                      <i class="fas ${car.available ? 'fa-check' : 'fa-times'}"></i>
+                      ${car.available ? 'متاحة' : 'غير متاحة'}
+                    </span>
+                  </div>
+                </div>
+                <div class="car-content">
+                  <h3 class="car-title">${car.name}</h3>
+                  <div class="car-specs">
+                    <span class="car-spec"><i class="fas fa-users"></i> ${car.passengers || 4} ركاب</span>
+                    <span class="car-spec"><i class="fas fa-palette"></i> ${car.color || 'غير محدد'}</span>
+                    <span class="car-spec"><i class="fas fa-car"></i> ${car.model || 'غير محدد'}</span>
+                  </div>
+                </div>
+                <div class="car-price">
+                  <div>
+                    <div class="price-amount">${car.pricePerDay || 0}</div>
+                    <div class="price-period">درهم/اليوم</div>
+                  </div>
+                  <button class="btn ${car.available ? 'btn-primary' : 'btn-outline'}" 
+                          data-car-id="${key}" data-car-name="${car.name}" data-car-price="${car.pricePerDay}" 
+                          ${!car.available ? 'disabled' : ''}>
+                    ${car.available ? 'احجز الآن' : 'غير متاحة'}
+                  </button>
+                </div>
+              </div>
+            `;
+          });
+
+          carsContainer.innerHTML = carsHTML;
+          carsCount.textContent = Object.keys(cars).length;
+
+          // Add event listeners to booking buttons
+          $$('.car-card .btn-primary').forEach(btn => {
+            btn.addEventListener('click', function() {
+              const carId = this.getAttribute('data-car-id');
+              const carName = this.getAttribute('data-car-name');
+              const carPrice = this.getAttribute('data-car-price');
+              
+              bookingSystem.showBookingModal('car', carId, carName, carPrice);
+            });
+          });
+
+          // Apply search filters if any
+          if (currentSearchCriteria) {
+            setTimeout(() => {
+              SearchSystem.applySearchFilter();
+            }, 500);
+          }
+        });
+      }
+
+      static loadCaravans() {
+        const caravansContainer = elements.caravansContainer;
+        const caravansCount = $('#caravansCount');
+
+        database.ref('caravans').on('value', (snapshot) => {
+          if (!snapshot.exists()) {
+            caravansContainer.innerHTML = '<div class="loading-state"><p>لا توجد كرفانات متاحة حالياً</p></div>';
+            caravansCount.textContent = '0';
+            return;
+          }
+
+          const caravans = snapshot.val();
+          let caravansHTML = '';
+
+          Object.keys(caravans).forEach(key => {
+            const caravan = caravans[key];
+            caravansHTML += `
+              <div class="car-card" data-category="caravan" data-price="${caravan.pricePerDay}" data-available="${caravan.available}" data-passengers="${caravan.seats}" data-id="${key}">
+                <div class="car-image">
+                  <img src="${caravan.image || 'https://cnn-arabic-images.cnn.io/cloudinary/image/upload/w_1600,h_900,c_fill,q_auto,g_center/cnnarabic/2023/07/31/images/246349.jpg'}" alt="${caravan.name}" loading="lazy">
+                  <div class="car-badge">
+                    <span class="availability-status ${caravan.available ? 'available' : 'not-available'}">
+                      <i class="fas ${caravan.available ? 'fa-check' : 'fa-times'}"></i>
+                      ${caravan.available ? 'متاحة' : 'غير متاحة'}
+                    </span>
+                  </div>
+                </div>
+                <div class="car-content">
+                  <h3 class="car-title">${caravan.name}</h3>
+                  <p class="text-muted">${caravan.description || 'كرفان فاخر مجهز بكل وسائل الراحة'}</p>
+                  <div class="car-specs">
+                    <span class="car-spec"><i class="fas fa-users"></i> ${caravan.seats || 4} أشخاص</span>
+                    <span class="car-spec"><i class="fas fa-bed"></i> ${caravan.beds || 2} سرير</span>
+                    <span class="car-spec"><i class="fas fa-utensils"></i> مطبخ ${caravan.kitchen ? 'مجهز' : 'بسيط'}</span>
+                  </div>
+                </div>
+                <div class="car-price">
+                  <div>
+                    <div class="price-amount">${caravan.pricePerDay || 0}</div>
+                    <div class="price-period">درهم/اليوم</div>
+                  </div>
+                  <button class="btn ${caravan.available ? 'btn-primary' : 'btn-outline'}" 
+                          data-caravan-id="${key}" data-caravan-name="${caravan.name}" data-caravan-price="${caravan.pricePerDay}"
+                          ${!caravan.available ? 'disabled' : ''}>
+                    ${caravan.available ? 'احجز الآن' : 'غير متاحة'}
+                  </button>
+                </div>
+              </div>
+            `;
+          });
+
+          caravansContainer.innerHTML = caravansHTML;
+          caravansCount.textContent = Object.keys(caravans).length;
+
+          // Add event listeners to booking buttons
+          $$('.car-card .btn-primary').forEach(btn => {
+            btn.addEventListener('click', function() {
+              const caravanId = this.getAttribute('data-caravan-id');
+              const caravanName = this.getAttribute('data-caravan-name');
+              const caravanPrice = this.getAttribute('data-caravan-price');
+              
+              bookingSystem.showBookingModal('caravan', caravanId, caravanName, caravanPrice);
+            });
+          });
+        });
+      }
+
+      static loadTrips() {
+        const tripsContainer = elements.tripsContainer;
+        const tripsCount = $('#tripsCount');
+
+        database.ref('trips').on('value', (snapshot) => {
+          if (!snapshot.exists()) {
+            tripsContainer.innerHTML = '<div class="loading-state"><p>لا توجد رحلات متاحة حالياً</p></div>';
+            tripsCount.textContent = '0';
+            return;
+          }
+
+          const trips = snapshot.val();
+          let tripsHTML = '';
+
+          Object.keys(trips).forEach(key => {
+            const trip = trips[key];
+            tripsHTML += `
+              <div class="car-card">
+                <div class="car-image">
+                  <img src="${trip.image || 'https://media.istockphoto.com/id/1124472714/fr/photo/mosqu%C3%A9e-de-la-koutoubia-et-gardem-marrakech.jpg?s=612x612&w=0&k=20&c=V7hZe8qpsHPuPRJKL6i2LH0pR9UCHofXauK5htkHGgc='}" alt="${trip.title_ar}" loading="lazy">
+                </div>
+                <div class="car-content">
+                  <h3 class="car-title">${trip.title_ar}</h3>
+                  <p class="text-muted">${trip.description_ar || 'رحلة مميزة لاكتشاف أجمل ما في المغرب'}</p>
+                  <div class="car-specs">
+                    <span class="car-spec"><i class="fas fa-clock"></i> ${trip.duration || '3 أيام'}</span>
+                    <span class="car-spec"><i class="fas fa-map-marker-alt"></i> ${trip.destination || 'مراكش'}</span>
+                    <span class="car-spec"><i class="fas fa-star"></i> ${trip.rating || '5.0'}</span>
+                  </div>
+                </div>
+                <div class="car-price">
+                  <div>
+                    <div class="price-amount">${trip.price || 0}</div>
+                    <div class="price-period">درهم/للرحلة</div>
+                  </div>
+                  <button class="btn btn-primary" data-trip-id="${key}" data-trip-name="${trip.title_ar}">
+                    استكشف الرحلة
+                  </button>
+                </div>
+              </div>
+            `;
+          });
+
+          tripsContainer.innerHTML = tripsHTML;
+          tripsCount.textContent = Object.keys(trips).length;
+        });
+      }
+    }
+
+    // Contact Form Handler
+    class ContactForm {
+      constructor() {
+        this.form = elements.contactForm;
+        this.init();
+      }
+
+      init() {
+        if (!this.form) return;
+
+        this.form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          this.handleSubmit();
+        });
+      }
+
+      async handleSubmit() {
+        const formData = new FormData(this.form);
+        const submitBtn = this.form.querySelector('button[type="submit"]');
+        const btnText = submitBtn.querySelector('.btn-text');
+        const spinner = submitBtn.querySelector('.loading-spinner');
+
+        // Show loading state
+        btnText.style.display = 'none';
+        spinner.style.display = 'inline-block';
+        submitBtn.disabled = true;
+
+        const contactData = {
+          name: formData.get('name'),
+          email: formData.get('email'),
+          subject: formData.get('subject'),
+          message: formData.get('message'),
+          createdAt: new Date().toISOString()
+        };
+
+        try {
+          // Save to Firebase
+          await database.ref('contacts').push(contactData);
+          
+          // Success
+          Toast.show('تم إرسال رسالتك بنجاح، سنرد عليك قريباً.');
+          this.form.reset();
+        } catch (error) {
+          console.error('Error saving contact:', error);
+          Toast.show('حدث خطأ أثناء إرسال الرسالة. يرجى المحاولة مرة أخرى.', 'error');
+        } finally {
+          // Reset button state
+          btnText.style.display = 'inline';
+          spinner.style.display = 'none';
+          submitBtn.disabled = false;
+        }
+      }
+    }
+
+    // FAQ Handler
+    class FAQHandler {
+      constructor() {
+        this.init();
+      }
+
+      init() {
+        $$('.faq-question').forEach(question => {
+          question.addEventListener('click', () => {
+            const item = question.parentElement;
+            const wasActive = item.classList.contains('active');
+            
+            // Close all items
+            $$('.faq-item').forEach(i => i.classList.remove('active'));
+            
+            // Open clicked item if it wasn't active
+            if (!wasActive) {
+              item.classList.add('active');
+            }
+          });
+        });
+      }
+    }
+
+    // Car Filters
+    class CarFilters {
+      constructor() {
+        this.init();
+      }
+
+      init() {
+        // Filter buttons
+        $$('.filter-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            if (btn.getAttribute('data-filter') === 'clear') {
+              clearSearchFilters();
+              return;
+            }
+
+            $$('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const filter = btn.getAttribute('data-filter');
+            this.applyFilter(filter);
+          });
+        });
+
+        // Sort select
+        $('.sort-select')?.addEventListener('change', (e) => {
+          this.sortCars(e.target.value);
+        });
+      }
+
+      applyFilter(filter) {
+        const carCards = $$('.car-card');
+
+        carCards.forEach(card => {
+          const isAvailable = card.getAttribute('data-available') === 'true';
+          const category = card.getAttribute('data-category');
+          const price = parseInt(card.getAttribute('data-price'));
+
+          let shouldShow = true;
+
+          switch(filter) {
+            case 'all':
+              shouldShow = true;
+              break;
+            case 'available':
+              shouldShow = isAvailable;
+              break;
+            case 'luxury':
+              shouldShow = price >= 800;
+              break;
+            case 'suv':
+              const suvBrands = ['Land Rover', 'Toyota', 'Nissan', 'BMW'];
+              shouldShow = suvBrands.includes(category);
+              break;
+          }
+
+          card.style.display = shouldShow ? '' : 'none';
+        });
+      }
+
+      sortCars(sortBy) {
+        const carCards = $$('.car-card');
+        const container = $('.cars-grid');
+
+        const cardsArray = Array.from(carCards);
+
+        cardsArray.sort((a, b) => {
+          const aPrice = parseInt(a.getAttribute('data-price'));
+          const bPrice = parseInt(b.getAttribute('data-price'));
+          const aName = a.querySelector('.car-title').textContent;
+          const bName = b.querySelector('.car-title').textContent;
+
+          switch(sortBy) {
+            case 'price-low':
+              return aPrice - bPrice;
+            case 'price-high':
+              return bPrice - aPrice;
+            case 'name':
+              return aName.localeCompare(bName);
+            default:
+              return 0;
+          }
+        });
+
+        container.innerHTML = '';
+        cardsArray.forEach(card => container.appendChild(card));
+      }
+    }
+
+    // Global function to clear search filters
+    window.clearSearchFilters = function() {
+      currentSearchCriteria = null;
+      const searchResults = elements.searchResults;
+      searchResults.style.display = 'none';
+      
+      const carCards = $$('.car-card');
+      carCards.forEach(card => {
+        card.style.display = '';
+      });
+      
+      const noResults = $('.no-results');
+      if (noResults) noResults.remove();
+      
+      Toast.show('تمت إزالة فلاتر البحث');
+    };
+
+    // Initialize everything when DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+      // Start loader
+      Loader.start();
+
+      // Initialize components
+      new HeaderManager();
+      new ScrollManager();
+      new MobileMenu();
+      new HeroSlider();
+      const bookingSystem = new BookingSystem();
+      new ContactForm();
+      new FAQHandler();
+      new CarFilters();
+
+      // Load data
+      DataManager.loadCars();
+      DataManager.loadCaravans();
+      DataManager.loadTrips();
+
+      // Set current year in footer
+      if (elements.year) {
+        elements.year.textContent = new Date().getFullYear();
+      }
+
+      // Initialize language switcher
+      $$('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          $$('.lang-btn').forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          // In a real application, you would change the language here
+        });
+      });
+    });
   </script>
 </body>
 </html>
